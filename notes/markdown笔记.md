@@ -56,5 +56,3 @@ markdown-preview-plus ,增强预览
 ```
 
 花样在第二行
-
-*——by 秦小炅 2018.9.9*
