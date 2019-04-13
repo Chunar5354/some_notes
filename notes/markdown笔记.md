@@ -1,14 +1,14 @@
 # 插件
-使用Atom作为编辑器编辑markdown的时候，需要提前安装一些插件，使用起来更方便。
-在Atom的File-Settings-install里面
-> markdown-toc ,markdown目录生成插件
-markdown-table-editor ,便于表格编辑
-language-markdown ,markdown语法高亮插件
-markdown-preview-enhanced ,语法高亮，双向实时预览
-markdown-image-paste ,从剪贴板粘贴图像到本地
-markdown-pdf ,可以直接输出PDF
-markdown-scroll-sync ,同步滚动
-markdown-preview-plus ,增强预览
+使用Atom作为编辑器编辑markdown的时候，需要提前安装一些插件，使用起来更方便。  
+在Atom的File-Settings-install里面  
+> markdown-toc ,markdown目录生成插件  
+markdown-table-editor ,便于表格编辑  
+language-markdown ,markdown语法高亮插件  
+markdown-preview-enhanced ,语法高亮，双向实时预览  
+markdown-image-paste ,从剪贴板粘贴图像到本地  
+markdown-pdf ,可以直接输出PDF  
+markdown-scroll-sync ,同步滚动  
+markdown-preview-plus ,增强预览  
 
 # 语法
 
