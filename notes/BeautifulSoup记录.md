@@ -100,5 +100,3 @@ text_ = soup.select('.logo') # 此时text_是列表，不能进行操作
 for i in text_:
     print(i.get_text())
 ```
-
-*——by 秦小炅 2018.9.19*
