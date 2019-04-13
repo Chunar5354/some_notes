@@ -6,7 +6,6 @@
 - 编辑`/etc/vim/vimrc`文件，进行最基本的设置语法高亮与显示行号：
 
 ```
-
 set nu  #显示行号
 syntax on  #语法高亮
 set tabstop=4  #tab退四格
@@ -532,6 +531,4 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符�
 nnoremap <F2> :YcmCompleter GoToDefinitionElseDeclaration<CR>  
 " 强制进行编译  
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>  
-
-
 ```
