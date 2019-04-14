@@ -49,7 +49,7 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
 - 删除remote：`git remote remove <name>`
 
 ### 删除文件夹
-- git pull origin master  # 将远程仓库里面的项目拉下来
-- dir   # 查看有哪些文件夹
-- git rm -r --cached target  # 删除target文件夹
-- git commit -m '删除了target' # 提交,添加操作说明
+- `git pull origin master ` # 将远程仓库里面的项目拉下来
+- `dir`   # 查看有哪些文件夹
+- `git rm -r --cached target`  # 删除target文件夹
+- `git commit -m '删除了target'` # 提交,添加操作说明
