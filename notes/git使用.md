@@ -5,7 +5,7 @@
 - 然后在官网下载git的windows版本：`https://www.git-scm.com/download`
 - 设置用户名：`git config --global user.name "name"`
 - 设置邮箱：`git config --global user.email "email@xx.com"`
-- 在本地创建ssh_key：`$ ssh-keygen -t rsa -C "your_email@youremail.com"`，邮箱就是在GitHub上创建账号的邮箱，之后会创建一个`.ssh`文件夹，里面有一个`id_rsa.pub`文件，复制里面的内容
+- 在本地创建ssh_key：`ssh-keygen -t rsa -C "your_email@youremail.com"`，邮箱就是在GitHub上创建账号的邮箱，之后会创建一个`.ssh`文件夹，里面有一个`id_rsa.pub`文件，复制里面的内容
 - 进入GitHub，在`Settings > SSH > ADD SSH`，添加一个SSH，将`id_rsa.pub`中的内容粘贴进去
 - 然后输入`ssh -T git@github.com`来验证是否添加成功
 
