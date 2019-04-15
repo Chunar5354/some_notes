@@ -14,6 +14,7 @@
 - [设置中文显示以及一些串口编程](https://github.com/Chunar5354/some_notes/blob/master/notes/3%E6%9C%8826%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [vim编辑器配置](https://github.com/Chunar5354/some_notes/blob/master/notes/vi%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE.md)
 - [输入法错误时的处理](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%BE%93%E5%85%A5%E6%B3%95%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.md)
+- [设置外部时钟](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%AE%BE%E7%BD%AE%E5%A4%96%E9%83%A8%E6%97%B6%E9%92%9F.md)
 
 ## 关于爬虫的
 - 基础知识两篇：
