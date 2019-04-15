@@ -27,7 +27,7 @@
   - [Ajax相关](https://github.com/Chunar5354/some_notes/blob/master/notes/9%E6%9C%8818%E6%97%A5%E8%AE%B0%E5%BD%95.md)
   - [关于代理](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8815%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 
-## 一些其他库的学习
+## 一些其他方法的学习
 - [qrcode库1](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8819%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [qrcode库2](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8820%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [tkinter库](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8822%E6%97%A5%E8%AE%B0%E5%BD%95.md)
