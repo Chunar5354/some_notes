@@ -53,3 +53,6 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
 - `dir`   # 查看有哪些文件夹
 - `git rm -r --cached target`  # 删除target文件夹
 - `git commit -m '删除了target'` # 提交,添加操作说明
+
+### 查看状态
+- `git status`查看当前仓库状态，是一个很有用的命令，在使用git出错的时候可以使用这个命令查看一些提示
