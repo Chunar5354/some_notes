@@ -1,6 +1,6 @@
 毕业设计要写用户界面，感觉tkinter有点丑，学习一下pyqt库，看看是不是一个好的选择
 
-在树莓派上的安装：`pip apt-get install python3-pyqt5`
+在树莓派上的安装：`sudo apt-get install python3-pyqt5`
 
 ## 关于引用
 这个库的引用比较麻烦，因为其中有好多函数：
