@@ -6,11 +6,11 @@
 
 需要安装nginx和php7.0:
 
->sudo apt-get update
-sudo apt-get install nginx
-sudo apt-get install php7.0-fpm php7.0-cli php7.0-curl php7.0-gd php7.0-mcrypt php7.0-cgi
-sudo service nginx start
-sudo service php7.0-fpm restart
+>sudo apt-get update  
+sudo apt-get install nginx  
+sudo apt-get install php7.0-fpm php7.0-cli php7.0-curl php7.0-gd php7.0-mcrypt php7.0-cgi  
+sudo service nginx start  
+sudo service php7.0-fpm restart  
 
 安装成功的话在浏览器输入树莓派的ip地址就能看到nginx的页面。
 

@@ -3,7 +3,9 @@
 ## 本地Git配置
 - 首先在GitHub官网上创建一个账号
 - 然后在官网下载git的windows版本：`https://www.git-scm.com/download`
-- 在本地创建ssh_key：`$ ssh-keygen -t rsa -C "your_email@youremail.com"`，邮箱就是在GitHub上创建账号的邮箱，之后会创建一个`.ssh`文件夹，里面有一个`id_rsa.pub`文件，复制里面的内容
+- 设置用户名：`git config --global user.name "name"`
+- 设置邮箱：`git config --global user.email "email@xx.com"`
+- 在本地创建ssh_key：`ssh-keygen -t rsa -C "your_email@youremail.com"`，邮箱就是在GitHub上创建账号的邮箱，之后会创建一个`.ssh`文件夹，里面有一个`id_rsa.pub`文件，复制里面的内容
 - 进入GitHub，在`Settings > SSH > ADD SSH`，添加一个SSH，将`id_rsa.pub`中的内容粘贴进去
 - 然后输入`ssh -T git@github.com`来验证是否添加成功
 
@@ -45,3 +47,12 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
 ### remote操作
 - 查看remote：`git remote -v`
 - 删除remote：`git remote remove <name>`
+
+### 删除文件夹
+- `git pull origin master ` # 将远程仓库里面的项目拉下来
+- `dir`   # 查看有哪些文件夹
+- `git rm -r --cached target`  # 删除target文件夹
+- `git commit -m '删除了target'` # 提交,添加操作说明
+
+### 查看状态
+- `git status`查看当前仓库状态，是一个很有用的命令，在使用git出错的时候可以使用这个命令查看一些提示
