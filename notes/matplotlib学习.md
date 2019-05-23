@@ -67,12 +67,6 @@ self.m = PlotTri(self, width=7, height=4) #实例化绘图方法
 ### 针对用pyplot绘制的图像
 
 ```python
-#创建figure窗口
-plt.figure(num=2, figsize=(8, 5))
-#曲线1
-plt.plot(x, y1)
-#曲线2
-plt.plot(x, y2)
 #设置坐标轴范围
 plt.xlim((-5, 5))
 plt.ylim((-2, 2))
