@@ -39,3 +39,4 @@
 - [正则表达式学习](https://github.com/Chunar5354/some_notes/blob/master/notes/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 - [测试用例编写学习](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0.md)
 - [git使用方法](https://github.com/Chunar5354/some_notes/blob/master/notes/git%E4%BD%BF%E7%94%A8.md)
+- [pyqtgraph学习](https://github.com/Chunar5354/some_notes/blob/master/notes/pyqtgraph%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95.md)
