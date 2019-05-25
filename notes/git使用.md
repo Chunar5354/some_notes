@@ -56,3 +56,17 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
 
 ### 查看状态
 - `git status`查看当前仓库状态，是一个很有用的命令，在使用git出错的时候可以使用这个命令查看一些提示
+
+### 出错时一些处理方法
+有时git会出现一些异常
+- `fatal: loose object`异常：
+  - `rm -fr .git`  #将原来的本地git删掉
+  - `git init` #重新初始化git来一套
+  - `git remote add origin own_url` 
+  - `git fetch`
+  - `git reset`  
+  - `git branch`
+  - 这时应该可以继续使用
+  
+- git pull时报错：`fatal:拒绝合并无关的历史`
+  - 在git pull后加上一句：`--allow-unrelated-histories`  #忽略版本不同造成的影响
