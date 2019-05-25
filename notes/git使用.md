@@ -73,3 +73,6 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
   
 - git pull时报错：`fatal:拒绝合并无关的历史`
   - 在git pull后加上一句：`--allow-unrelated-histories`  #忽略版本不同造成的影响
+  
+### 重命名文件
+- `git mv oldname newname`
