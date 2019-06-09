@@ -41,4 +41,4 @@
 - [git使用方法](https://github.com/Chunar5354/some_notes/blob/master/notes/git%E4%BD%BF%E7%94%A8.md)
 - [pyqtgraph学习](https://github.com/Chunar5354/some_notes/blob/master/notes/pyqtgraph%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95.md)
 - [获取unix时间戳](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E8%8E%B7%E5%BE%97unix%E6%97%B6%E9%97%B4%E6%88%B3.md)
-- [socket模块学习](https://github.com/Chunar5354/some_notes/blob/master/notes/socket%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0)
+- [socket模块学习](https://github.com/Chunar5354/some_notes/blob/master/notes/socket%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0.md)
