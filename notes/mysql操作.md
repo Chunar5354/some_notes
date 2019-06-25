@@ -5,7 +5,7 @@
   - 卸载：`sudo apt-ge autoremove --purge mysql-server`
 - windows
 
-## 配置sp
+## 配置
 
 - 设置密码
 树莓派上安装mysql默认是没有密码的，需要自己添加
@@ -67,3 +67,14 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   - 使用`order`命令
   - 比如需要通过生日来排序，并只查看名字和生日两项:`SELECT name, birth FROM pet ORDER BY birth;`
   - 排序默认为升序，可以通过`desc`设置为降序：`SELECT name, birth FROM pet ORDER BY birth DESC;`
+  
+### 日期计算
+
+使用`TIMESTAMPDIFF()`命令，需要传递三个参数：
+
+- 1.要计算的日期参数，可以是YEAR,MONTH,DAY等
+- 2.减数
+- 3.被减数
+- 比如：`SELECT name, birth, CURDATE(), TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age FROM pet;`
+  - 其中`DURDATE()`是内置函数，返回当前日期
+  - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
