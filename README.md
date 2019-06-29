@@ -3,6 +3,7 @@
 一些零碎的学习记录
 
 ## 关于树莓派的
+
 - [开机教程](https://github.com/Chunar5354/some_notes/blob/master/notes/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%89%8B%E7%AC%94%E8%AE%B0.md)
 - [操作命令与samba](https://github.com/Chunar5354/some_notes/blob/master/notes/9%E6%9C%889%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [U盘挂载](https://github.com/Chunar5354/some_notes/blob/master/notes/9%E6%9C%8812%E6%97%A5%E8%AE%B0%E5%BD%95.md)
@@ -21,6 +22,7 @@
 - [windows安装虚拟机](https://github.com/Chunar5354/some_notes/blob/master/notes/windows%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA.md)
 
 ## 关于爬虫的
+
 - 基础知识两篇：
   - [爬虫记录1](https://github.com/Chunar5354/some_notes/blob/master/notes/%E7%88%AC%E8%99%AB%E8%AE%B0%E5%BD%951.md)
   - [爬虫记录2](https://github.com/Chunar5354/some_notes/blob/master/notes/%E7%88%AC%E8%99%AB%E8%AE%B0%E5%BD%952.md)
@@ -31,7 +33,8 @@
   - [Ajax相关](https://github.com/Chunar5354/some_notes/blob/master/notes/9%E6%9C%8818%E6%97%A5%E8%AE%B0%E5%BD%95.md)
   - [关于代理](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8815%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 
-## 一些其他方法的学习
+## python学习
+
 - [qrcode库1](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8819%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [qrcode库2](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8820%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [tkinter库](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8822%E6%97%A5%E8%AE%B0%E5%BD%95.md)
@@ -42,9 +45,16 @@
 - [markdown学习](https://github.com/Chunar5354/some_notes/blob/master/notes/markdown%E7%AC%94%E8%AE%B0.md)
 - [正则表达式学习](https://github.com/Chunar5354/some_notes/blob/master/notes/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 - [测试用例编写学习](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E8%87%AA%E5%8A%A8%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0.md)
-- [git使用方法](https://github.com/Chunar5354/some_notes/blob/master/notes/git%E4%BD%BF%E7%94%A8.md)
+
 - [pyqtgraph学习](https://github.com/Chunar5354/some_notes/blob/master/notes/pyqtgraph%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95.md)
 - [获取unix时间戳](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E8%8E%B7%E5%BE%97unix%E6%97%B6%E9%97%B4%E6%88%B3.md)
 - [socket模块学习](https://github.com/Chunar5354/some_notes/blob/master/notes/socket%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0.md)
 - [python语法优化](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E4%BC%98%E5%8C%96%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9.md)
+
+## 数据库
+
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
+
+## github使用
+
+- [git使用方法](https://github.com/Chunar5354/some_notes/blob/master/notes/git%E4%BD%BF%E7%94%A8.md)
