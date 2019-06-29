@@ -16,6 +16,10 @@
 - [输入法错误时的处理](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%BE%93%E5%85%A5%E6%B3%95%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.md)
 - [设置外部时钟](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%AE%BE%E7%BD%AE%E5%A4%96%E9%83%A8%E6%97%B6%E9%92%9F.md)
 
+## 关于linux系统
+
+- [windows安装虚拟机](https://github.com/Chunar5354/some_notes/blob/master/notes/windows%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA.md)
+
 ## 关于爬虫的
 - 基础知识两篇：
   - [爬虫记录1](https://github.com/Chunar5354/some_notes/blob/master/notes/%E7%88%AC%E8%99%AB%E8%AE%B0%E5%BD%951.md)
