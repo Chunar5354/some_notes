@@ -28,7 +28,7 @@ C:\Codes\Vagrant\Amadeus>vagrant box add Amadeus ..\VM\CentOS-7-x86_64-Vagrant-1
 ==> box: Successfully added box 'Amadeus' (v0) for 'virtualbox'!
 ```
 
-然后输入命令`vagrant init`，输出一下信息：
+然后输入命令`vagrant init`，输出以下信息：
 ```
 C:\Codes\Vagrant\Amadeus>vagrant init
 A `Vagrantfile` has been placed in this directory. You are now
@@ -39,15 +39,15 @@ the comments in the Vagrantfile as well as documentation on
 
 ## 配置Vargant
 
-按照上面的操作进行成功的话在`conf_file`文件夹中会出现一个`Vagrantfile`文件，它是虚拟机的配置文件，使用Ruby语言编写，通过编写文件中的内容来配置虚拟机
+按照上面的操作进行成功的话在`conf_file`文件夹中会出现一个`Vagrantfile`文件，它是虚拟机的配置文件，使用Ruby语言所编写，通过编写文件中的内容来配置虚拟机
 
 ### 命名
 
 在`Vagrantfile`添加以下内容：
 ```
-config.vm.box = "vbox"    // 这里引号中的内容需要与文件目录名相同
+config.vm.box = "vbox"       // 这里引号中的内容需要与文件目录名相同
 config.vm.hostname = "name"  // name为自定义的虚拟机名称
-config.vm.define "vbox"   // 这里引号中的内容必须与文件目录名相同
+config.vm.define "vbox"      // 这里引号中的内容必须与文件目录名相同
 ```
 
 然后在`config.vm.provider "virtualbox" do |vb|`这一行之后添加：
