@@ -87,4 +87,5 @@ Installed the plugin 'vagrant-vbguest (0.18.0)'!
 vargant up    // 开机
 vargant ssh   // 登陆到虚拟机的命令行
 vargant halt  // 关机
+注意执行这些命令也要在conf_file文件夹中进行
 ```
