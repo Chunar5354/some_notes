@@ -2,9 +2,9 @@ CentOs 系统默认安装了python2.7版本，使用python3需要自己手动安
 
 - 首先安装一系列的依赖包：
 ```
-sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel -y
+sudo yum install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel -y
 ```
-其中`zlib-devel` `gcc` `make` `libffi-devel`这几个包比较重要，如果没装可能会编译错误
+其中`zlib-devel` `wget` `gcc` `make` `libffi-devel`这几个包比较重要，如果没装可能会编译错误
 
 - 之后在官网下载源码包
 ```
