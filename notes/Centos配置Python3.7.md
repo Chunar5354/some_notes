@@ -20,16 +20,15 @@ tar -xvf Python-3.7.4.tar
 - 然后进行编译
 ```
 cd Python-3.7.4
-./configure --prefix=/usr/local/python3.7 --enable-optimizations
+./configure --prefix=/usr/local/python3
 make  //这一步会花费较长时间
 sudo make install
 ```
 `prefix`后面是预安装目录，可以自行设定
-`enable-optimizations`是一个编译优化命令
 
 - 最后把python3的目录添加到环境变量中
 ```
-sudo ln -s /usr/local/python3.7/bin/python3.7 /usr/bin/python3
+sudo ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
 ```
 
 这时在命令行输入`python3`就能够进入到python3的解释器中，并能够看到python3的版本
