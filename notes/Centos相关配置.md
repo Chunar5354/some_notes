@@ -79,7 +79,7 @@ sudo firewall-cmd --add-service=name --permanent
 ```
 
 - 添加端口
-将`port_number`替换成端口数字
+将`port_number`替换成端口数字，后面是相应的协议
 ```
 sudo firewall-cmd --add-port=port_number/tcp --permanent
 ```
