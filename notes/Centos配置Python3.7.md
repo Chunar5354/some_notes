@@ -45,16 +45,16 @@ wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
 
 - 对源码包进行解压以及解压缩
 ```
-xz -d Python-3.7.4.tar.xz
-tar -xvf Python-3.7.4.tar
+- xz -d Python-3.7.4.tar.xz
+- tar -xvf Python-3.7.4.tar
 ```
 
 - 然后进行编译
 ```
-cd Python-3.7.4
-./configure --prefix=/usr/local/python3
-make  //这一步会花费较长时间
-sudo make install
+- cd Python-3.7.4
+- ./configure --prefix=/usr/local/python3
+- make  //这一步会花费较长时间
+- sudo make install
 ```
 `prefix`后面是预安装目录，可以自行设定
 
@@ -67,8 +67,8 @@ sudo ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
 
 - 在安装了python3之后，需要对yum进行重新配置，因为yum是基于python2工作的
 ```
-vi /usr/bin/yum 
+- vi /usr/bin/yum 
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2 
-vi /usr/libexec/urlgrabber-ext-down 
+- vi /usr/libexec/urlgrabber-ext-down 
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2
 ```
