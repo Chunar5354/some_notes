@@ -20,7 +20,7 @@
 ## 关于linux系统
 
 - [windows安装虚拟机](https://github.com/Chunar5354/some_notes/blob/master/notes/windows%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA.md)
-- [Centos系统配置python3](https://github.com/Chunar5354/some_notes/blob/master/notes/Centos%E9%85%8D%E7%BD%AEPython3.7.md)
+- [Centos系统配置](https://github.com/Chunar5354/some_notes/blob/master/notes/Centos%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE.md)
 
 ## 关于爬虫的
 
