@@ -65,6 +65,15 @@ config.vm.network "forwarded_port", guest: 80, host: 8080     // guest表示虚�
 config.vm.network "private_network", ip: "192.168.22.22"      // 虚拟机的ip地址，可以任意设置
 ```
 
+### 文件共享
+
+在上一节内容的下面添加以下内容，设置虚拟机与主机的共享文件夹:
+
+```
+config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
+```
+前面是主机上的文件夹，后面是虚拟机上的文件夹，相应地改成自己的文件
+
 ## 开机
 
 首先需要安装一个`vbguest`插件，在命令行输入下面命令：
