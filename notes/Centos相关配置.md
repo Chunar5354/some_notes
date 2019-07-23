@@ -27,6 +27,63 @@ sudo yum repolist
 sudo yum install yum-utils -y
 ```
 
+## CentOS的防火墙操作
+
+CentOS自带`fierwalld`，在进行网络应用端口等配置的时候常常会用到，关于它的一些操作：
+
+- 启动防火墙
+```
+systemctl start firewalld 
+```
+
+- 关闭防火墙
+```
+systemctl stop firewalld 
+```
+
+- 设置防火墙开机启动
+```
+systemctl enable firewalld
+```
+
+- 停止防火墙并禁止开机启动
+```
+sytemctl disable firewalld 
+```
+
+- 重启防火墙
+```
+firewall-cmd --reload
+```
+
+- 查看防火墙状态
+```
+systemctl status firewalld
+or >> firewall-cmd --state
+```
+
+- 查看区域信息
+```
+firewall-cmd --get-active-zones
+```
+
+- 查看所有信息
+```
+sudo firewall-cmd --list-all
+```
+
+- 添加许可服务
+将`name`替换成要添加的服务名称
+```
+sudo firewall-cmd --add-service=name --permanent
+```
+
+- 添加端口
+将`port_number`替换成端口数字
+```
+sudo firewall-cmd --add-port=port_number/tcp --permanent
+```
+
 
 ## 在CentOS上安装Python3
 
