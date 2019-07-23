@@ -1,4 +1,36 @@
-CentOs 系统默认安装了python2.7版本，使用python3需要自己手动安装配置，这篇主要是使用下载源码并编译的方式来进行配置
+## CentOS系统的配置
+
+主要是针对CentOS系统的初始配置，如果已经配置好可以跳过
+
+- 首先更新一下系统
+```
+sudo yum update
+```
+
+- 安装[EPEL](https://fedoraproject.org/wiki/EPEL)仓库(方便资源安装)
+```
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+```
+
+- 安装[Remi's RPM](https://rpms.remirepo.net/)仓库
+```
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+```
+
+- 查看一下仓库是否成功安装
+```
+sudo yum repolist
+```
+
+- 安装yum-utils包
+```
+sudo yum install yum-utils -y
+```
+
+
+## 在CentOS上安装Python3
+
+CentOS 系统默认安装了python2.7版本，使用python3需要自己手动安装配置，这篇主要是使用下载源码并编译的方式来进行配置
 
 - 首先安装一系列的依赖包：
 ```
