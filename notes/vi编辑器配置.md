@@ -3,7 +3,7 @@
 树莓派系统自带一个vim编辑器，但是功能似乎不全，一般要删掉它重新下载一个
 - 卸载自带vim：`sudo apt-get remove vim-common`
 - 安装vim：`sudo apt-get install vim`
-- 编辑`/etc/vim/vimrc`文件，进行最基本的设置语法高亮与显示行号：
+- 编辑`/etc/vim/vimrc`文件（如果是CentOS系统则是`/etc/vimrc`文件），进行最基本的设置语法高亮与显示行号：
 
 ```
 set nu  #显示行号
