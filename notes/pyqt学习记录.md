@@ -1,10 +1,8 @@
-毕业设计要写用户界面，感觉tkinter有点丑，学习一下pyqt库，看看是不是一个好的选择
+毕业设计时用到的，写了很多代码，一直没有整理，陆续把一些用到的知识点写在这里
 
+## 安装
 在树莓派上的安装：`sudo apt-get install python3-pyqt5`
 在windows上安装：`pip install pyqt5`
-
-## 关于引用
-这个库的引用比较麻烦，因为其中有好多函数：
 
 ## 通常使用格式
 一般会使用类的方式来进行QT的编程，格式通常是这样滴
@@ -39,14 +37,8 @@ if __name__ == '__main__': #这个也是通常的调用三件套
 
 ```
 
-## 借了本书
-借了一本关于PyQt编程的书，是PyQt4版本的，有一点小出入，可以百度查到
-根据书上的例子写一些例程，笔记都写在程序的注释里面了
-从19-3-8开始
+## 几种窗口
 
-## 陆续加点东西
-
-PyQt5几种窗口风格
 - Qt.Widget,默认窗口，有最小化、最大化、关闭按钮。
 - Qt.Window,普通窗口，有最小化、最大化、关闭按钮。
 - Qt.Dialog,对话框窗口，有问号和关闭按钮
@@ -54,3 +46,17 @@ PyQt5几种窗口风格
 - Qt.ToolTip,提示窗口，窗口无边框，无任务栏
 - Qt.SplashScreen,闪屏，窗口无边框，无任务栏
 - Qt.SubWindow,子窗口，窗口无按钮，但有标题。
+
+## QLineEdit一些知识点
+
+- 设置文本初始选中：`selectAll()`
+- 设置光标的初始位置：`setFocus()`
+注意setFocus方法必须在控件显示之后使用，比如在setLayout之后
+- 设置文本对齐方式：`setAlignment()`，有几种可选参数
+  - Qt.AlignLeft：水平方向靠左对齐
+  - Qt.AlignRight:水平方向靠右对齐
+  - Qt.AlignCenter：水平方向居中对齐
+  - Qt.AlignJustify：水平方向调整间距两端对齐
+  - Qt.AlignTop：垂直方向靠上对齐
+  - Qt.AlignBottom：垂直方向靠下对齐
+  - Qt.AlignVCenter：垂直方向居中对齐
