@@ -54,7 +54,7 @@ if __name__ == '__main__': #这个也是通常的调用三件套
 注意setFocus方法必须在控件显示之后使用，比如在setLayout之后
 - 设置文本对齐方式：`setAlignment()`，有几种可选参数
   - Qt.AlignLeft：水平方向靠左对齐
-  - Qt.AlignRight:水平方向靠右对齐
+  - Qt.AlignRight：水平方向靠右对齐
   - Qt.AlignCenter：水平方向居中对齐
   - Qt.AlignJustify：水平方向调整间距两端对齐
   - Qt.AlignTop：垂直方向靠上对齐
