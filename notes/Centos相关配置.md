@@ -115,12 +115,14 @@ wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
 ```
 `prefix`后面是预安装目录，可以自行设定
 
-- 最后把python3的目录添加到环境变量中
+- 最后把python3和pip3的目录添加到环境变量中
 ```
 sudo ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
+sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 ```
 
 这时在命令行输入`python3`就能够进入到python3的解释器中，并能够看到python3的版本
+并可以使用pip3进行相关包的安装
 
 - 在安装了python3之后，需要对yum进行重新配置，因为yum是基于python2工作的
 ```
