@@ -29,9 +29,9 @@
 ```
 create user 'username'@'host' identified by 'password'
 ```
-  - 其中`username`表示新建用户的用户名
-  - `host`表示可以在那些主机可以登录，可以指定主机的ip，如果要设置所有主机可登录，将`host`替换为`%`
-  - `password`表示该用户登录的密码
+   - 其中`username`表示新建用户的用户名
+   - `host`表示可以在那些主机可以登录，可以指定主机的ip，如果要设置所有主机可登录，将`host`替换为`%`
+   - `password`表示该用户登录的密码
   
 - 授权
 新建的用户是没有数据库的操作权限的，需要为其授权：
@@ -39,11 +39,11 @@ create user 'username'@'host' identified by 'password'
 ```
 grant privileges on databasename.tablename to 'username'@'host'
 ```
-  - 其中`privileges`表示具体赋予哪一项权限，如`update` `delete`等，如果要赋予所有操作权限，将`privileges`替换成`all`
-  - `databasename`表示该权限是针对哪一个数据库，如果对于所有数据库都赋予该权限，将`databasename`替换成`*`
-  - `tablename`表示权限针对哪一个表格，如果对于所有表格都赋予该权限，将`tablename`替换成`*`
-  - 注意二者之间的`.`不要落下
-  - `username`和`host`意义与上面一样
+   - 其中`privileges`表示具体赋予哪一项权限，如`update` `delete`等，如果要赋予所有操作权限，将`privileges`替换成`all`
+   - `databasename`表示该权限是针对哪一个数据库，如果对于所有数据库都赋予该权限，将`databasename`替换成`*`
+   - `tablename`表示权限针对哪一个表格，如果对于所有表格都赋予该权限，将`tablename`替换成`*`
+   - 注意二者之间的`.`不要落下
+   - `username`和`host`意义与上面一样
   
 - 撤销权限
 ```
