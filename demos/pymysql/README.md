@@ -56,7 +56,8 @@ count = cur.execute(sql1)
 
 cursor()对象的方法：
 - close()：关闭
-- execute(sql)：执行语句，返回受影响的行数
+- execute(sql[, parameters)：执行语句，返回受影响的行数
+  - 可以在sql字符串后面带参数，修改具体操作的内容
 - fetchone()：查询结果的第一行数据，返回一个元组
 - next()：查询当前行的下一行
 - fetchall()：查询数据的所有行，返回一个元组
