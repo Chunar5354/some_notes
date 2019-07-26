@@ -67,7 +67,7 @@ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
 注释掉其中的`bind-address  = 127.0.0.1`这一行  
 然后保存，重启
 
-## 创建数据库
+## 常用命令
 
 参考[官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
@@ -123,3 +123,23 @@ WHERE conditions_to_satisfy; // 满足哪些条件
 - 比如：`SELECT name, birth, CURDATE(), TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age FROM pet;`
   - 其中`DURDATE()`是内置函数，返回当前日期
   - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
+  
+## 从文件中调用SQL命令
+
+对于一些重复使用的命令，可以将其保存在文件中调用
+
+- 在命令行中使用：
+```
+shell> mysql -h host -u user -p < finename
+Enter password: ********
+```
+  - 可以加上参数`-t`来使输出的格式与直接在命令行输入SQL命令时的输出格式一致
+  - 可以加上参数`-v`来打印所运行的SQL命令
+  
+- 在mysql中使用：
+有两种方法
+```
+mysql> source filename;
+mysql> \. filename
+```
+
