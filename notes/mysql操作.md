@@ -128,15 +128,15 @@ WHERE conditions_to_satisfy; // 满足哪些条件
 
 对于一些重复使用的命令，可以将其保存在文件中调用
 
-- 在命令行中使用：
+### 在命令行中使用：
 ```
 shell> mysql -h host -u user -p < finename
 Enter password: ********
 ```
-  - 可以加上参数`-t`来使输出的格式与直接在命令行输入SQL命令时的输出格式一致
-  - 可以加上参数`-v`来打印所运行的SQL命令
-  
-- 在mysql中使用：
+- 可以加上参数`-t`来使输出的格式与直接在命令行输入SQL命令时的输出格式一致
+- 可以加上参数`-v`来打印所运行的SQL命令
+
+### 在mysql中使用：
 有两种方法
 ```
 mysql> source filename;
