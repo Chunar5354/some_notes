@@ -57,6 +57,10 @@
 
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
 
+## PHP7.0
+
+- [PHP7.0学习](https://github.com/Chunar5354/some_notes/tree/master/demos/php_study)
+
 ## github使用
 
 - [git使用方法](https://github.com/Chunar5354/some_notes/blob/master/notes/git%E4%BD%BF%E7%94%A8.md)
