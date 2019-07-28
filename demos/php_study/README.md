@@ -4,7 +4,7 @@ PHP7.0语法学习
 
 - 在树莓派上
 ```
-
+sudo apt-get install php php7.0-mysql
 ```
 
 ## 配置
