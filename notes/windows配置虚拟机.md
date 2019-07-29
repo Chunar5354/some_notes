@@ -17,6 +17,7 @@
 ```
 vagrant box add BOXNAME BOXPATH
 ```
+其中`BOXNAME`是为虚拟机容器起的名字，`BOXPATH`是下载的虚拟机文件路径
 
 之后会输出以下信息：
 ```
@@ -45,9 +46,9 @@ the comments in the Vagrantfile as well as documentation on
 
 在`Vagrantfile`添加以下内容：
 ```
-config.vm.box = "vbox"       // 这里引号中的内容需要与文件目录名相同
-config.vm.hostname = "name"  // name为自定义的虚拟机名称
-config.vm.define "vbox"      // 这里引号中的内容必须与文件目录名相同
+config.vm.box = "BOXNAME"       // 这里的BOXNAME和上面的BOXNAME要一样
+config.vm.hostname = "name"     // name为自定义用户名
+config.vm.define "vbox"         // 虚拟机名称
 ```
 
 然后在`config.vm.provider "virtualbox" do |vb|`这一行之后添加：
@@ -74,6 +75,27 @@ config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
 ```
 前面是主机上的文件夹，后面是虚拟机上的文件夹，相应地改成自己的文件
 
+## 多个虚拟机配置
+大体与上面的配置方法相似，但是要针对每个虚拟机分别配置，如下所示：
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.define "cbox" do |cbox|
+    config.vm.box = "centbox"
+    config.vm.hostname = "Chunar"
+    config.vm.network "private_network", ip: "192.168.11.11"
+    config.vm.synced_folder "P:/share/share_c", "/home/vagrant/share"
+  end
+
+  config.vm.define "ubox" do |ubox|
+    config.vm.box = "ubunbox"
+    config.vm.hostname = "Qiuer"
+    config.vm.network "private_network", ip: "192.168.11.22"
+    config.vm.synced_folder "P:/share/share_q", "/home/vagrant/share"
+  end
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+end
+```
+
 ## 开机
 
 首先需要安装一个`vbguest`插件，在命令行输入下面命令：
@@ -93,8 +115,12 @@ Installed the plugin 'vagrant-vbguest (0.18.0)'!
 
 - 一些控制命令（在windows命令行下）：
 ```
-vargant up    // 开机
-vargant ssh   // 登陆到虚拟机的命令行
-vargant halt  // 关机
+vargant up               // 开机
+vagrant reload           // 重载
+vargant ssh              // 登陆到虚拟机的命令行
+vargant halt             // 关机
+vagrant status           // 查看状态
+vagrant box list         // 查看当前所有虚拟机
+vagrant box remove ..    // 删除某虚拟机
 注意执行这些命令也要在conf_file文件夹中进行
 ```
