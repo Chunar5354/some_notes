@@ -28,6 +28,8 @@ display_errors = On
 
 ## 语法知识点
 
+### 基础
+
 - 1.php代码要放在标记内部 
 ```
 <?php
@@ -46,3 +48,19 @@ display_errors = On
 - 11.使用`htmlentities()`进行清洁处理，增强安全性
 - 12.php中FALSE值为NULL，TRUE值为1
 - 13.php中一致性运算符`===`用来取消强制的类型转换，或者`!== `
+- 14.在行尾加上`"<br>"`标签可以强制另起一行输出
+- 15.类型转换需要加括号 如 `(int)(1.1);`
+- 16.即使在函数返回值中返回多个参数的元组，也要加上array：`return array($a1, $a2, $a3); `
+
+### 关于类
+
+- 1.使用class创建类，使用new ...创建实例
+- 2.调用类中的属性和函数使用 `->`如class->function()
+- 3.使用`clone`操作符克隆对象，使得修改后面的对象不会对前面的对象产生影响：$object2 = clone $object1;
+- 4.类中的this（等同于python的self） 调用属性使用`this->xx`，调用方法使用`self::xx()`
+- 5.在类中也可以使用静态方法`static`它不能访问任何对象属性，通常用于调用类本身，而且调用的方法不是->而是`::`而且静态的属性和方法不必实例化就可访问
+- 6.在类中声明常量使用`const`语句，并使用self::the_const 来引用常量
+- 7.三种属性和方法的作用范围`public`（外部可调用），`protected`（外部不可调用，派生类可调用），`private`（外部不可调用，派生类也不可调用，只有自身可调用）
+- 8.类继承，使用`extends` ：class ChildClass extends FatherClass
+- 9.类中的初始化：`__construct()`(类似__init__)
+
