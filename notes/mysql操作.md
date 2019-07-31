@@ -113,6 +113,28 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   - 比如需要通过生日来排序，并只查看名字和生日两项:`SELECT name, birth FROM pet ORDER BY birth;`
   - 排序默认为升序，可以通过`desc`设置为降序：`SELECT name, birth FROM pet ORDER BY birth DESC;`
   
+- `max()`函数寻找最大值
+
+### 为数据分组
+
+使用`group by`语句，将表中的行按照所选择的相同值来分组
+
+### LIKE查找
+
+按`like 'b%' '%f' '%w%' `形式查找，也可以使用`_`下划线占位按长度查找
+
+### JOIN方法将两个表关联起来
+
+- INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。（NATURAL JOIN）
+- LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
+- RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
+
+### AS方法
+
+`AS`可以将一个一个元素暂时命名为另一个元素，而且不修改原来的元素
+如`...TABLE pet AS p1 ...;`
+或者`SELECT name as n1 FROM pet;`
+  
 ### 日期计算
 
 使用`TIMESTAMPDIFF()`命令，需要传递三个参数：
@@ -123,6 +145,62 @@ WHERE conditions_to_satisfy; // 满足哪些条件
 - 比如：`SELECT name, birth, CURDATE(), TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age FROM pet;`
   - 其中`DURDATE()`是内置函数，返回当前日期
   - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
+  
+## MYSQL中的索引
+
+使用索引可以在大型数据库中减少数据搜索的时间
+
+常用的索引有INDEX，PRIMARY KEY（主键），FULLTEXT
+
+### 创建INDEX索引
+
+通过ALTER创建：
+```
+ALTER TABLE pet ADD INDEX(name(10));
+```
+
+该命令的意义为为`name`列创建索引，长度为10个字符（索引中只存储10个字符）
+
+*通过索引进行检索比较复杂，日后再续*
+
+### 主键
+
+主键是每行都不同的`唯一`值，使用逐渐可以唯一的检索到某一行，在关系型数据库中一个表的主键通常会作为另一个表的外键`foreign key`
+
+通过ALTER创建：
+```
+ALTER TABLE pet ADD PRIMARY KEY(id(10));
+```
+
+意为将`id`列创建为主键，注意id必须每一行都是唯一值
+
+创建了主键之后使用`DESCRIBE pet`会看到`Key`这一列会发生变化
+
+### 在创建表时创建索引
+
+```
+CREATE TABLE classics (
+author VARCHAR(128),
+title VARCHAR(128),
+category VARCHAR(16),
+year SMALLINT,
+isbn CHAR(13),
+INDEX(author(20)),
+INDEX(title(20)),
+INDEX(category(4)),
+INDEX(year),
+PRIMARY KEY (isbn)) ENGINE MyISAM;
+```
+注意最后要设置储存引擎，一般为`MyISAM`
+
+## EXPLAIN方法
+
+使用EXPLAIN方法可以解释如何发出的查询并打印出来，只要在SELECT前面加上它就能实现
+
+```
+EXPLAIN SELECT* FROM pet;
+```
+使用它也可以查看查询是否通过索引来实现
   
 ## 从文件中调用SQL命令
 
@@ -142,4 +220,84 @@ Enter password: ********
 mysql> source filename;
 mysql> \. filename
 ```
+
+## 规范化
+
+将数据分开放入表中并创建主键的过程称为规范化，主要目的是保证每一条信息在数据库中只出现一次
+
+有三种范式
+
+*涉及到好多图表，先把概念记到这里*
+
+### 第一范式
+
+第一范式有三个要求：
+- 不能有包含相同类型数据的重复列出现
+- 所有的列都是单值
+- 要有一个主键来标识每一行
+
+### 第二范式
+
+第二范式首先要求满足第一范式，并在第一范式的基础上`消除多行间的冗余`
+
+### 第三范式
+
+第三范式在第一、第二范式的基础上，要求`数据不直接依赖于主键`
+
+使用第三范式通常会增加表的数量，一般不需要使用
+
+## 事务
+
+使用MYSQL中的事务功能可以撤销一些操作，使用方法：
+```
+BEGIN;
+UPDATE .... ;
+INSERT .... ;
+COMMIT;
+```
+
+在`BEGIN`之后的操作都是暂时性的，直到通过`COMMIT`提交之前他们都是可撤回的
+
+撤回操作使用`ROLLBACK`
+```
+BEGIN;
+UPDATE .... ;
+INSERT .... ;
+ROLLBACK;
+```
+这样UPDATE和INSERT操作就被撤回了
+
+## 备份及恢复
+
+使用`mysqldump`命令可以将数据库进行备份（在命令行下）
+
+在备份之前最好将要备份的数据库加锁`LOCK`，或者确定备份过程中不会有用户向表中写入数据
+
+```
+LOCK TABLES .... ;
+```
+备份之后用`UNLOCK`解锁
+```
+UNLOCK TABLES;
+```
+
+mysqldump命令的使用方法：
+```
+mysqldump -u user -ppassword database
+// database为要备份的数据库
+```
+
+直接运行该命令会将备份的内容打印在屏幕上，也可以将这些数据保存到文件中，使用`>`符号：
+```
+mysqldump -u user -ppassword database > database.sql
+```
+
+然后可以查看该文件，其中的内容包含所有重新创建表的命令和重新填充它们的数据
+
+从备份文件中恢复数据库，使用`<`符号：
+```
+mysqldump -u user -ppassword -D database < database.sql
+// -D表示恢复单个数据库
+```
+
 
