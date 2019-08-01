@@ -26,6 +26,8 @@ display_errors = On
 
 然后重启，就能够查看错误信息
 
+但是这样不太安全，再进行实际应用的时候要修改回来
+
 ## 知识点
 
 ### 基础
@@ -72,7 +74,7 @@ display_errors = On
 
 ### 关于数组
 
-- 1.foreach...as 语句对数组进行遍历
+#### 1.foreach...as 语句对数组进行遍历
 ```php
 <?php
 $paper = array("Cpoier", "Inkjet", "Laser", "Photo");
@@ -101,7 +103,7 @@ foreach ($paper as $item => $description)  // 将&paper数组中的键作为变�
 ?>
 ```
 
-- 2.使用list...each进行遍历
+#### 2.使用list...each进行遍历
 
 与foreach ...as方法的功能类似
 ```php
@@ -119,7 +121,7 @@ while (list($item, $description) = each($paper))  // 将&paper数组中的键作
 ?>
 ```
 
-- 3.一些数组的函数
+#### 3.一些数组的函数
 ```php
 // 1. is_array
 // 判断变量是否为一个数组
@@ -177,3 +179,28 @@ print_r($contact);
 ```
 
 ### 文件处理
+
+#### 1.检测文件是否存在
+
+使用file_exists函数
+```php
+if ((file_exists("testfilt.txt")) echo "File exists";
+```
+
+#### 2.文件读写
+
+首先使用fopen函数来打开一个文件
+```php
+<?php
+$fh = fopen("testfile.txt", 'w') or die("Failed to open file");
+?>
+```
+
+其中第一个参数为文件名，第二个参数表示文件的打开模式，共有六种:
+| 模式 | 行为 |
+| 'r' | 从文件头部开始读|
+| 'r+' | 从文件头部开始，可读写|
+| 'w' | 从文件头部开始写，删除原内容|
+| 'w+' | 从文件头部开始，可读写，删除原内容|
+| 'a' | 从文件尾部开始追加内容|
+| 'a+' | 从文件尾部开始追加内容，可读写|
