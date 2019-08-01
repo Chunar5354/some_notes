@@ -25,7 +25,7 @@
 
 ### 创建新用户并授权
 
-#### 创建用户
+#### 1.创建用户
 ```
 create user 'username'@'host' identified by 'password'
 ```
@@ -33,7 +33,7 @@ create user 'username'@'host' identified by 'password'
 - `host`表示可以在那些主机可以登录，可以指定主机的ip，如果要设置所有主机可登录，将`host`替换为`%`
 - `password`表示该用户登录的密码
   
-#### 授权
+#### 2.授权
 
 新建的用户是没有数据库的操作权限的，需要为其授权：
 
@@ -46,13 +46,13 @@ grant privileges on databasename.tablename to 'username'@'host'
 - 注意二者之间的`.`不要落下
 - `username`和`host`意义与上面一样
   
-#### 撤销权限
+#### 3.撤销权限
 ```
 revoke privileges on databasename.tablename to 'username'@'host'
 ```
 各参数的意义与上面相同
 
-#### 删除用户
+#### 4.删除用户
 ```
 drop user 'username'@'host'
 ```
@@ -80,7 +80,7 @@ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
   - 其中，`your_name`为创建的表格名称，`column`为列标签，后面带的参数表示这一列的数据类型和长度
 - 使用`describe`命令查看表格的内容：`describe your_name`
 
-### 为数据库添加数据
+### 1.为数据库添加数据
 
 可以从文件中加载数据添加到数据库表格中
 
@@ -91,13 +91,13 @@ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
 - 如果需要为表格增加新行，使用`insert`命令
   - `INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);`
   
-### 修改数据库中的数据
+### 2.修改数据库中的数据
 
 使用`update`命令
 
 - 如：将name为Browser的宠物birth改为1989-08-31：`UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';`
   
-### 从数据库中提取数据
+### 3.从数据库中提取数据
 
 使用`select`命令，主要格式为：
 ```
@@ -115,27 +115,27 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   
 - `max()`函数寻找最大值
 
-### 为数据分组
+### 4.为数据分组
 
 使用`group by`语句，将表中的行按照所选择的相同值来分组
 
-### LIKE查找
+### 5.LIKE查找
 
 按`like 'b%' '%f' '%w%' `形式查找，也可以使用`_`下划线占位按长度查找
 
-### JOIN方法将两个表关联起来
+### 6.JOIN方法将两个表关联起来
 
 - INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。（NATURAL JOIN）
 - LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
 - RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
 
-### AS方法
+### 7.AS方法
 
 `AS`可以将一个一个元素暂时命名为另一个元素，而且不修改原来的元素
 如`...TABLE pet AS p1 ...;`
 或者`SELECT name as n1 FROM pet;`
   
-### 日期计算
+### 8.日期计算
 
 使用`TIMESTAMPDIFF()`命令，需要传递三个参数：
 
@@ -152,7 +152,7 @@ WHERE conditions_to_satisfy; // 满足哪些条件
 
 常用的索引有INDEX，PRIMARY KEY（主键），FULLTEXT
 
-### 创建INDEX索引
+### 1.创建INDEX索引
 
 通过ALTER创建：
 ```
@@ -163,7 +163,7 @@ ALTER TABLE pet ADD INDEX(name(10));
 
 *通过索引进行检索比较复杂，日后再续*
 
-### 主键
+### 2.主键
 
 主键是每行都不同的`唯一`值，使用逐渐可以唯一的检索到某一行，在关系型数据库中一个表的主键通常会作为另一个表的外键`foreign key`
 
@@ -176,7 +176,7 @@ ALTER TABLE pet ADD PRIMARY KEY(id(10));
 
 创建了主键之后使用`DESCRIBE pet`会看到`Key`这一列会发生变化
 
-### 在创建表时创建索引
+### 3.在创建表时创建索引
 
 ```
 CREATE TABLE classics (
