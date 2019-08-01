@@ -206,3 +206,74 @@ $fh = fopen("testfile.txt", 'w') or die("Failed to open file");
 | 'w+' | 从文件头部开始，可读写，删除原内容  |
 | 'a'  | 从文件尾部开始追加内容              |
 | 'a+' | 从文件尾部开始追加内容，可读写      |
+
+将数据写入文件使用`fwrite()`函数
+
+读取文件内容使用`fgets()`函数（读取一行），或者`fread($fh, num)`（读取num个字符长度的内容）
+
+#### 3.复制文件
+
+使用copy函数复制文件
+```php
+<?php
+if (!copy('testfile.txt', 'testfile2.txt')) echo "Could not copy file";
+else echo "File successfully copied to 'testfile2.txt'.";
+?>
+```
+
+相似的，可以使用`rename(old_name, new_name)`对文件重命名
+
+以及`unlink(filename)`删除文件
+
+#### 4.为文件加锁
+
+在多用户访问的时候，为防止产生冲突，需要对文件加锁，使用`flock()`函数
+
+```php
+<?php
+$fh = fopen("testfile.txtx", 'r+') or die("Failed to open file);
+$text = fgets($fh);
+
+if (flock($fh, LOCK_ex))  // 为文件上锁
+{
+  fseek($fh, 0, SEEK_END);  //将指针定位到文件末尾
+  fwrite($fh, "$text") or die("Cound not write to file");
+  flock($fh, LOCK_UN);    //操作完毕，将文件解锁
+}
+
+fclose($fh);  // 在程序末尾关闭连接
+?>
+```
+
+#### 5.读取整个文件
+
+使用`file_get_contents`函数可以获取整个文件的内容，还有另一个很好用的功能是可以读取一个`HTML页面`
+
+```php
+<?php
+echo file_get_contents("http://oreilly.com");
+?>
+```
+
+#### 6.上传文件
+
+主要使用到`$_FILES`数组，还有一个demo在书上`P146 例7-15`，在树莓派上尝试的时候失败了
+
+### 系统调用
+
+使用`exec()`函数来进行系统调用，可以将一些命令行操作的结果打印出来，但是似乎没有真正的进行相关操作（比如重启就不行）
+
+```php
+<?php
+$cmd = 'ls';
+exec(escapeshellcmd($cmd), $output, $status);
+
+if ($status) echo "Exec command failed";
+else
+{
+  echo "<pre>";
+  foreach($output as $line) echo htmlspecialchars("line\n");
+  echo "</pre>";
+}
+?>
+```
