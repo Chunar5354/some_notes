@@ -15,7 +15,7 @@ sudo apt-get install php php7.0-mysql
 
 在树莓派上，修改以下文件：
 ```
-sudo vi /etc/php/7.0/apache2/php.ini 
+--sudo vi /etc/php/7.0/apache2/php.ini 
 sudo vi /etc/php/7.0/cli/php.ini
 ```
 改变其中两个参数如下：
@@ -26,7 +26,7 @@ display_errors = On
 
 然后重启，就能够查看错误信息
 
-## 语法知识点
+## 知识点
 
 ### 基础
 
@@ -53,6 +53,10 @@ display_errors = On
 - 16.即使在函数返回值中返回多个参数的元组，也要加上array：`return array($a1, $a2, $a3); `
 - 17.使用`print_r`来打印变量、数组或者对象中的内容
 - 18.关联数组`$array['a']='b'`，类似字典
+- 19.echo "<pre> ... </pre>";将标签内部的内容排布显示，如表格等
+- 20.`printf()`可以加`%`将字符串进行格式化显示，也可以使用`sprintf()`将格式化字符串作为参数传递
+- 21.`time()`返回当前UNIX时间戳，也可以使用`mktime()`为任意时间（1970--2038）创建时间戳
+- 22.使用`date($format, $timestamp)`函数显示日期，$format是一个格式化字符串，有标准定义的字符来代表各个意义；$timestamp为时间戳
 
 ### 关于类
 
@@ -66,3 +70,110 @@ display_errors = On
 - 8.类继承，使用`extends` ：class ChildClass extends FatherClass
 - 9.类中的初始化：`__construct()`(类似__init__)
 
+### 关于数组
+
+- 1.foreach...as 语句对数组进行遍历
+```php
+<?php
+$paper = array("Cpoier", "Inkjet", "Laser", "Photo");
+$j = 0;
+
+foreach ($paper as $item)  // 将&paper数组中的元素作为变量$item进行遍历
+{
+  echo "$j: $item<br>";
+  ++$j;
+}
+?>
+```
+
+也可以对关联数组进行遍历
+```php
+<?php
+$paper = array("Cpoier" => "C123",
+               "Inkjet" => "I456",
+               "Laser"  => "L789",
+               "Photo"  => "P321");
+
+foreach ($paper as $item => $description)  // 将&paper数组中的键作为变量$item，值作为$description进行遍历
+{
+  echo "$item: $description";
+}
+?>
+```
+
+- 2.使用list...each进行遍历
+
+与foreach ...as方法的功能类似
+```php
+<?php
+$paper = array("Cpoier" => "C123",
+               "Inkjet" => "I456",
+               "Laser"  => "L789",
+               "Photo"  => "P321");
+
+while (list($item, $description) = each($paper))  // 将&paper数组中的键作为变量$item，值作为$description进行遍历
+// 注意与foreah ...as的区别
+{
+  echo "$item: $description";
+}
+?>
+```
+
+- 3.一些数组的函数
+```php
+// 1. is_array
+// 判断变量是否为一个数组
+echo (is_array($the_array)) ? "Is an array" : "Is not an array";
+
+// 2. count
+// 返回数组中的元素个数
+
+// 3. sort 
+// 排序
+sort($fred, SORT_NUMERIC)  // 指定按照数值排序
+sort($fred, SORT_STRING)   // 指定按照字符串排序
+rsort($fred, SORT_NUMERIC)  // 指定按照数值，相反顺序排序
+rsort($fred, SORT_STRING)   // 指定按照字符串，相反顺序排序
+
+// 4. shuffle
+// 将数组中的元素随机顺序排序
+
+// 5. explode
+// 将字符串分割成数组，类似Python中的split
+<?php
+$temp = explore(' ', "This is a sentence with seven words");
+print_r($temp);
+?>
+
+// 6. extract
+// 将关联数组中的元素提取出来作为变量，键为变量名，值为变量的值
+<?php
+$paper = array("Copier" => "C123",
+               "Inkjet" => "I456",
+               "Laser"  => "L789",
+               "Photo"  => "P321");
+
+extract($paper);
+// 然后便可以调用$Copier等变量
+echo $Copier . $Inkjet . $Laser . $Photo;
+{
+  echo "$item: $description";
+}
+?>
+// 有时提取的变量与原有的变量产生冲突，使用下面方法
+extract($paper, EXTR_PREFIX_ALL, 'format');
+// 则所有的变量名前都加上了format_前缀，变成了$format_Copier
+
+// 7. compact
+// 与extract相反，通过变量来创建数组
+<?php
+$a = "aaa";
+$b = "bbb";
+$c = "ccc";
+
+$contact = compact('a', 'b', 'c');
+print_r($contact);
+?>
+```
+
+### 文件处理
