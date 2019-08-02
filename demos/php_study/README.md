@@ -279,3 +279,174 @@ else
 ```
 
 ## PHP操作MYSQL数据库
+
+### 创建登陆文件
+
+为了使用PHP登录mysql数据库，首先创建一个登陆文件，里面包含数据库的信息：
+
+```php
+<?php  // login.php
+$db_hostname = 'localhost';
+$db_database = 'database_name';
+$db_username = 'user_name';
+$db_password = 'password';
+?>
+```
+
+将其中的用户名和密码等信息替换成1自己的信息，保存成一个`login.php`文件
+
+### 获取数据库中的内容
+
+- 首先使用`mysqli()`函数建立连接，新建对象$conn
+- 使用$conn对象中的`query`方法，来执行SQL语句，返回一个$result对象
+- 使用$result中的`data_seek(num)`方法来定位指针到数据库的指定行
+- 然后使用$result中的`fetch_array()`方法将改行内容保存为一个数组，根据括号中传入的参数不同，数组的形式也不同。`MYSQLI_ASSOC`对应关联数组；`MYSQLI_NUM`对应数值数组；`MYSQLI_BOTH`为二者结合
+- 最后要将$result和$conn关闭（$close())
+
+```php
+<?php
+require_once 'login.php';
+$conn = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+// users can use the objects in module directly
+if ($conn->connect_error) die($conn->connect_error);
+$query = "SELECT * FROM pet";
+$result = $conn->query($query); // pay attention to this function 'query'
+if (!$result) die($conn->error);
+$rows = $result->num_rows; // return the number of rows in $result
+echo "<pre>";
+for ($j=0; $j<$rows; ++$j)
+{
+		$result->data_seek($j);
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+		// return all data in one row as the type 'array'
+		echo 'Name:' . $row['name'] . '<br>';
+		echo 'Owner:' . $row['owner'] . '<br>';
+		echo 'Sex:' . $row['sex'] . '<br>';
+		echo 'Birth:' . $row['birth'] . '<br>';
+		echo 'Death:' . $row['death'] . '<br><br>';
+}
+/*
+for ($j=0; $j<$rows; ++$j)
+		echo 'Name:' . $rows['name'] / '<br>';
+		$result->data_seek($j);
+		echo 'Name:' . $result->fetch_assoc()['name'] . '<br>';
+		// return all data in one row as the type 'array'
+		$result->data_seek($j);
+		echo 'Owner:' . $result->fetch_assoc()['owner'] . '<br>';
+		$result->data_seek($j);
+		echo 'Birth:' . $result->fetch_assoc()['birth'] . '<br>';
+		$result->data_seek($j);
+		echo 'Sex:' . $result->fetch_assoc()['sex'] . '<br>';
+		$result->data_seek($j);
+		echo 'Death:' . $result->fetch_assoc()['death'] . '<br><br>';
+}
+// pay attention to the function 'data_seek' and 'fetch_assoc'
+// */
+$result->data_seek(2);
+print_r($result->fetch_array(MYSQLI_BOTH));
+echo "</pre>";
+$result->close();
+$conn->close();
+?>
+```
+
+### 在页面中与数据库交互
+
+#### 关于_POST数组
+使用`$_POST`关联数组来捕捉页面上的用户输入信息，定义一个函数：
+
+```php
+function get_post($conn, $var)
+{
+		print_r($_POST);
+		return $conn->real_escape_string($_POST[$var]);
+}
+```
+其中`$conn`为创建的连接对象，`$var`为`$_POST`数组中的键（对应form表单中name字段的值）
+
+使用`real_escape_string`的目的是将字符串强制转义，防止其中的特殊字符引起错误
+
+#### 全部程序
+
+```php
+<?php
+require_once 'login.php';
+$conn = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+if ($conn->connect_error) die($conn->connect_error);
+if (isset($_POST['delete']) && isset($_POST['birth']))
+{
+		$birth = get_post($conn, 'birth');
+		$query = "DELETE FROM pet WHERE birth='$birth'";
+		$result = $conn->query($query);
+		if (!$result) echo "DELETE failed: $query<br>" . $conn->error . "<br><br>";
+}
+if (isset($_POST['name']) &&
+	isset($_POST['owner']) &&
+	isset($_POST['species']) &&
+	isset($_POST['sex']) &&
+	isset($_POST['birth']) &&
+	isset($_POST['death']))
+{
+		$name = get_post($conn, 'name');
+		$owner = get_post($conn, 'owner');
+		$species = get_post($conn, 'species');
+		$sex = get_post($conn, 'sex');
+		$birth = get_post($conn, 'birth');
+		$death = get_post($conn, 'death');
+		$query = "INSERT INTO pet VALUES" . 
+				"('$name', '$owner', '$species', '$sex', '$birth', '$death')";
+		$result = $conn->query($query);
+		if (!$result) echo "INSERT dailed: $query<br>" . 
+				$conn->error . "<br><br>";
+}
+echo <<<_END
+<form action="sqltest.php" method="post"><pre>
+Name <input type="text" name="name">
+Owner <input type="text" name="owner">
+Species <input type="text" name="species">
+Sex <input type="text" name="sex">
+Birth <input type="text" name="birth">
+Death <input type="text" name="death">
+<input type="submit" value="ADD RECORD">
+</pre></form>
+_END;
+$query = "SELECT * FROM pet";
+$result = $conn->query($query);
+if (!$result) die("Database access failed:" . $conn->error);
+$rows = $result->num_rows;
+for ($j=0; $j<$rows; ++$j)
+{
+		$result->data_seek($j);
+		$row = $result->fetch_array(MYSQLI_NUM);
+		echo <<<_END
+		<pre>
+		Name $row[0]
+		Owner $row[1]
+		Species $row[2]
+		Sex $row[3]
+		Birth $row[4]
+		Death $row[5]
+		</pre>
+		<form action="sqltest.php" method="post">
+		<input type="hidden" name="delete" value="yes">
+		<input type="hidden" name="birth" value="$row[4]">
+		<input type="submit" value="DELETE RECORD">
+		</form>
+_END;
+}
+$result->close();
+$conn->close();
+function get_post($conn, $var)
+{
+		print_r($_POST);
+		return $conn->real_escape_string($_POST[$var]);
+}
+?>
+```
+
+- 该程序的逻辑为：
+首先使用`isset`检查delete按钮是否按下以及`'birth'`字段否有值（由于birth没有重复，将其设为主键），若检测成功，则执行相应的删除操作；
+
+然后检测如果全部输入框都有内容输入，则执行一次插入命令，输入框通过form表单的形式构造，以echo 字符串形式显示（注意form表单中name字段的值与_POST数组的对应关系；
+
+最后将表中所有行逐一查询显示，并附带可操作的删除按钮。
