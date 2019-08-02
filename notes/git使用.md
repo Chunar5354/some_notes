@@ -83,4 +83,23 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
 
 在[这个网站](https://github.com/ekalinin/github-markdown-toc.go/releases)上下载工具
 
-下载后解压缩，并将要
+下载后解压缩，并将要生成目录的文件和解压的文件放在同一目录下，输入命令
+```
+./gh-md-toc README.md
+```
+便会在屏幕上打印以下内容：
+```
+Table of Contents
+=================
+
+* [安装](#%E5%AE%89%E8%A3%85)
+* [配置](#%E9%85%8D%E7%BD%AE)
+......
+......
+    * [关于\_POST数组](#%E5%85%B3%E4%BA%8E_post%E6%95%B0%E7%BB%84)
+    * [全部程序](#%E5%85%A8%E9%83%A8%E7%A8%8B%E5%BA%8F)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
+
+```
+最后将中间的内容复制到原README.md文件中即可
