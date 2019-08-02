@@ -76,3 +76,11 @@ git clone git@github.com:Chunar5354/newtest.git #要下载的仓库的SSH地址
   
 ### 重命名文件
 - `git mv oldname newname`
+
+## 为github上的.md文件添加目录
+
+- windows系统中：
+
+在[这个网站](https://github.com/ekalinin/github-markdown-toc.go/releases)上下载工具
+
+下载后解压缩，并将要
