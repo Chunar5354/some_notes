@@ -479,3 +479,66 @@ function get_post($conn, $var)
 最后将表中所有行逐一查询显示，并附带可操作的删除按钮。
 
 - 以上全部功能都可以通过mysqli的另一套规范化函数实现，具体内容查看书上`P240`
+
+## workerman
+
+workerman是一个php的服务器框架，使用它可以方便地处理各种协议，进行数据传输
+
+### 安装
+
+首先查看是否已经安装了workerman所需要的依赖：
+```
+curl -Ss http://www.workerman.net/check.php | php
+```
+
+如果输出的每一行后面都有`[ok]`字样，说明已经安装了全部依赖（树莓派上似乎按照上面的方法安装php就已经同时完成了依赖的安装）
+
+安装workerman（其实是一个代码包，从github上下载）：
+```
+git clone https://github.com/walkor/workerman
+```
+
+### 测试
+
+创建一个`test_worker.php`文件：
+```php
+<?php
+use Workerman\Worker;
+require_once './Workerman/Autoloader.php';
+
+// 创建一个Worker监听2347端口，不使用任何应用层协议
+$tcp_worker = new Worker("tcp://0.0.0.0:2347");
+
+// 启动4个进程对外提供服务
+$tcp_worker->count = 4;
+
+// 当客户端发来数据时
+$tcp_worker->onMessage = function($connection, $data)
+{
+    // 向客户端发送hello $data
+    $connection->send('hello ' . $data);
+    echo "success";
+};
+
+// 运行worker
+Worker::runAll();
+```
+
+然后在命令行输入命令：
+```
+php test_worker.php start
+```
+
+此时workerman会以调试模式运行，打开浏览器，输入`localhost:2347`，每次刷新页面都会在命令行输出一个"success"
+
+或者使用`telnet`输入地址和端口进行测试，输入任意字符串如'test'，会输出结果'hello test'
+
+### 常用命令
+
+workerman有以下命令：
+```
+php test.php start          // 以调试模式运行
+php test.php start -d       // 在后台运行，会推出到命令行，需要通过stop关闭
+php test.php stop           // 关闭
+php test.php status         // 查看状态
+```
