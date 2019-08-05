@@ -180,6 +180,13 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   - 其中`DURDATE()`是内置函数，返回当前日期
   - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
   
+### 9.修改表中列的名称、类型
+
+```
+ALTER TABLE tablename  MODIFY COLUMN column_name  new_name  new_type     新默认值     新注释;  
+ALTER TABLE   table1   MODIFY COLUMN   column1    column2  float(4,2)  DEFAULT NULL  COMMENT '注释';  // 示例
+```
+  
 ## MYSQL中的索引
 
 使用索引可以在大型数据库中减少数据搜索的时间
