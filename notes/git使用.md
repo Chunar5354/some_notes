@@ -103,3 +103,14 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 ```
 最后将中间的内容复制到原README.md文件中即可
+
+## 查看多次提交间更改的内容
+
+首先将两次有差异的内容提交并合并，然后再本地的git bash中：
+```
+git log                                               // 查看所有的commit，获得commit_num（编号）
+git show commit_num                                   // 打印某一次提交的变更内容在命令行中
+git show commit_num --color master > difff.txt        // 将变更内容保存到文件并保留着色
+```
+
+
