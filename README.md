@@ -53,7 +53,7 @@
 - [socket模块学习](https://github.com/Chunar5354/some_notes/blob/master/notes/socket%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0.md)
 - [python中解包](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E4%BC%98%E5%8C%96%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9.md)
 - [pymysql学习](https://github.com/Chunar5354/some_notes/tree/master/demos/pymysql)
-- [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/blob/master/notes/Python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C%E7%AC%94%E8%AE%B0.md)
+- [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/tree/master/demos/Python_study)
 
 ## 数据库
 
