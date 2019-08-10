@@ -135,11 +135,6 @@ cv2.destroyAllWindows()
 
 ## 远程监控
 
-需要额外安装一个`Image`库，用来转换图象格式
-```
-pip install Image
-```
-
 ### 踩的一些坑
 
 远程视频监控总体可分成3步：
