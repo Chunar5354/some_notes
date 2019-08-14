@@ -41,7 +41,7 @@
 - [qrcode库2](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8820%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [tkinter库](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8822%E6%97%A5%E8%AE%B0%E5%BD%95.md)
 - [pyinstaller库](https://github.com/Chunar5354/some_notes/blob/master/notes/10%E6%9C%8823%E6%97%A5%E8%AE%B0%E5%BD%95.md)
-- [opencv库](https://github.com/Chunar5354/some_notes/blob/master/notes/opencv%E8%AE%B0%E5%BD%95.md)
+- [opencv库](https://github.com/Chunar5354/some_notes/tree/master/demos/opencv)
 - [PyQt5库](https://github.com/Chunar5354/some_notes/blob/master/notes/pyqt%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95.md)
 - [matplotlib库](https://github.com/Chunar5354/some_notes/blob/master/notes/matplotlib%E5%AD%A6%E4%B9%A0.md)
 - [markdown学习](https://github.com/Chunar5354/some_notes/blob/master/notes/markdown%E7%AC%94%E8%AE%B0.md)
