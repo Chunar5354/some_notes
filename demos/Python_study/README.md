@@ -198,9 +198,9 @@ print(acts[4](2))
 书中有一个改写内置open函数的示例，很有趣，也更能帮助对于函数作用域和调用的理解
 
 ```python
-import builtins
+import builtins  # 在重写的时候，为了避免出错，需要首先引用内置函数模块builtins
 def makeopen(id):
-    original = builtins.open()   # 记忆原始函数
+    original = builtins.open   # 记忆原始函数
     def custom(*kargs, **pargs):
         print('Custom open call %r' % id, kargs, pargs)  # 增加自定义功能
         return original(*kargs, **pargs)
