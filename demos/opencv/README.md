@@ -155,7 +155,170 @@ cv2.destroyAllWindows()
 - 1.最开始使用`StringIO()`方法开辟缓存一读一写来转码，但是StringIO()只支持写入`字符串`，将图片信息强行转换为字符串会丢失信息，所以失败了
 - 2.想使用`tostring()`方法直接将`numpy.ndarray`的图片转换为字节串：`img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB).tostring()`，使用socket发送，再从接收端获取字节串，使用`mp.frombuffer()`将字节串再变成`numpy.ndarray`；但是这样出现一个问题：原本图片中的array是一个像素矩阵，但是使用tostring格式化之后再解码，就变成了一个数字列表，丢失了原来的图片格式信息，所以又失败了
 - 3.后来又找到了一个pickle打包的方式，调用`_pickle`模块：`import _pickle as pickle`，使用`pickle.dumps()`方法将图片打包成字节串，再从客户端上使用`pickle.loads()`解包成numpy.ndarray，格式对得上但是会触发未知错误，再次失败
-- 4.最后是使用的`struct.pack()`与`struct.unpack()`方法实现的格式转换
+- 4.最后是使用的`cv2.imencode()`与`cv2.imdecode()`方法实现的格式转换
+
+### 实现
+
+主要的逻辑：
+```python
+# 发送端
+# 1.服务端捕获摄像头图像
+cap = cv2.VideoCapture(0)
+# 2.读取每一帧
+ret, img = cap.read()
+# 3.图片缩放，减小数据量
+img = cv2.resize(img, size)
+# 4.编码
+result, imgencode = cv2.imencode('.jpg', img, encode_param)
+# 5.转换成字节串
+imgdata = imgencode.tostring()
+# 6.发送
+conn.send(struct.pack("l", len(imgdata)) + imgdata)  # 这里加上了一个代表图片字节串长度的数字，使用struct.pack()编码发送
+
+# 接收端
+# 7.先获取图片长度
+info = struct.unpack("l", sock.recv(4))  # return a tuple
+bufSize = info[0]
+# 8.读取图片内容（实际读取的时候通常不能一次性读取全部长度，要设置循环读取）
+buf = sock.recv(bufSize)
+# 9.将字节串转码成'ndarray'
+data = numpy.frombuffer(buf, dtype='uint8')
+# 10.解码图片
+image = cv2.imdecode(data, 1)
+# 11.显示
+cv2.imshow('camera', image)
+```
+
+#### 服务器端代码
+
+```python
+import cv2
+import time
+import socket
+import struct
+import numpy
+
+host, port = '192.168.43.169', 9876
+size = (640, 480)
+
+# 连接服务器
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # create a socket object, and declare the type
+
+# socket.SO_REUSEADDR:当socket关闭后，本地端用于该socket的端口号立刻就可以被重用
+# 1表示将 socket.SO_REUSEADDR 设置为 True
+server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+server.bind((host, port))  # connect with ip and port
+server.listen(5)
+
+
+def img_send(conn):
+    
+    cap = cv2.VideoCapture(0)  # get camera
+
+    # willbe used in next method 'cv2.imencode()' 
+    # IMWRITE_JPEG_QUALITY means save into JPEG form , and the quality is 'self.img_quality', here is 15
+    # cv2.IMWRITE_JPEG_QUALITY must convert in 'int'
+    # and this argument should create as a list
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 20]
+
+    while True:
+        time.sleep(0.1)
+        # 获取一帧图像
+        ret, img = cap.read()
+        # 如果ret为false，表示没有获取到图像，退出循环
+        if ret is False:
+            print("can not get this frame")
+            continue    
+
+        else:
+            img = cv2.resize(img, size)   # resize
+
+            # cv2.imencode(), argus: (ext(means form), image object, encode_param)
+            # cv2.imencode() returns a tuple which has 2 elements
+            # the first element is flag, a bool object, if this statement worked, returns True
+            # the second element is a numpy.ndarray object
+            result, imgencode = cv2.imencode('.jpg', img, encode_param)   # encode
+
+            imgdata = imgencode.tostring()  # returns 'bytes'
+
+            try:
+                # struct.pack() returns a 'bytes' object
+                # the format string 'l' means the after argument as ('long') type
+                conn.send(struct.pack("l", len(imgdata)) + imgdata)
+            except:
+                print('failed')
+                cap.release()
+                break
+
+def send_data():
+    while True:
+        conn, addr = server.accept()  # conn is a new socket object, to deal with communication
+        img_send(conn)
+
+if __name__ == "__main__":
+    send_data()
+```
+
+#### 客户端代码
+
+```python
+import cv2
+import socket
+import time
+import struct
+import numpy
+
+
+HOST, PORT = "192.168.43.169", 9876
+# 连接到服务器
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect((HOST, PORT))
+
+print('connected')
+
+def get_data():
+
+    while True:
+        # 先读4字节，获取图片长度信息，这个字节长度是根据前面的格式化字符串来决定的，'l'长整型数据占4个字节
+        info = struct.unpack("l", sock.recv(4))  # return a tuple
+        bufSize = info[0]   # bufSize 为图片的字节串长度
+    
+        if bufSize:
+            try:
+                buf = b''
+        
+                while bufSize:                 #循环读取到一张图片的长度
+                    # 这里要读9172个字节，但是读到的实际tempBuf长度为6260，大概数字是这些
+                    # 意思就是一次读不完，要设置一个循环来读取
+                    tempBuf = sock.recv(bufSize)
+                    bufSize -= len(tempBuf)
+                    buf += tempBuf
+                    
+                    # frombuffer(), returns a 'ndarray'
+                    # buf must be (b'') string type
+                    data = numpy.frombuffer(buf, dtype='uint8')
+                    
+                    # imdecode() create a 'Image' object
+                    # first argument is a 'ndarray' object
+                    # second argument is flag, if flag>0, return a 3-channel color image, if flag=0, return a grayscale image
+                    # the flag can also set as default value, see opencv documents
+                    image = cv2.imdecode(data, 1) 
+                    cv2.imshow('camera', image)
+
+            except:                
+                print("接收失败")                
+                pass
+
+            finally:   # 必须要有这部分，否则图像不显示
+                if cv2.waitKey(10) == 27:                    
+                    sock.close()                    
+                    cv2.destroyAllWindows()                    
+                    print("放弃连接")                    
+                    break
+
+if __name__ == "__main__":      
+    get_data()
+```
 
 ## 人脸识别
 
