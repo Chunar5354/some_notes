@@ -1,5 +1,20 @@
 关于opencv库的学习
 
+* [安装](#%E5%AE%89%E8%A3%85)
+  * [windows](#windows)
+  * [树莓派](#%E6%A0%91%E8%8E%93%E6%B4%BE)
+* [基本操作](#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C)
+  * [对图像进行处理](#%E5%AF%B9%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86)
+  * [添加文字](#%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97)
+* [实时显示拍摄视频](#%E5%AE%9E%E6%97%B6%E6%98%BE%E7%A4%BA%E6%8B%8D%E6%91%84%E8%A7%86%E9%A2%91)
+* [远程监控](#%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7)
+  * [踩的一些坑](#%E8%B8%A9%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91)
+  * [实现](#%E5%AE%9E%E7%8E%B0)
+    * [服务器端代码](#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BB%A3%E7%A0%81)
+    * [客户端代码](#%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81)
+* [人脸识别](#%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB)
+
+
 ## 安装
 
 ### windows
@@ -298,7 +313,7 @@ def get_data():
                     # buf must be (b'') string type
                     data = numpy.frombuffer(buf, dtype='uint8')
                     
-                    # imdecode() create a 'Image' object
+                    # imdecode() returns a 'ndarray' object
                     # first argument is a 'ndarray' object
                     # second argument is flag, if flag>0, return a 3-channel color image, if flag=0, return a grayscale image
                     # the flag can also set as default value, see opencv documents

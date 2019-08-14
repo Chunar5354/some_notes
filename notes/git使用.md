@@ -1,5 +1,19 @@
 关于在windows上的一些git操作
 
+* [本地Git配置](#%E6%9C%AC%E5%9C%B0git%E9%85%8D%E7%BD%AE)
+* [新建Git仓库](#%E6%96%B0%E5%BB%BAgit%E4%BB%93%E5%BA%93)
+* [本地文件与远程交互](#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BA%A4%E4%BA%92)
+  * [上传](#%E4%B8%8A%E4%BC%A0)
+  * [下载](#%E4%B8%8B%E8%BD%BD)
+  * [remote操作](#remote%E6%93%8D%E4%BD%9C)
+  * [删除文件夹](#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9)
+  * [查看状态](#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81)
+  * [出错时一些处理方法](#%E5%87%BA%E9%94%99%E6%97%B6%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95)
+  * [重命名文件](#%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6)
+* [为github上的\.md文件添加目录](#%E4%B8%BAgithub%E4%B8%8A%E7%9A%84md%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E7%9B%AE%E5%BD%95)
+* [查看多次提交间更改的内容](#%E6%9F%A5%E7%9C%8B%E5%A4%9A%E6%AC%A1%E6%8F%90%E4%BA%A4%E9%97%B4%E6%9B%B4%E6%94%B9%E7%9A%84%E5%86%85%E5%AE%B9)
+
+
 ## 本地Git配置
 - 首先在GitHub官网上创建一个账号
 - 然后在官网下载git的windows版本：`https://www.git-scm.com/download`
