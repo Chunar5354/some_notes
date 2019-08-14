@@ -13,6 +13,7 @@
 - 9.`os.system()`可以运行一个命令行命令
 - 10.`python -m pydoc -b` 会将当前目录下的py文件以及python内置库文件显示在HTML页面中，可以查看他们的文档
 - 11.`x.copy()`复制可变对象，对于列表，可以使用切片`l2=l1[:] `(列表没有copy方法）
+- 12.使用 `del name` 语句可以删除定义的变量名
 
 ### 通过'#!'创建脚本文件
 
@@ -132,3 +133,81 @@ print(s)
 ```
 '1 more spam'
 ```
+
+## 闭包函数（工厂函数）
+
+闭包函数能够`记忆`外层作用域里面的值，可以用于创建函数副本，以及重写内置函数等场合
+
+示例：
+```python
+def maker(n):
+    def action(x):
+        return x ** n
+    return action
+    
+f = maker(2)  # 这里的f是一个函数对象
+f(2)  # 结果为2的平方 4
+g = maker(3)  # 另一个函数副本，计算某个数的三次方
+g(2)  # 结果为2的三次方 8
+# f与g是maker的两个不同副本，它们之间互不影响
+```
+
+### 使用闭包生成系列函数
+
+因为函数本身也是一个对象，可以作为其他函数的返回值，所以可以通过函数嵌套的方式来生成系列函数，尤其是在GUI编程中对于大量相似控件生成控制函数很有帮助
+
+示例：
+```python
+def MakeActions():
+    acts = []
+    for i in range(5):
+        acts.append(lambda x: i **x)
+    return acts
+    
+acts = MakeActions()
+print(acts[0](2))
+print(acts[1](2))
+print(acts[2](2))
+print(acts[3](2))
+print(acts[4](2))
+# 输出结果全为 16
+```
+
+上面的程序有一点小错误，也是循环嵌套中的一个常见陷阱：`外层作用域中的变量在嵌套的函数被调用时才进行查找`，所以当使用`acts[0](2)`等进行调用时，i的值是已经遍历完成的4，遍历过程中的i没有被记录下来
+
+修改：
+```python
+def MakeActions():
+    acts = []
+    for i in range(5):
+        acts.append(lambda x, i=i: i **x)  # 为i传入一个默认值
+    return acts
+    
+acts = MakeActions()
+print(acts[0](2))
+print(acts[1](2))
+print(acts[2](2))
+print(acts[3](2))
+print(acts[4](2))
+```
+
+修改之后，再lambda表达式中为i添加了一个默认值，因为默认值参数的求值实在嵌套函数`创建时`就发生的，所以每一个i都被记录了下来，这样就生成了一个包含不同函数对象的列表
+
+### 定制open示例
+
+书中有一个改写内置open函数的示例，很有趣，也更能帮助对于函数作用域和调用的理解
+
+```python
+import builtins
+def makeopen(id):
+    original = builtins.open()   # 记忆原始函数
+    def custom(*kargs, **pargs):
+        print('Custom open call %r' % id, kargs, pargs)  # 增加自定义功能
+        return original(*kargs, **pargs)
+    builtins.open = custom  # 将open重写为custom
+    
+makeopen('spam')  # 调用makeopen函数，内置的open函数就被重写了
+f = open('test.py')  # 此时调用的是重写之后的open函数，会打印一行自定义信息
+f.read()  # open函数原有的功能仍然存在
+```
+
