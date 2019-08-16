@@ -24,7 +24,7 @@ sudo apt-get install mysql-server mysql-client
 ## 安装PHP7
 
 ```
-sudo apt-get install php php7.0-mysql
+sudo apt-get install php7.0 php7.3-mysql   // php更新到7.3啦
 ```
 
 ## 安装phpmyadmin
