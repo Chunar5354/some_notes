@@ -30,7 +30,7 @@ PHP7.0语法学习
 
 - 在树莓派上
 ```
-sudo apt-get install php php7.0-mysql
+sudo apt-get install php7.0 php7.3-mysql   // 7.3版本
 ```
 
 ## 配置
