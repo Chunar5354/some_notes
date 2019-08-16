@@ -135,9 +135,9 @@ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
 
 使用`select`命令，主要格式为：
 ```
-SELECT what_to_select // 选择哪一项数据，可以用 * 表示全部数据
-FROM which_table // 从哪一个表格
-WHERE conditions_to_satisfy; // 满足哪些条件
+SELECT 'what_to_select' // 选择哪一项数据，可以用 * 表示全部数据
+FROM 'which_table' // 从哪一个表格
+WHERE 'conditions_to_satisfy'; // 满足哪些条件
 ```
 
 在`where`的条件判断中可以使用`and`和`or`等逻辑语句
@@ -149,27 +149,35 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   
 - `max()`函数寻找最大值
 
-### 4.为数据分组
+### 4.删除行
+
+```
+DELETE FROM tablename WHERE condition;
+```
+
+`tablename`为要操作的表，`condition`为删除的行所满足的条件
+
+### 5.为数据分组
 
 使用`group by`语句，将表中的行按照所选择的相同值来分组
 
-### 5.LIKE查找
+### 6.LIKE查找
 
 按`like 'b%' '%f' '%w%' `形式查找，也可以使用`_`下划线占位按长度查找
 
-### 6.JOIN方法将两个表关联起来
+### 7.JOIN方法将两个表关联起来
 
 - INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。（NATURAL JOIN）
 - LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
 - RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
 
-### 7.AS方法
+### 8.AS方法
 
 `AS`可以将一个一个元素暂时命名为另一个元素，而且不修改原来的元素
 如`...TABLE pet AS p1 ...;`
 或者`SELECT name as n1 FROM pet;`
   
-### 8.日期计算
+### 9.日期计算
 
 使用`TIMESTAMPDIFF()`命令，需要传递三个参数：
 
@@ -180,12 +188,21 @@ WHERE conditions_to_satisfy; // 满足哪些条件
   - 其中`DURDATE()`是内置函数，返回当前日期
   - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
   
-### 9.修改表中列的名称、类型
+### 10.修改表中列的名称、类型
 
 ```
-ALTER TABLE tablename  MODIFY COLUMN column_name  new_name  new_type     新默认值     新注释;  
-ALTER TABLE   table1   MODIFY COLUMN   column1    column2  float(4,2)  DEFAULT NULL  COMMENT '注释';  // 示例
+ALTER TABLE 'tablename'  MODIFY COLUMN 'column_name'  'new_name'  'new_type'    新默认值     新注释;  
+ALTER TABLE   'table1'   MODIFY COLUMN   'column1'    'column2'  'float(4,2)'  DEFAULT NULL  COMMENT '注释';  // 示例
 ```
+
+### 11.插入新列
+
+```
+ALTER TABLE 'tablename'
+	ADD COLUMN 'colomnname' 'type' NOT NULL AFTER `columnname`;
+```
+
+在指定位置插入一列，`AFTER`后面指的是插入在那一列的后面
   
 ## MYSQL中的索引
 
