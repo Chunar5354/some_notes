@@ -20,6 +20,10 @@ service apache2 restart     //重启apache
 ```
 sudo apt-get install mysql-server mysql-client
 ```
+上面不行的话试试这个：
+```
+sudo apt-get install mariadb-server-10.0 mariadb-client-10.0
+```
 
 ## 安装PHP7
 
