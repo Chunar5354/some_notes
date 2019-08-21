@@ -134,7 +134,7 @@ python manage.py migrate
 
 所创建的表是依据`mysite/settings.py`文件中`INSTALLED_APPS`配置项里面的内容
 
-### 为数据库添加自定义数据（models）
+### 2.为数据库添加自定义数据（models）
 
 - 1.创建新表，编辑`polls/models.py`：
 ```
