@@ -54,6 +54,7 @@
 - [python中解包](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E4%BC%98%E5%8C%96%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9.md)
 - [pymysql学习](https://github.com/Chunar5354/some_notes/tree/master/demos/pymysql)
 - [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/tree/master/demos/Python_study)
+- [django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
 
 ## 数据库
 
