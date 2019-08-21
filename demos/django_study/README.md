@@ -69,4 +69,132 @@ polls/
     views.py
 ```
 
-还是在浏览器上测试一下，要想能在浏览器山看到自己的内容
+### 在浏览器上显示自定义内容
+
+需要编辑`3个`文件
+- 1.首先是`polls/views.py`：
+```python
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+```
+
+- 2.然后在polls目录下新建一个`urls.py`文件：
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+```
+
+- 3.最后修改`mysite/urls.py`：
+```python
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('polls/', include('polls.urls')),   # 文件路径
+    path('admin/', admin.site.urls),
+]
+```
+
+启动django：
+```
+python manage.py runserver
+```
+
+在浏览器中输入`localhost:8000/polls`就能看到views中的内容
+
+## django操作mysql数据库
+
+### 1.配置mysql支持并创建数据库
+
+django默认的数据库是SQLite，要修改成mysql的支持，修改`mysite/settings.py`，将DATABASES配置项的内容替换成下面的内容：
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_name',                           # database name, must be created before
+        'USER': 'test',                           # your own mysql user name
+        'PASSWORD': 'test123',                    # your password to the user above
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+```
+
+然后运行：
+```
+python manage.py migrate
+```
+就会在`db_name`数据库中创建一系列表（此前确保db_name数据库已经存在，否则会报错）
+
+所创建的表是依据`mysite/settings.py`文件中`INSTALLED_APPS`配置项里面的内容
+
+### 为数据库添加自定义数据（models）
+
+- 1.创建新表，编辑`polls/models.py`：
+```
+from django.db import models
+
+class Question(models.Model):   # 类名对应表名
+    # 变量名(question_text)对应列名，后面代表数据类型，CharField相当于mysql中的varchar
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+```
+
+为了django能够找到polls这个app，还需要进行一项配置：在`mysite/settings.py`文件的`INSTALLED_APPS`配置项中，添加：
+```python
+INSTALLED_APPS = [
+    'polls.apps.PollsConfig',  # 这一行是新添加的，代表polls app（polls路径下有一个apps.py文件）
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+- 2.然后运行命令：
+```
+python manage.py makemigrations polls
+```
+
+会看到打印出类似下面的信息，表示app包含成功：
+```
+Migrations for 'polls':
+  polls/migrations/0001_initial.py:
+    - Create model Choice
+    - Create model Question
+```
+
+- 3.最后，在数据库中创建表格：
+```
+python manage.py migrate
+```
+
+会看到如下信息：
+```
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, polls, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying polls.0001_initial... OK
+```
+说明表格创建成功，可以到mysql数据库中查看
+
+- tips
+
+在执行完第2步makemigrations之后，会发现在`polls/migrations`目录中多出了一个文件`0001_initial.py`，里面包含了创建表的一些命令，此时可以通过下面的命令查看相应的SQL语句：
+```
+python manage.py sqlmigrate polls 0001
+```
