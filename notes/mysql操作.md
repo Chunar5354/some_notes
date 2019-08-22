@@ -203,6 +203,20 @@ ALTER TABLE 'tablename'
 ```
 
 在指定位置插入一列，`AFTER`后面指的是插入在那一列的后面
+
+### 12.查询前几行或后几行
+
+使用`MILIT`语句，LIMIT后可以接受一个或两个整数参数：
+```
+SELECT * FROM table LIMIT 5;            // 查询前5行
+SELECT * FROM table LIMIT 5, 10;        // 查询从第6行开始的10行（6-15）
+SELECT * FROM table LIMIT 5, -1;        // 查询第6行到最后一行
+```
+
+可以通过加上`DESC`倒叙排列来查询后几行：
+```
+SELECT * FROM table WHERE id>$id ORDER BY id DESC LIMIT 5;     // 查询最后5行
+```
   
 ## MYSQL中的索引
 
