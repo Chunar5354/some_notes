@@ -198,3 +198,52 @@ Running migrations:
 ```
 python manage.py sqlmigrate polls 0001
 ```
+
+## 创建用户
+
+创建用户之后可以在`localhost:8000/admin`界面登录来查看数据库，输入命令：
+```
+python manage.py createsuperuser
+```
+
+接下来根据提示依次设置用户名、邮箱和密码，新用户创建成功
+
+不过这时在浏览器上登陆看不到我们自己的数据库，还需要将我们的app中数据库的类（在models中）添加到admin注册中，编辑`polls/admin.py`：
+```python
+from django.contrib import admin
+from .models import Question      # 从models文件中引入表
+
+admin.site.register(Question)     # 将表添加到admin中
+```
+
+保存该文件，再从浏览器上登录，就能够看见`Question`表，并对其进行操作
+
+## 添加已有的数据库
+
+首先修改`mysite/settings.py`中的DATABASES：
+```python
+DATABASES = {
+    'default': {
+        'NAME':'jd',            # 改成要添加的数据库名
+        'HOST':'127.0.0.1',
+        'PORT':3306,
+        'USER':'root',
+        'PASSWORD':'yourpasswd',
+    }
+}
+```
+
+然后在命令行中：
+```
+python manage.py inspectdb > ./polls/models.py
+```
+
+就会在polls文件夹中生成新的models.py替换原来的文件
+
+再执行：
+```
+python manage.py migrate
+```
+就将新的数据库添加到了django的配置当中
+
+- tips：注意要再`mysite/setings.py`中的 `INSTALLED_APPS` 配置项中包含models的app（因为有可能不是polls）
