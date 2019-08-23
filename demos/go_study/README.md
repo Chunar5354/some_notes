@@ -28,8 +28,8 @@ go语言需要配置4个环境变量：GOROOT、GOPATH、GOBIN（可选）及 PA
 - GOBIN：go install编译存放路径，可以不设置，此时可执行文件将会放在GOPATH的bin目录中
 - PATH：系统环境变量，最后要将GOROOT、GOBIN和GOPATH/bin都添加到PATH中
 
-对于`树莓派`，要将这些环境变量添加到`~/.bashrc`文件中，也可以添加到`/etc/profile`中（~/.bashrc是针对单个用户，/etc/profile针对全局，考虑到安全性，
-最好添加到~/.bashrc中），输入命令：`vi ~/.bashrc`，将下面几行内容添加到文件末尾：
+对于`树莓派`，要将这些环境变量添加到`~/.bashrc`文件中，也可以添加到`/etc/profile`中（`~/.bashrc`是针对单个用户，/etc/profile针对全局，考虑到安全性，
+最好添加到`~/.bashrc`中），输入命令：`vi ~/.bashrc`，将下面几行内容添加到文件末尾：
 ```
 export GOROOT=/usr/local/go
 export GOPATH=~/goproject:~/go_test          // 这里创建了两个GOPATH，安装的扩展库都发给在goproject文件夹中，在go_test里面创建自己的项目
