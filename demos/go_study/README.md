@@ -138,4 +138,7 @@ go_path/
 - 上面的`go build`方法只在当前源码包只有一个.go源文件的时候有效（实际使用中也最好这么做）
 - go build后面可以带上指定的源码包（必须是包含在GOPATH/src目录下的），如`go build gostudy`，这一条命令可以运行在任何目录下，并在当前目录生成gostudy可执行文件，只要gostudy是包含在GOPATH/src文件夹就可以
 - go build可以带一些参数，如图所示：
+
 ![wtf](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study/pic/go_build.png)
+
+## go 自定义扩展包导入
