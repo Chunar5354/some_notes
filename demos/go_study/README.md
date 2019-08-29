@@ -20,11 +20,11 @@ tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
 go语言需要配置4个环境变量：GOROOT、GOPATH、GOBIN（可选）及 PATH 
 
 - GOROOT：go源码的安装目录，即`usr/local/go`
-- GOPATH：下载扩展包的默认安装路径，包含三个子目录：
+- GOPATH：go的工作区，也是下载扩展包的默认安装路径，包含三个子目录：
   - src：存放源代码(比如：.go .c .h .s等)，下载的扩展包也在这里
   - pkg：编译时生成的中间文件（比如：.a）
   - bin：编译后生成的可执行文件（为了方便，可以把此目录加入到 $PATH 变量中，如果有多个gopath，那么使用${GOPATH//://bin:}/bin添加所有的bin目录
-  - GOPATH可以有很多个目录，在windows系统中彼此以分号`;`隔开，linux系统中彼此以冒号`:`隔开
+  - GOPATH可以有很多个目录，在windows系统中彼此以分号`;`隔开，linux系统中彼此以冒号`:`隔开，多个目录时下载的扩展包会放在第一个GOPATH中
 - GOBIN：go install编译存放路径，可以不设置，此时可执行文件将会放在GOPATH的bin目录中
 - PATH：系统环境变量，最后要将GOROOT、GOBIN和GOPATH/bin都添加到PATH中
 
@@ -58,3 +58,84 @@ go get -u github.com/gpmgo/gopm
 
 - 不采用-g参数，会把依赖包下载.vendor目录下面
 - 采用-g 参数，可以把依赖包下载到GOPATH目录中
+
+## 基础语法学习
+
+参考[go的官方教程](https://tour.golang.org/welcome/1)
+
+### 学习过程中记录的知识点
+
+## 运行本地go程序
+
+运行go程序有两种方法：
+
+- 1.直接运行`.go`的源码文件
+```
+go run filename.go
+```
+
+- 2.使用`build`命令编译，然后运行（这样会加快运行速度）
+
+go build比较复杂，需要展开讨论一下
+
+### 关于go build
+
+该命令的功能就是将`.go`的源码编译成可执行文件，它对于文件目录结构有一些要求：
+
+- 事先准备：GOPATH设置
+
+我们将自定义的文件夹添加到GOPATH环境变量后，需要在该目录下创建三个文件夹：
+
+```
+go_path/         // GOPATH环境变量中的路径
+    bin/         // 存放可执行文件（在未设置GOBIN的情况下）
+    pkg/         // 存放代码包的归档文件（.a文件）
+    src/         // 存放源码包
+```
+
+然后在`src`中创建源码包文件夹，比如`gostudy`
+
+再在gotest中创建一个测试源码文件`go_study.go`（最好不要命名为name_test.go，因为`_test.go`有特殊意义）：
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println("This is a test")
+}
+```
+
+此时文件目录为：
+```
+src/
+    gostudy/
+        go_study.go
+```
+
+此时，在gostudy目录下可以直接运行`go run go_study.go`查看结果
+
+也可以将其编译：`go build`，然后会发现该目录下多了一个gostudy可执行文件（注意这个文件名，是src目录下的源码包的名字，而不是.go源文件的名字），可以通过`./gostudy`运行该文件查看结果（顺便感受一下两种方法速度上的区别）
+
+然后还可以再进一步的安装这个可执行文件：`go install`，执行该命令后整个文件路径变成了这样：
+```
+go_path/
+    bin/
+        gostudy
+    pkg/
+    src/
+        gostudy/
+            go_study.go
+
+```
+
+原来的可执行文件`gostudy`跑到`bin`文件夹里面去了（如果设置了GOBIN环境变量则会跑到GOBIN里面），这时可以去到bin中执行`./gostudy`得到一样的结果
+
+### 总结一下
+
+- 上面的`go build`方法只在当前源码包只有一个.go源文件的时候有效（实际使用中也最好这么做）
+- go build后面可以带上指定的源码包（必须是包含在GOPATH/src目录下的），如`go build gostudy`，这一条命令可以运行在任何目录下，并在当前目录生成gostudy可执行文件，只要gostudy是包含在GOPATH/src文件夹就可以
+- go build可以带一些参数，如图所示：
+![wtf](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study/pic/go_build.png)
