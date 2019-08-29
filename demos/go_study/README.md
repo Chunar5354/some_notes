@@ -139,6 +139,46 @@ go_path/
 - go build后面可以带上指定的源码包（必须是包含在GOPATH/src目录下的），如`go build gostudy`，这一条命令可以运行在任何目录下，并在当前目录生成gostudy可执行文件，只要gostudy是包含在GOPATH/src文件夹就可以
 - go build可以带一些参数，如图所示：
 
-![wtf](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study/pic/go_build.png)
+![wtf](https://github.com/Chunar5354/some_notes/demos/go_study/pic/go_build.png)
 
 ## go 自定义扩展包导入
+
+go中可以通过import来引入扩展包，调用其中的方法，如果是引入自定义的扩展包，需要满足一些要求：
+
+- 1.对路径的要求，被引入的包必须包含在GOROOT或者GOPATH的src文件夹中
+- 2.对被引用文件的要求，要在文件开头声明源码包文件夹的名称
+
+示例：
+
+假设在当前某一GOPATH文件夹下的目录结构为：
+```
+go_path/
+    bin/
+    pkg/
+    src/
+        import_test/
+            imt.go
+```
+
+`imt.go`的内容为：
+```go
+package import_test    // 注意这里是文件夹的名称
+
+import ("fmt")
+
+func Say() {           // 方法名称首字母大写
+    fmt.Println("This is a test")
+}
+```
+
+那么想要引用`src/import_test/imt.go`中的Say()函数，方法为：
+```go
+package main
+
+import ("import_test")          // 引用的也是源码包文件夹的名字
+
+func main() {
+    import_test.Say()           // 直接调用函数Say()，事实上和文件名imt.go没啥关系
+}
+```
+
