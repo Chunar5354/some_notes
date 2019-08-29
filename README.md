@@ -56,6 +56,10 @@
 - [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/tree/master/demos/Python_study)
 - [django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
 
+## go学习
+
+- [go语言学习](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study)
+
 ## 数据库
 
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
