@@ -23,7 +23,7 @@ go语言需要配置4个环境变量：GOROOT、GOPATH、GOBIN（可选）及 PA
 - GOPATH：go的工作区，也是下载扩展包的默认安装路径，包含三个子目录：
   - src：存放源代码(比如：.go .c .h .s等)，下载的扩展包也在这里
   - pkg：编译时生成的中间文件（比如：.a）
-  - bin：编译后生成的可执行文件（为了方便，可以把此目录加入到 $PATH 变量中，如果有多个gopath，那么使用${GOPATH//://bin:}/bin添加所有的bin目录
+  - bin：编译后生成的可执行文件（为了方便，可以把此目录加入到 $PATH 变量中，如果有多个gopath，那么使用`${GOPATH//://bin:}/bin`添加所有的bin目录
   - GOPATH可以有很多个目录，在windows系统中彼此以分号`;`隔开，linux系统中彼此以冒号`:`隔开，多个目录时下载的扩展包会放在第一个GOPATH中
 - GOBIN：go install编译存放路径，可以不设置，此时可执行文件将会放在GOPATH的bin目录中
 - PATH：系统环境变量，最后要将GOROOT、GOBIN和GOPATH/bin都添加到PATH中
