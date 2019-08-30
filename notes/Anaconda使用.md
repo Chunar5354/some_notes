@@ -14,6 +14,8 @@ Anaconda是一个Python的科学计算以及机器学习的平台它自带大量
 
 ## Jupyter Notebook使用
 
+### 安装
+
 安装Anaconda通常会同时自动安装Jupyter Notebook，测试一下：
 ```
 jupyter notebook  --version
