@@ -55,6 +55,7 @@
 - [pymysql学习](https://github.com/Chunar5354/some_notes/tree/master/demos/pymysql)
 - [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/tree/master/demos/Python_study)
 - [django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
+- [使用Anaconda 和 Jupyter Notebook](https://github.com/Chunar5354/some_notes/blob/master/notes/Anaconda%E4%BD%BF%E7%94%A8.md)
 
 ## go学习
 
