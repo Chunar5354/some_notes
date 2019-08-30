@@ -31,6 +31,13 @@ pip3 install jupyter
 
 ### 启动Jupyter Notebook
 
+#### 通过Anaconda启动
+
+既然安装了Anaconda，那么也可以通过它来启动jupyter notebook
+
+找到`Anaconda Navigator`这个应用，打开它，会在界面上看到jupyter notebook这个图标，点击它下面的`Lunch`，即可启动
+
+
 #### 通过命令行启动
 
 直接在命令行输入：
@@ -44,13 +51,6 @@ jupyter notebook
 ```
 jupyter notebook --port 9999      // 将会开启9999端口
 ```
-
-#### 通过Anaconda启动
-
-既然安装了Anaconda，那么也可以通过它来启动jupyter notebook
-
-找到`Anaconda Navigator`这个应用，打开它，会在界面上看到jupyter notebook这个图标，点击它下面的`Lunch`，即可启动
-
 
 #### 修改默认路径
 
