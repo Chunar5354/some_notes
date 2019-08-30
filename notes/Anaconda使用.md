@@ -1,4 +1,4 @@
-Anaconda是一个Python的科学计算以及机器学习的平台它自带大量Pyhton的科学计算以及机器学习的扩展包，可以很方便的进行相关应用开发
+Anaconda是一个Python的科学计算以及机器学习的平台，它自带大量Pyhton的科学计算以及机器学习的扩展包，可以很方便的进行相关应用开发
 
 最初是为了要使用cufflinks包，它需要Jupyter Notebook环境，而通过Anaconda来安装Jupyter Notebook非常方便，所以配置了Anaconda
 
