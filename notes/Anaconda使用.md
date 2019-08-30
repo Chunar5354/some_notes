@@ -45,7 +45,14 @@ jupyter notebook
 jupyter notebook --port 9999      // 将会开启9999端口
 ```
 
-### 修改默认路径
+#### 通过Anaconda启动
+
+既然安装了Anaconda，那么也可以通过它来启动jupyter notebook
+
+找到`Anaconda Navigator`这个应用，打开它，会在界面上看到jupyter notebook这个图标，点击它下面的`Lunch`，即可启动
+
+
+#### 修改默认路径
 
 在jupyter notebook打开的浏览器的界面中，可能会看到一系列文件，其实这个目录就是你计算机本地上的$HOME路径，如果想要为jupyter notebook配置一个新的文件夹，
 需要修改配置文件，输入以下命令来获取配置文件的位置：
@@ -65,10 +72,3 @@ c.NotebookApp.notebook_dir = 'your_own_path'    # such as 'C:\User\jupy'
 ```
 
 然后保存这个文件，再启动jupyter notebook就会发现它已经运行在新目录下了
-
-#### 通过Anaconda启动
-
-既然安装了Anaconda，那么也可以通过它来启动jupyter notebook
-
-找到`Anaconda Navigator`这个应用，打开它，会在界面上看到jupyter notebook这个图标，点击它下面的`Lunch`，即可启动
-
