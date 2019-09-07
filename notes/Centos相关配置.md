@@ -31,6 +31,8 @@ sudo yum install yum-utils -y
 
 CentOS自带`fierwalld`，在进行网络应用端口等配置的时候常常会用到，关于它的一些操作：
 
+### 基本操作
+
 - 启动防火墙
 ```
 systemctl start firewalld 
@@ -72,8 +74,27 @@ firewall-cmd --get-active-zones
 sudo firewall-cmd --list-all
 ```
 
+### 添加服务与端口
+
+firewalld中的每个服务都对应于`/usr/lib/firewalld/services`下面的某个xml文件
+
+- 查看当前开放的服务
+```
+firewall-cmd --list-services
+```
+
+- 查看还有哪些服务可以打开
+```
+firewall-cmd --get-services
+```
+
+- 查看所有打开的端口
+```
+firewall-cmd --zone=public --list-ports
+```
+
 - 添加许可服务
-将`name`替换成要添加的服务名称
+将`name`替换成要添加的服务名称，--permanent表示永久添加
 ```
 sudo firewall-cmd --add-service=name --permanent
 ```
@@ -82,6 +103,27 @@ sudo firewall-cmd --add-service=name --permanent
 将`port_number`替换成端口数字，后面是相应的协议
 ```
 sudo firewall-cmd --add-port=port_number/tcp --permanent
+```
+
+如果想要为自己要开放的端口定义一个服务，可以手动在`/usr/lib/firewalld/services`添加一个xml文件，进入该目录，随便复制一个其他的xml文件改成自己的名称，比如`my_serve.xml`，然后修改其中的内容：
+```
+<?xml version="1.0" encoding="utf-8"?>
+
+<service>
+<short>My_Serve</short>    # 服务的名字
+<description>My own service</description>     #添加一段描述
+<port protocol="tcp" port="12345"/>     # 使用的协议和开放的端口
+</service>
+```
+
+保存文件后，再输入命令 (注意是文件名）即可添加服务：
+```
+firewall-cmd --add-service=my_serve --permanent
+```
+
+然后重启firewall生效：
+```
+systemctl restart firewalld.service
 ```
 
 
