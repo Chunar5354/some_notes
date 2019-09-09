@@ -34,10 +34,83 @@
 
 ## 安装
 
-- 树莓派上
-  - 安装：`sudo apt-get install mysql-server`
-  - 卸载：`sudo apt-ge autoremove --purge mysql-server`
-- windows
+### 树莓派上
+
+- 安装：`sudo apt-get install mysql-server`
+- 卸载：`sudo apt-ge autoremove --purge mysql-server`
+
+### centos7
+
+- 首先创建一个配置文件
+```
+sudo vim /etc/yum.repos.d/MariaDB.repo
+```
+
+官方针对不同的系统给出了不同的配置文件内容，具体可以在[官网](https://downloads.mariadb.org/mariadb/repositories/)查看，比如centos7：
+```
+# MariaDB 10.4 CentOS repository list - created 2019-09-09 06:32 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.4/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+```
+
+- 然后可以安装：
+```
+sudo yum install MariaDB-server MariaDB-client -y
+sudo systemctl start mariadb.service       // 启动mysql
+sudo systemctl enable mariadb.service      // 设置开机自动启动
+```
+
+之后进行安全性的配置：
+```
+sudo mysql_secure_installation
+```
+
+输入命令之后根据提示进行配置就可以了
+
+- 开放端口
+
+centos由于有防火墙的存在，默认是无法远程连接mysql的，需要在firewalld中为mysql开放端口
+
+首先查看当前firewalld的zones：
+```
+sudo firewall-cmd --get-active-zones
+```
+
+结果中一般只有一个public，如果有其他的，需要为每一个zone都开放端口（将下面的public替换成对应的zone名称）：
+```
+sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
+sudo firewall-cmd --reload         // 重启防火墙
+```
+
+- 卸载mysql
+
+首先查看安装了哪些包：
+```
+yum list installed mariadb*
+```
+
+把他们全部卸载掉：
+```
+yun remove pkg_name
+```
+
+- 之后还要删除一些残留的文件
+
+先查看这些文件是否存在：
+```
+ls /etc/my.cnf
+ll /var/lib/mysql/
+```
+
+删除：
+```
+rm -rf /etc/my.cnf
+rm -rf /var/lib/mysql/
+```
 
 ## 配置
 
