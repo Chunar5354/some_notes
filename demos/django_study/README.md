@@ -173,14 +173,14 @@ import pymysql
 pymysql.install_as_MySQLdb() 
 ```
 
-此时运行`python manage.py migrate`仍然会报错，错误发生在一个`base.py`文件中，编辑它：
+此时运行`python manage.py migrate`仍然会报错，错误发生在一个`base.py`文件中，编辑它（换成自己的路径）：
 ```
 vim /usr/local/python3/lib/python3.8/site-packages/django/db/backends/mysql/base.py
 ```
 
 注释掉其中的35 36行
 
-再次运行`python manage.py migrate`仍然会报错，错误发生在一个`operations.py`文件中，编辑它：
+再次运行`python manage.py migrate`仍然会报错，错误发生在一个`operations.py`文件中，编辑它（换成自己的路径）：
 ```
 vim /usr/local/python3/lib/python3.8/site-packages/django/db/backends/mysql/operations.py
 ```
