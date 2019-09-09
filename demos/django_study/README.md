@@ -2,7 +2,7 @@
 
 ## 安装
 
-- 树莓派上
+### 树莓派上(Debian)
 
 ```
 pip3 install Django
@@ -13,6 +13,24 @@ pip3 install Django
 ```
 export PATH=$PATH:/home/pi/.local/bin
 ```
+
+### centos7
+
+```
+pip3 install django
+```
+
+仍然需要添加环境变量，不过这里要保存在`~/.bash_profile`中，在~/.bash_profile中添加一行：
+```
+export PATH=$PATH:/usr/local/python3/bin
+```
+
+在运行时，可能会因为sqlite的版本过低而出错，即使更新了最新版本也不行，这时，需要在环境变量中添加共享库位置，还是在`~/.bash_profile`中添加一行：
+```
+ export LD_LIBRARY_PATH="/usr/local/lib"
+```
+
+每当修改过该文件之后，执行`source ~/.bash_profile`使改动生效
 
 ## 创建项目
 
@@ -138,6 +156,39 @@ python manage.py migrate
 就会在`db_name`数据库中创建一系列表（此前确保db_name数据库已经存在，否则会报错）
 
 所创建的表是依据`mysite/settings.py`文件中`INSTALLED_APPS`配置项里面的内容
+
+#### 常见错误
+
+有时执行migrate会提示找不到mysqlclient（比如在centos7系统中），如何在centos7中安装mysqlclient参考[这里](https://github.com/Chunar5354/some_notes/blob/master/notes/Centos%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE.md)
+
+或者使用`pymysql`来实现migrate，首先安装pymysql：
+```
+pip3 install pymysql
+```
+
+然后修改`mysite/__init__.py`，在其中添加：
+```python
+import pymysql
+
+pymysql.install_as_MySQLdb() 
+```
+
+此时运行`python manage.py migrate`仍然会报错，错误发生在一个`base.py`文件中，编辑它：
+```
+vim /usr/local/python3/lib/python3.8/site-packages/django/db/backends/mysql/base.py
+```
+
+注释掉其中的35 36行
+
+再次运行`python manage.py migrate`仍然会报错，错误发生在一个`operations.py`文件中，编辑它：
+```
+vim /usr/local/python3/lib/python3.8/site-packages/django/db/backends/mysql/operations.py
+```
+
+将其146行的`decode`替换为`encode`
+
+此时可以正常运行`python manage.py migrate`
+
 
 ### 2.为数据库添加自定义数据（models）
 
