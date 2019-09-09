@@ -173,3 +173,10 @@ sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 - vi /usr/libexec/urlgrabber-ext-down 
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2
 ```
+
+### 修改时区
+
+将失去修改成中国上海（CST），在命令行输入：
+```
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
