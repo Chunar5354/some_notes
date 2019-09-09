@@ -108,6 +108,11 @@ python manage.py runserver
 
 在浏览器中输入`localhost:8000/polls`就能看到views中的内容
 
+- 如果页面显示`DisallowedHost`的错误，需要到`mysite/mysite/settings.py`中改写这一段：
+```python
+ALLOWED_HOSTS = ['*']   # 在括号中添加'*'
+```
+
 ## django操作mysql数据库
 
 ### 1.配置mysql支持并创建数据库
