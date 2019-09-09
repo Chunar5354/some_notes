@@ -27,6 +27,13 @@ sudo yum repolist
 sudo yum install yum-utils -y
 ```
 
+## 修改时区
+
+将时区修改成中国上海（CST），在命令行输入：
+```
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
 ## CentOS的防火墙操作
 
 CentOS自带`fierwalld`，在进行网络应用端口等配置的时候常常会用到，关于它的一些操作：
@@ -174,9 +181,33 @@ sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2
 ```
 
-### 修改时区
+## CentOS7安装mysqlclient
 
-将失去修改成中国上海（CST），在命令行输入：
+想要在centos上使用django，操作mysql数据库的话需要通过mysqlclient
+
+### 安装依赖
+
 ```
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+yum install python-devel
+yum install mysql-devel
+yum install gcc
 ```
+
+### 安装mysqlclient
+
+```
+pip3 install mysqlclient
+```
+这时可能会出现一个错误，提示`/usr/bin cannot find -lmariadb`之类的
+
+这里特别坑，其实是他库文件命名的问题，输入命令查找一下：
+```
+find / -name libmariadb*
+```
+
+会发现在/usr/lib64下面有一个`libmariadbd.so`，注意尾部多了一个`d`。将他软链接一下：
+```
+ln -s /usr/bin/libmariadbd.so /usr/bin/libmariadb.so
+```
+
+后面的去掉结尾的`d`，这样就可以安装mysqlclient了
