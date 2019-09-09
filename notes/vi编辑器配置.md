@@ -6,9 +6,10 @@
 - 编辑`/etc/vim/vimrc`文件（如果是CentOS系统则是`/etc/vimrc`文件），进行最基本的设置语法高亮与显示行号：
 
 ```
-set nu  #显示行号
-syntax on  #语法高亮
-set tabstop=4  #tab退四格
+set nu  # 显示行号
+syntax on  # 语法高亮
+set tabstop=4  # tab退四格
+set autoindent   # 自动缩进
 ```
 
 ## vim编辑器的其他设置
