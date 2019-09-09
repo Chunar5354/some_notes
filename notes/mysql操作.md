@@ -95,10 +95,10 @@ yum list installed mariadb*
 
 把他们全部卸载掉：
 ```
-yun remove pkg_name
+yum remove pkg_name
 ```
 
-- 之后还要删除一些残留的文件
+之后还要删除一些残留的文件
 
 先查看这些文件是否存在：
 ```
