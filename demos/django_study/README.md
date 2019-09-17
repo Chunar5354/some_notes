@@ -1,5 +1,19 @@
 学习一下django框架，看看能不能用它结合mysql搭建一个python的服务器
 
+* [安装](#%E5%AE%89%E8%A3%85)
+  * [树莓派上(Debian)](#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8Adebian)
+  * [centos7](#centos7)
+* [创建项目](#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE)
+* [创建app](#%E5%88%9B%E5%BB%BAapp)
+  * [在浏览器上显示自定义内容](#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E6%98%BE%E7%A4%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9)
+* [django操作mysql数据库](#django%E6%93%8D%E4%BD%9Cmysql%E6%95%B0%E6%8D%AE%E5%BA%93)
+  * [1\.配置mysql支持并创建数据库](#1%E9%85%8D%E7%BD%AEmysql%E6%94%AF%E6%8C%81%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93)
+    * [常见错误](#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF)
+  * [2\.为数据库添加自定义数据（models）](#2%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AEmodels)
+* [创建用户](#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7)
+* [添加已有的数据库](#%E6%B7%BB%E5%8A%A0%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93)
+
+
 ## 安装
 
 ### 树莓派上(Debian)
