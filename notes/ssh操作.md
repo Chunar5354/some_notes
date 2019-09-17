@@ -23,6 +23,7 @@ scp username@servername:/path/filename /var/www/local_dir
 
 - `username`和`servername`分别是远程设备的用户名和ip地址
 - 前面的路径为远程设备上目标文件的路径，后面的路径为本地的保存路径
+- 如果是传输文件夹则要加上`-r`参数
 
 ### 上传文件到远程设备
 
@@ -35,6 +36,7 @@ scp /path/filename username@servername:/path
 
 - `username`和`servername`分别是远程设备的用户名和ip地址
 - 前面的路径为本地文件的路径，后面的路径为远程设备保存的路径
+- 如果是传输文件夹则要加上`-r`参数
 
 ### 指定端口
 
