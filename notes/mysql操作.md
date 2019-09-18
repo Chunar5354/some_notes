@@ -283,6 +283,14 @@ ALTER TABLE 'tablename'
 
 在指定位置插入一列，`AFTER`后面指的是插入在那一列的后面
 
+#### 插入自增列
+
+插入名为`id`的自增列并将其设为主键（FIRST表示插入到第一列）
+```
+ALTER TABLE tablename ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST
+```
+
+
 ### 12.查询前几行或后几行
 
 使用`MILIT`语句，LIMIT后可以接受一个或两个整数参数：
