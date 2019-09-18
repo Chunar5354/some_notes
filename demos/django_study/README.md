@@ -317,3 +317,88 @@ python manage.py migrate
 就将新的数据库添加到了django的配置当中
 
 - tips：注意要再`mysite/setings.py`中的 `INSTALLED_APPS` 配置项中包含models的app（因为有可能不是polls）
+
+### 实现管理已有数据库
+
+用上面的方法添加已有数据库可能会出现一些问题，比如在migrate的时候因为格式不匹配等，可能会强制改变原来数据库的数据格式，下面介绍一种方式可以将原有的数据库比较好的匹配到django框架当中：
+
+- 1.首先将数据库备份
+
+```
+mysqldump -u user -ppassword database > database.sql
+```
+
+user、password、database分别对应用户名、密码和数据库名
+
+- 2.为django app生成model
+
+```
+python manage.py inspectdb > ./app/models.py
+```
+
+此时会在该app的models.py文件中生成相应的代码用来构造数据库
+
+注意要将models.py中的Meta里面manage属性修改为True，使得django有操作数据库的权限：
+```python
+class Meta:
+    managed = True
+```
+
+- 3.创建新的数据库并添加到django的settings中
+
+首先在mysql中创建一个新的数据库，比如`djangodb`：
+```
+CREATE DATABASE djangodb;
+```
+
+然后修改mysite/settings.py，配置数据库和app信息（注意要修改两处）：
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangodb',                       # database name, must be created before
+        'USER': 'test',                           # your own mysql user name
+        'PASSWORD': 'test123',                    # your password to the user above
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+
+INSTALLED_APPS = [
+    'app_name.apps.App_nameConfig',  # 将app_name和App_name换成自己app的名称
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+- 4.执行migrate
+
+首先添加app的内容：
+```
+python3 manage.py makemigrations app_name
+```
+
+然后全部迁移：
+```
+python3 manage.py migrate
+```
+
+- 5.从备份文件导入数据
+
+进入到mysql中，选中`djangodb`数据库：
+```
+use djangodb;
+```
+
+将备份文件中的数据导入数据库：
+```
+source database.sql;
+```
+
+这个命令最神奇的是导入数据之后数据的格式和原本的数据库格式相同
+
+此时原来的数据库的数据就完美的融入了django框架啦
