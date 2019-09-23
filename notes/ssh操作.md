@@ -44,3 +44,29 @@ scp /path/filename username@servername:/path
 ```
 scp -P 8000 /path/filename username@servername:/path             // 指定8000端口
 ```
+
+## ssh断开连接程序继续运行
+
+### nohup方法
+
+在linux系统中，在一条命令的结尾加上`&`可以使该命令在后台运行，但是这样推出了ssh shell的时候还是会使该进程中断，
+此时可以在命令的前面加上一个`nohup`命令：
+```
+nohup command &
+```
+
+### Ctrl+z方法
+
+程序运行中，输入`Ctrl+z`可以使得当前程序暂时挂起，之后可以通过`fg`命令使程序重新到前台运行，也可以使用`bg`命令使程序在后台运行
+
+之后可以使用`disown -h`命令使得即使退出shell，程序也不会中断
+
+disown后需要带参数，可以是命令的名称，比如：
+```
+disown -h scp
+```
+
+也可以是命令的编号，比如：
+```
+disown -h %1
+```
