@@ -65,3 +65,16 @@ cursor()对象的方法：
   - value表示移动的行数
   - mode表示移动的方式，`relative`表示相对当前行移动多少行；`absolute`表示移动到绝对的行数位置
   
+
+### 大量数据的插入操作
+
+如果有大量数据需要存入数据库，可以使用pymysql.cursor中的`executemany()`方法，使用示例：
+
+```python
+sql = "INSERT INTO tablename(create_time, value) VALUES(%s, %s)"  # sql语句中要为datalist留出位置
+datalist = [(create_time1, value1), (create_time1, value1), ...]  # datalist是一个要插入到数据库中的数据元组的列表（或元组）
+count = cursor.executemany(sql, datalist)  # 插入数据，需要两个参数——sql语句和对应的数据元组列表
+conn.commit()  # 提交执行命令
+```
+
+在数据量很大时，使用`executemany()`要比循环执行单次插入操作速度快得多
