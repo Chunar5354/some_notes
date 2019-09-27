@@ -70,6 +70,8 @@ sudo systemctl start mariadb.service       // 启动mysql
 sudo systemctl enable mariadb.service      // 设置开机自动启动
 ```
 
+更换源之后如果提示安装包不存在，可以先执行`sudo yum clean all`再进行安装
+
 之后进行安全性的配置：
 ```
 sudo mysql_secure_installation
