@@ -402,3 +402,33 @@ source database.sql;
 这个命令最神奇的是导入数据之后数据的格式和原本的数据库格式相同
 
 此时原来的数据库的数据就完美的融入了django框架啦
+
+## 使用channels模块实现websocket
+
+安装channels：
+```
+pip install channels
+```
+
+在项目文件的settings.py文件中添加channels到INSTALL_APPS，并指定ASGI的路由地址：
+```python
+# 添加channels
+INSTALLED_APPS = [
+    'django.contrib.staticfiles',
+    'channels',
+]
+
+# 指定ASGI的路由地址
+ASGI_APPLICATION = 'webapp.routing.application'
+```
+
+并在settings.py的同一路径下创建routing.py路由文件
+```python
+from channels.routing import ProtocolTypeRouter
+
+application = ProtocolTypeRouter({
+    # 暂时为空
+})
+```
+
+此时已经基本搭建好了channels框架
