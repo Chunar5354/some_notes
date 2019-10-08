@@ -57,6 +57,7 @@
 - [django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
 - [使用Anaconda 和 Jupyter Notebook](https://github.com/Chunar5354/some_notes/blob/master/notes/Anaconda%E4%BD%BF%E7%94%A8.md)
 - [Python数据处理](https://github.com/Chunar5354/some_notes/blob/master/notes/Python%E5%8F%AF%E8%A7%86%E5%8C%96_%E6%95%B0%E6%8D%AE_%E5%9B%BE%E5%83%8F.md)
+- [脚本后台运行](https://github.com/Chunar5354/some_notes/blob/master/notes/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8CPython%E8%84%9A%E6%9C%AC.md)
 
 ## go学习
 
