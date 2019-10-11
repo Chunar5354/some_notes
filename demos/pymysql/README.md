@@ -94,10 +94,10 @@ import pandas as pd
 import numpy as np
 
 db = pymysql.connect(host='',
-				user='username',
-				password='password',
-				database='db_name',
-				port=3306)
+		     user='username',
+		     password='password',
+		     database='db_name',
+		     port=3306)
 db.connect()
 
 sql = "select * from your_table"
