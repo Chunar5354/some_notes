@@ -78,3 +78,37 @@ conn.commit()  # 提交执行命令
 ```
 
 在数据量很大时，使用`executemany()`要比循环执行单次插入操作速度快得多
+
+## pymysql+pandas读取数据库
+
+有时单独使用pymysql来读取数据库中的某些数据会有部分丢失（比如读取精确到毫秒的时间），如果想要完整的读取数据库中的内容，可以借助pandas来实现
+
+pandas中的`read_sql()`方法可以读取数据库中的数据，并保存成pandas.dataframe格式。[详情查看官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html)
+
+dataframe对象可以后续通过一系列方法进行格式转换（如本例中的转换成列表）
+
+应用示例：
+```python
+import pymysql
+import pandas as pd
+import numpy as np
+
+db = pymysql.connect(host='',
+				user='username',
+				password='password',
+				database='db_name',
+				port=3306)
+db.connect()
+
+sql = "select * from your_table"
+
+# read_sql()最少接收两个参数，第一个是字符串格式的sql语句，第二个是数据库对象，返回结果是一个pandas.dataframe对象
+result = pd.read_sql(sql, db)
+
+# dataframe中的数据可以使用astype()强制转换类型，也可以通过result['column1']来为单个列的数据转换类型
+result = result.astype(str)
+
+# 使用numpy的array和tolist方法将dataframe对象转换成列表
+num_result = np.array(result)
+list_result = num_result.tolist()
+```
