@@ -2,6 +2,13 @@
 
 ## 1.nohup
 
+在一个命令的前面加上`nohup`可以使该命令在退出时不被挂起，在命令后面加上`&`可以使该命令在后台运行：
+```
+nohup python3 your_file.py &
+```
+
+这样就可以使该命令在后台持续运行
+
 ## 2.service
 
 顾名思义，就是将自己的python脚本添加到系统服务中，以centos7系统为例，在`/lib/systemd/system/`目录下添加一个新的service文件：
