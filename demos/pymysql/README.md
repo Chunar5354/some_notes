@@ -98,8 +98,7 @@ db = pymysql.connect(host='',
 		     password='password',
 		     database='db_name',
 		     port=3306)
-db.connect()
-
+		     
 sql = "select * from your_table"
 
 # read_sql()最少接收两个参数，第一个是字符串格式的sql语句，第二个是数据库对象，返回结果是一个pandas.dataframe对象
