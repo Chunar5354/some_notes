@@ -41,3 +41,6 @@ if __name__ == '__main__':
 ```
 
 客户端使用socket进行连接即可
+
+[参考](http://www.liujiangblog.com/course/python/77)
+
