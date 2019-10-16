@@ -253,4 +253,54 @@ f = lambda x,y : x+y
 
 ## 生成器
 
+是一个可迭代对象，但它并不一次性得出这个对象的全部内容，而是在需要的时候才产生结果，这样能够节省内存
 
+### 构造生成器的方式
+
+- 1.yield表达式
+
+yield表达式用于函数定义中，将return替换成yield，带有yield表达式的函数在编译时会自动编译成一个生成器对象，如：
+```python
+def func():
+    for i in range(5):
+        yield i ** 2
+
+y = func()
+for i in range(5):
+    print(next(y), end=', ')
+```
+
+输出的结果为
+```
+0, 1, 4, 9, 16,
+```
+
+- 2.生成器推导式
+
+生成器推导式的语法与列表推导式类似，不过将外面的`[]`替换成了`()`，例如
+```python
+g = (x**2 for x in range(5))
+print(g)
+for i in range(5):
+    print(next(g), end=', ')
+```
+
+输出的结果为：
+```python
+<generator object <genexpr> at 0x00000236F78E3A48>
+0, 1, 4, 9, 16,
+```
+
+### yield from 语句
+
+代替for循环等方式，等价地快速构建一个生成器：
+```python
+def func(n):
+    for i in range(n): yield i
+    for i in range(x**2 for x in range(n)): yield i
+    
+等价于:
+def func(n):
+    yield from range(n)
+    yield from (x**2 for x in range(n))
+```
