@@ -111,3 +111,10 @@ result = result.astype(str)
 num_result = np.array(result)
 list_result = num_result.tolist()
 ```
+
+## pymysql + threading多线程的问题
+
+pymysql如果多线程公用一个数据库连接会出错，解决方法：
+
+- 1.线程锁
+- 2.每一个线程单独使用一个数据库连接
