@@ -306,6 +306,12 @@ SELECT * FROM table LIMIT 5, -1;        // 查询第6行到最后一行
 ```
 SELECT * FROM table WHERE id>$id ORDER BY id DESC LIMIT 5;     // 查询最后5行
 ```
+
+### 查看当前运行的命令
+
+```
+show full processlist;
+```
   
 ## MYSQL中的索引
 
