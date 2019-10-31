@@ -87,4 +87,4 @@
 
 ## 算法
 
-- [LeetCode刷题笔记]()
+- [LeetCode刷题笔记](https://github.com/Chunar5354/some_notes/tree/master/leetcode)
