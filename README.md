@@ -68,6 +68,7 @@
 ## 数据库
 
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
+- [redis数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/redis%E6%95%B0%E6%8D%AE%E5%BA%93.md)
 
 ## PHP7.0
 
