@@ -85,3 +85,6 @@
 
 - [ssh相关操作](https://github.com/Chunar5354/some_notes/blob/master/notes/ssh%E6%93%8D%E4%BD%9C.md)
 
+## 算法
+
+- [LeetCode刷题笔记]()
