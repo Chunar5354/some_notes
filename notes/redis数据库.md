@@ -58,3 +58,24 @@ $ redis-cli
 127.0.0.1:6379> auth your_password
 OK
 ```
+
+## Python中的redis模块
+
+使用redis扩展包可以通过python操作redis。[官网链接](https://pypi.org/project/redis/)
+
+### 安装
+
+```
+# pip install redis
+```
+
+### 基础用法
+
+```python
+import redis
+
+r = redis.Redis(host='localhost', port=6379, db=0)
+r.set('foo', 'bar')
+res = r.get('foo')
+print(res
+```
