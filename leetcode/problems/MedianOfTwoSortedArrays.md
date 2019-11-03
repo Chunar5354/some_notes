@@ -41,8 +41,7 @@ class Solution:
 
 ## 知识点
 
-- O(log n)的时间复杂度：常见于`二分法`，每次去总长的一半进行分割，对于长度为n的序列，要查找到某一元素需要进行 2<sup>k</sup> = n， 
+- 1.O(log n)的时间复杂度：常见于`二分法`，每次去总长的一半进行分割，对于长度为n的序列，要查找到某一元素需要进行 2<sup>k</sup> = n， 
 k = log<sub>2</sub> n 
-次操作
+次操作。  [参考](https://juejin.im/entry/593f56528d6d810058a355f4)
 
-[参考](https://juejin.im/entry/593f56528d6d810058a355f4)
