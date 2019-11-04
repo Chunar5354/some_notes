@@ -77,5 +77,52 @@ import redis
 r = redis.Redis(host='localhost', port=6379, db=0)
 r.set('foo', 'bar')
 res = r.get('foo')
-print(res
+print(res)
+```
+
+### 连接池
+
+除了使用`redis.Redis()`方法进行连接之外，redis还提供了一种连接池的方法，可以为多个操作共享同一个数据库连接：
+```python
+# 创建一个连接池
+pool = redis.ConnectionPool(host='localhost', port=6379, password='', db=0)
+# 使用连接池进行连接
+conn = redis.Redis(connection_pool=pool)
+```
+
+### hash操作
+
+因为在实际使用的时候主要使用了hash存储，所以记录在这里，更多的redis操作[参考](https://segmentfault.com/a/1190000015191422)
+
+- 1.插入： `hset(name, key, value)`
+```python
+conn.hset(hash_name, hash_key, hash_value)
+# 注意因为redis中的数据都是以字节形式存储，所以各个参数的数据类型不能是列表或字典等
+```
+
+- 2.读取： `hget(name, key)`
+```python
+conn.hget(hash_name, hash_key)
+# 结果为对应的hash_value
+```
+
+- 3.获取所有内容： `hgetall(name)`
+```python
+res = conn.hgetall(hash_name)
+# 会返回hash_name中的所有键值对， res是一个字典
+```
+
+- 4.获取所有键： `hkeys(name)`
+```python
+res = conn.hkeys(hash_name)
+# 返回hash_name中所有的键，res是一个列表
+```
+
+### 定时
+
+redis有一个功能是可以为数据设置过期时间来节省内存，python的redis也同样可以实现这一操作：
+```python
+conn.expire(name, time)
+# name为被设置的key或hash_name，注意不可以为hash中的hash_key单独设置过期时间
+# time可以是整数，单位为秒；或者可以是datetime格式化的时间
 ```
