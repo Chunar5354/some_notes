@@ -7,3 +7,4 @@ LeetCode刷题记录
 - [Longest Substring Without Repeating Characters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestSubstringWithoutRepeatingCharacters.md)
 - [Median Of Two Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MedianOfTwoSortedArrays.md)
 - [Longest Palindromic Substring](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestPalindromicSubstring.md)
+- [ZigZag Conversion](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ZigZagConversion.md)
