@@ -4,7 +4,7 @@
 
 今天绝对大成就：
 
->Runtime: 28 ms, faster than 99.36% of Python3 online submissions for Reverse Integer.
+>Runtime: 28 ms, faster than 99.36% of Python3 online submissions for Reverse Integer.   
 Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Reverse Integer.
 
 不过这题不算难，一下就想到了把数字转换成字符串再用列表排序，其实关键于列表倒序的算法`l.reverse()`，它是内置的：
