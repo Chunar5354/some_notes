@@ -9,3 +9,4 @@ LeetCode刷题记录
 - 5 [Longest Palindromic Substring](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestPalindromicSubstring.md)
 - 6 [ZigZag Conversion](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ZigZagConversion.md)
 - 7 [Reverse Integer](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseInteger.md)
+- 8 [String To Integer Atoi](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/StringToIntegerAtoi.md)
