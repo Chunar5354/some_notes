@@ -10,3 +10,4 @@ LeetCode刷题记录
 - 6 [ZigZag Conversion](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ZigZagConversion.md)
 - 7 [Reverse Integer](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseInteger.md)
 - 8 [String To Integer Atoi](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/StringToIntegerAtoi.md)
+- 9 [Palindrome Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PalindromeNumber.md)
