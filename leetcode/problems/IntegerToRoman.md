@@ -2,6 +2,8 @@
 
 [题目链接](https://leetcode.com/problems/integer-to-roman/)
 
+后面还有一个[Roman To Integer](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RomanToInteger.md)，是这个题的反向
+
 数字转换成罗马数字，本质上是数字和字符串的一一对应，只要掌握各自的规则再进行拼凑就可以了：
 ```python
 class Solution:
