@@ -16,3 +16,4 @@ LeetCode刷题记录
 - 12 [Integer To Roman](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntegerToRoman.md)
 - 13 [Roman To Integer](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RomanToInteger.md)
 - 14 [Longest Common Prefix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestCommonPrefix.md)
+- 15 [Three Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ThreeSum.md) **!**
