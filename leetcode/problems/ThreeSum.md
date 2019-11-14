@@ -2,7 +2,7 @@
 
 [题目链接](https://leetcode.com/problems/3sum/)
 
-[Two Sum]()的升级版，不光是数量升级，返回的结果也从只获取一个满足条件的数组变成了所有满足条件的数组，而且还不能重复
+[Two Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TwoSum.md)的升级版，不光是数量升级，返回的结果也从只获取一个满足条件的数组变成了所有满足条件的数组，而且还不能重复
 
 首先自己想的是对每一个元素i，除去i后对剩下的列表做Two Sum的操作，target变成`-nums[i]`，对Two Sum稍加修改即可：
 ```python
