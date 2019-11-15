@@ -330,3 +330,62 @@ def func(n):
 import module
 print(module._X)
 ```
+
+## 类
+
+### 运算符重载
+
+这部分可以参考书P871，列举了一些常见的运算符重载方法
+
+有几个比较常用的:
+
+#### 打印: __str__ 和 __repr__
+
+这两个方法都是在要将对象打印或者作为一个字符串来使用的时候被调用，区别在于：
+
+- `__str__()`方法只在print和str()转换的时候被调用，而`__repr__()`则更为广泛
+
+#### 调用表达式： __call__
+
+`__call__()`方法能够把一个类的实例当作普通函数来调用，如：
+```python
+class Prod():
+    def __init__(self, value):
+        self.value = value
+    def __call__(self, other):
+        return self.valu * other
+        
+if __name__ == '__main__':
+    x = Prod(2)
+    print(x(3))
+
+# 输出结果为：
+# 6
+```
+
+这里x是Prod的一个实例，而直接`x(3)`操作会调用Prod中的`__call__()`方法，返回2与3的乘积
+
+
+### 类的委托：包装器类
+
+包装器类通常通过内置方法`__getattr__()`实现，该方法会拦截对不存在属性的访问，所以通过这个方法，可以将任意的访问转发给被包装的对象，例如:
+```python
+class Wrapper():
+    def __init__(self, obj):
+        self.wrapped = obj
+    def __getattr__(self, attrname):
+        print('Trace: ' + attrname)
+        return getattr(self.wrapped, attrname)
+
+if __name__ == '__main__':
+    x = Wrapper([1, 2, 3])
+    x.append(4)
+    print(x.wrapped)
+
+# 打印结果为：
+# Trace: append
+# [1, 2, 3, 4]
+```
+
+在上面的例子中，Wrapper中并没有append这个方法，却能够实现对列表元素的添加。原因在于当对调用一个不存在的属性名时，`__getattr__()`会拦截
+这个属性名（attrname），并执行函数中的操作，其中`getattr(x, m)`内置方法就相当于`x.m`
