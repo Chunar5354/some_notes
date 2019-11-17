@@ -15,6 +15,10 @@
 - 11.`x.copy()`复制可变对象，对于列表，可以使用切片`l2=l1[:] `(列表没有copy方法）
 - 12.使用 `del name` 语句可以删除定义的变量名
 - 13.`isinstance(arg, type_name)`可以判断某一个变量是否为某一类型的对象
+- 14.对一个实例调用`ins.__dict__`只会得到实例包含的属性，而使用`dir(ins)`除了实例的属性之外
+也会得到创建实例的类中的属性以及该类所继承的全部父类中的属性
+- 15.assert语句：`assert bool, 'text'`，
+assert后面的bool可以是一个表达式，当其值为False时，会抛出异常，内容为text，如果值为True，则忽略这条语句继续执行
 
 ### 通过'#!'创建脚本文件
 
@@ -389,3 +393,99 @@ if __name__ == '__main__':
 
 在上面的例子中，Wrapper中并没有append这个方法，却能够实现对列表元素的添加。原因在于当对调用一个不存在的属性名时，`__getattr__()`会拦截
 这个属性名（attrname），并执行函数中的操作，其中`getattr(x, m)`内置方法就相当于`x.m`
+
+### mix-in类
+
+在我的理解，`min-in`类是定义一系列方法，并可以提供该方法给所有继承它的子类，强调通用性。书上原话是：
+> mix-in类提供可通过继承向应用添加类的方法  P938
+
+#### 示例：类树列举器
+
+代码可查书P947。ListTree通过重载__str__()方法，可以使继承它的子类能够显示示例以及所有继承关系中的父类，帮显示他们包含的属性和方法：
+```python
+# File listtree.py
+class ListTree():
+    def __attrnames(self, obj, indent):
+        spaces = ' '* (indent + 1)
+        result = ''
+        for attr in sorted(obj.__dict__):
+            if attr.startswith('__') and attr.endswith('__'):
+                result += spaces + '{0}\n'.format(attr)
+            else:
+                result += spaces + '{0}={1}\n'.format(attr, getattr(obj, attr))
+        return result
+    
+    def __listclass(self, aClass, indent):
+        dots = '.' * indent
+        # 如果该类已经访问过了
+        if aClass in self.__visited:
+            return '\n{0}<Class {1}:, address {2}: (see above)>\n'.format(
+                dots,
+                aClass.__name__,
+                id(aClass))
+        else:
+            self.__visited[aClass] = True
+            here = self.__attrnames(aClass, indent)
+            above = ''
+            # 向上访问每一个父类
+            for super in aClass.__bases__:
+                above += self.__listclass(super, indent+4)
+            return '\n{0}<Class {1}, address: {2}:\n{3}{4}{5}>\n'.format(
+                dots,
+                aClass.__name__,
+                id(aClass),
+                here,
+                above,
+                dots)
+    
+    def __str__(self):
+        self.__visited = {}
+        # here中是实例里面的属性
+        here = self.__attrnames(self, 0)
+        above = self.__listclass(self.__class__, 4)
+        return '<Instance of {0}, address {1}:\n{2}{3}>'.format(
+            self.__class__.__name__,
+            id(self),
+            here,
+            above)
+
+if __name__ == '__main__':
+    import testmixin
+    testmixin.tester(ListTree)
+```
+
+上面所引用的`testmixin.py`也是书中的示例，在P942.就是定义了一对父子类，使子类继承所传入的类参数，并进行打印：
+```python
+#File testmixin.py
+import importlib
+
+def tester(listerclass, sept=False):
+    class Super:
+        def __init__(self):
+            self.data1 = 'chunar'
+        def ham(self):
+            pass
+
+    class Sub(Super, listerclass):
+        def __init__(self):
+            Super.__init__(self)
+            self.data2 = 'eggs'
+            self.data3 = 100
+        def spam(self):
+            pass
+    
+    instance = Sub()
+    print(instance)
+    if sept:
+        print('-' * 80)
+    
+def testByNames(modname, classname, sept=False):
+    modobject = importlib.import_module(modname)
+    listerclass = getattr(modobject, classname)
+    tester(listerclass, sept)
+
+if __name__ == '__main__':
+    testByNames('listinstance', 'ListInstance', True)
+```
+
+可以自行运行`listtree.py`查看其输出结果
