@@ -2,7 +2,7 @@
 
 [题目链接](https://leetcode.com/problems/4sum/)
 
-基本承袭了Three Sum的套路，用类似的左右端点方法就能解决，只不过多遍历了一次（因为多了一个数）：
+基本承袭了[Three Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ThreeSum.md)的套路，用类似的左右端点方法就能解决，只不过多遍历了一次（因为多了一个数）：
 
 ```python
 class Solution:
