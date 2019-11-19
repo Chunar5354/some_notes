@@ -2,17 +2,13 @@
 
 Sorry, from today on, the articles will be writed in English
 
-[题目链接](https://leetcode.com/problems/valid-parentheses/)
+[Problem Link](https://leetcode.com/problems/valid-parentheses/)
 
 Find the valid parentheses.My thought is creating a dictionary, the keys are three left parentheses, and their value
 is a list. Traverse the given string, add every index of left parenthese at the end of lists. When a right parenthese
 appears, pop the last element of the corresponding left list, and check if the difference of the indexs of this pair 
 of parentheses (to avoid the situation such as `[(]`). Finally, three lists in the dictionary should be empty, otherwise, 
 return False.
-
-查找合法的括号，自己的想法是创建一个字典，键为三个左括号，对应的值都为一个列表，遍历字符串，把每一个左括号的索引值添加到列表末尾
-每当出现一个右括号的时候，就去掉对应的左括号列表中的最后一个索引值去掉，并查看左右两个括号的索引值之差（避免`[)]`这种情况），
-到最后，三个左括号对应的列表都应该为空，否则就返回False
 
 ```python
 class Solution:
@@ -21,14 +17,14 @@ class Solution:
              '[': [],
              '{': [],}
         for index, val in enumerate(s):
-            # 这里三个if判断的形式是一样的，只是对应的键不同
+            # the three if has the same structer
             if val == ')':
-                # 如果没有对应的左括号了，就返回False
+                # if there is no corresponding left parenthese, return False
                 if len(d['(']) == 0:
                     return False
                 else:
                     last_left = d['('].pop(-1)
-                    # 一对左右括号之间必须是偶数个元素
+                    # between a pair of parentheses, there must be even elements
                     if (index-last_left) % 2 == 0:
                         return False
             elif val == ']':
@@ -47,14 +43,17 @@ class Solution:
                         return False
             else:
                 d[val].append(index)
-        # 如果最后三个列表都是空的，说明给出的字符串是合法的
+        # if finally the three lists are all empty, that means the given string is valid
         if d['('] == d['['] == d['{'] == []:
             return True
         else:
             return False
 ```
 
-A good solution is to use stack
+It'a gooo solution, and it's fast(beat 95%). But it has a complex coding.
+
+Look at the offical solution, it use stack to store every character. When we meet a right parenthese, check the top of the stack, 
+if it can pair with current right parenthese, pop the top and go on, otherwise, return False.
 
 ```python
 class Solution(object):
@@ -93,3 +92,7 @@ class Solution(object):
         # The stack won't be empty for cases like ((()
         return not stack
 ```
+
+### Conclution
+
+- Stack is a magic thing.
