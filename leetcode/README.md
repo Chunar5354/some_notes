@@ -22,3 +22,4 @@ LeetCode刷题记录
 - 18 [Four Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FourSum.md)
 - 19 [Remove Nth Node From End Of List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveNthNodeFromEndOfList.md)
 - 20 [Valid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidParentheses.md)
+- 21 [Generate Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GenerateParentheses.md)  **! recursing**
