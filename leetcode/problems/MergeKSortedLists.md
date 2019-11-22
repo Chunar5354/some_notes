@@ -4,7 +4,7 @@
 
 - My solution
 
-There is a problem named [Merge Two Lists]() before, my idea is: do merge two lists method one by one.
+There is a problem named [Merge Two Sorted Lists](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeTwoSortedLists.md) before, my idea is: do merge two lists method one by one.
 
 Such as a list `l` has 4 listnodes, firstly, merge l[0] and l[1] and get the result l01. Them merge l01 and l[2], get the result l012, 
 then merge l012 and l[3], the result l0123 is the final result.
