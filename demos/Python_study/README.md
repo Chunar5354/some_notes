@@ -518,3 +518,65 @@ if __name__ == '__main__':
 ```
 
 可以自行运行`listtree.py`查看其输出结果
+
+
+## 装饰器
+
+### 函数装饰器
+
+可以理解为装饰器是一个`传入函数作为参数`的方法，它能将装饰器中包含的属性以及方法赋予被传入的函数
+
+例子：
+```python
+class Tracer():
+    def __init__(self, func):
+        self.calls = 0
+        self.func = func
+    def __call__(self, *args):
+        self.calls += 1
+        print('Class: call %s to %s' % (self.calls, self.func.__name__))
+        return self.func(*args)
+
+def tracer(func):
+    def oncall(*args):
+        oncall.calls += 1
+        print('Func: call %s to %s' % (oncall.calls, func.__name__))
+        return func(*args)
+    oncall.calls = 0
+    return oncall
+
+# Actually when we call this function, we called: 
+# Tracer(spam(a, b, c)), but it returns as f1()
+@Tracer
+def f1(a, b, c):
+    return a + b + c
+
+@tracer
+def f2(a, b, c):
+    return a + b + c
+
+if __name__ == '__main__':
+    print(f1(1, 2, 3))
+    print(f1('a', 'b', 'c'))
+    print(f2(1, 2, 3))
+    print(f2('a', 'b', 'c'))
+    # print(tracer(f1(2, 3, 4)))
+```
+
+在调用一个被装饰的函数时，会将该函数以及该函数的参数都传递给装饰器代表的方法（这样的方法一般接受函数作为参数并返回一个可调用对象，
+并将原来的参数与该对象绑定）
+
+上面程序的输出为：
+```
+Class: call 1 to f1
+6
+Class: call 2 to f1
+abc
+Func: call 1 to f2
+6
+Func: call 2 to f2
+abc
+```
+
+注意这个例子中的自定义装饰器，他们需要满足一些条件：
+> 把一个函数当作参数并返回一个可调用对象，而原来的函数将与该对象重新绑定
