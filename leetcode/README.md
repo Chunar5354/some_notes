@@ -25,3 +25,4 @@ LeetCode刷题记录
 - 21 [Generate Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GenerateParentheses.md)  **! recursing**
 - 22 [Merge K Sorted Lists](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeKSortedLists.md)
 - 23 [Swap Nodes In Pairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SwapNodesInPairs.md)
+- 24 [Reverse Nodes In K-Group](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseNodesInK-Group.md)
