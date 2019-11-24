@@ -545,7 +545,7 @@ def tracer(func):
     oncall.calls = 0
     return oncall
 
-# Actually when we call this function, we called: 
+# When we call this function, we called just like: 
 # Tracer(spam(a, b, c)), but it returns as f1()
 @Tracer
 def f1(a, b, c):
