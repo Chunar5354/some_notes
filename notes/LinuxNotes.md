@@ -11,7 +11,7 @@ Some knowledge about linux
 
 ### Change index page
 
-If you want to change the default index page, you can change the `/var/www/htmlindex.html` file like:
+If you want to change the default index page, you can change the `/var/www/html/index.html` file like:
 ```html
 <meta http-equiv="refresh" content="0; url=/web">
 ```
