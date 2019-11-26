@@ -27,3 +27,4 @@ LeetCode刷题记录
 - 23 [Swap Nodes In Pairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SwapNodesInPairs.md)
 - 24 [Reverse Nodes In K-Group](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseNodesInK-Group.md)
 - 25 [Remove Duplicates From Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicatesFromSortedArray.md)
+- 26[Remove Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveElement.md)
