@@ -137,3 +137,19 @@ conn.expire(name, time)
 # name为被设置的key或hash_name，注意不可以为hash中的hash_key单独设置过期时间
 # time可以是整数，单位为秒；或者可以是datetime格式化的时间
 ```
+
+
+## 内存淘汰
+
+在reids中。除了设置过期时间来清理数据，还可以通过它的内存淘汰机制。即当redis中的数据占用内存超过设置数值时，删除某些数据来释放内存。
+
+redis有六种内存淘汰策略，详细信息可以[参考](https://www.jianshu.com/p/c8aeb3eee6bc)，通常使用的为`allkeys-lfu`或`allkeys-lru`
+
+- allkeys-lfu: 清除所有键中使用频率最低的键
+- allkeys-lru: 清除所有键中最久没有使用的键
+
+设置方法为：针对Centos系统，修改`/etc/redis/redis.conf`文件，修改下面两行
+```
+maxmemory 256mb                   # 设置内存上限
+maxmemory-policy allkeys-lfu      # 设置内存淘汰策略
+```
