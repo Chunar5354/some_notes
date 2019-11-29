@@ -30,3 +30,4 @@ LeetCode刷题记录
 - 26 [Remove Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveElement.md)
 - 27 [Implement strStr()](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementStr.md)
 - 28 [Divide Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DivideTwoIntegers.md)
+- 29 [Substring With Concatenation Of All Words](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SubstringWithConcatenationOfAllWords.md)  **! Other's approach**
