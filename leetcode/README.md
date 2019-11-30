@@ -22,13 +22,14 @@ LeetCode刷题记录
 - 18 [Four Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FourSum.md)
 - 19 [Remove Nth Node From End Of List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveNthNodeFromEndOfList.md)
 - 20 [Valid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidParentheses.md)
-- 21 [Generate Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GenerateParentheses.md)  **! recursing**
-- 22 [Merge K Sorted Lists](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeKSortedLists.md)
-- 23 [Swap Nodes In Pairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SwapNodesInPairs.md)
-- 24 [Reverse Nodes In K-Group](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseNodesInK-Group.md)
-- 25 [Remove Duplicates From Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicatesFromSortedArray.md)
-- 26 [Remove Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveElement.md)
-- 27 [Implement strStr()](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementStr.md)
-- 28 [Divide Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DivideTwoIntegers.md)
-- 29 [Substring With Concatenation Of All Words](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SubstringWithConcatenationOfAllWords.md)  **! Other's approach**
-- 30 [Next Permutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NextPermutation.md)
+- 21 [Merge Two Sorted Lists](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeTwoSortedLists.md)
+- 22 [Generate Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GenerateParentheses.md)  **! recursing**
+- 23 [Merge K Sorted Lists](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeKSortedLists.md)
+- 24 [Swap Nodes In Pairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SwapNodesInPairs.md)
+- 25 [Reverse Nodes In K-Group](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseNodesInK-Group.md)
+- 26 [Remove Duplicates From Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicatesFromSortedArray.md)
+- 27 [Remove Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveElement.md)
+- 28 [Implement strStr()](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementStr.md)
+- 29 [Divide Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DivideTwoIntegers.md)
+- 30 [Substring With Concatenation Of All Words](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SubstringWithConcatenationOfAllWords.md)  **! Other's approach**
+- 31 [Next Permutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NextPermutation.md)
