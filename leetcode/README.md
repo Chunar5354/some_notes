@@ -33,3 +33,4 @@ LeetCode刷题记录
 - 29 [Divide Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DivideTwoIntegers.md)
 - 30 [Substring With Concatenation Of All Words](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SubstringWithConcatenationOfAllWords.md)  **! Other's approach**
 - 31 [Next Permutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NextPermutation.md)
+- 32 [Longest Valid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestValidParentheses.md)
