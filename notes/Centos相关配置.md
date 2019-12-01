@@ -38,14 +38,43 @@ sudo yum repolist
 sudo yum install yum-utils -y
 ```
 
-## 修改时区
+### Create new user and give it root privilege
+
+In su mode:
+
+- Create user and set password:
+```
+# adduser username
+# passwd username
+```
+
+- Add the user to wheel group so it can have root privilege:
+```
+# usermod -aG wheel username
+```
+
+### Disable root remote login in
+
+- 1. In a non-root user, edit file:
+```
+sudo vim /etc/ssh/sshd_config
+```
+
+- 2. Find line `#PermitRootLogin`, uncomment it and set its value to `no`
+
+- 3. Type the command
+```
+# sudo service sshd resuart
+```
+
+### 修改时区
 
 将时区修改成中国上海（CST），在命令行输入：
 ```
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
-## CentOS的防火墙操作
+### CentOS的防火墙操作
 
 CentOS自带`fierwalld`，在进行网络应用端口等配置的时候常常会用到，关于它的一些操作：
 
