@@ -80,6 +80,9 @@ python3 manage.py runserver 0.0.0.0:8000    // 后面的地址和端口可以不
 
 然后在浏览器上输入`localhost:8000`会看到django的默认页面
 
+- 首次运行时可能会在页面上可能到`DisallowHost`错误，这时要修改`mysite/settings.py`文件，将其中的`ALLOWED_HOSTS = []`括号中添加ip地址，
+或者直接`ALLOWED_HOSTS = ['*']`来允许所有ip访问
+
 ## 创建app
 
 django的程序运行一般是通过app来实现的，可以在命令行创建app：
