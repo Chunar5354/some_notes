@@ -5,7 +5,7 @@
 - My approach
 
 Because it's a sorted array, therre are no duplicated elements, the simplest way in Python is:
-```
+```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         try:
@@ -17,7 +17,7 @@ class Solution:
 But obviously that's not the intention of questioners.
 
 The second approach uses a lot of `if-else` to judge situations:
-```
+```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         if not nums:
@@ -57,7 +57,7 @@ This approach can run very fast(beats 90%). But it's hard to calculate its runti
 
 In the topic, it mentioned the runtime complexity must be in `O(log n)`. O(log n) usually stands with `dichotomy`（二分法）, 
 there is a code:
-```
+```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums)-1
