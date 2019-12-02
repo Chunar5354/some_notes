@@ -15,27 +15,27 @@
 
 - 首先更新一下系统
 ```
-sudo yum update
+# sudo yum update
 ```
 
 - 安装[EPEL](https://fedoraproject.org/wiki/EPEL)仓库(方便资源安装)
 ```
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+# sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
 - 安装[Remi's RPM](https://rpms.remirepo.net/)仓库
 ```
-sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+# sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
 - 查看一下仓库是否成功安装
 ```
-sudo yum repolist
+# sudo yum repolist
 ```
 
 - 安装yum-utils包
 ```
-sudo yum install yum-utils -y
+# sudo yum install yum-utils -y
 ```
 
 ### Create new user and give it root privilege
@@ -59,7 +59,7 @@ In su mode:
 
 - 1. In a non-root user, edit file:
 ```
-sudo vim /etc/ssh/sshd_config
+# sudo vim /etc/ssh/sshd_config
 ```
 
 - 2. Find line `#PermitRootLogin`, uncomment it and set its value to `no`
@@ -73,7 +73,7 @@ sudo vim /etc/ssh/sshd_config
 
 将时区修改成中国上海（CST），在命令行输入：
 ```
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 
 ### CentOS的防火墙操作
@@ -84,43 +84,44 @@ CentOS自带`fierwalld`，在进行网络应用端口等配置的时候常常会
 
 - 启动防火墙
 ```
-systemctl start firewalld 
+# systemctl start firewalld 
 ```
 
 - 关闭防火墙
 ```
-systemctl stop firewalld 
+# systemctl stop firewalld 
 ```
 
 - 设置防火墙开机启动
 ```
-systemctl enable firewalld
+# systemctl enable firewalld
 ```
 
 - 停止防火墙并禁止开机启动
 ```
-sytemctl disable firewalld 
+# sytemctl disable firewalld 
 ```
 
 - 重启防火墙
 ```
-firewall-cmd --reload
+# firewall-cmd --reload
 ```
 
 - 查看防火墙状态
 ```
-systemctl status firewalld
-or >> firewall-cmd --state
+# systemctl status firewalld
+// 或者
+# firewall-cmd --state
 ```
 
 - 查看区域信息
 ```
-firewall-cmd --get-active-zones
+# firewall-cmd --get-active-zones
 ```
 
 - 查看所有信息
 ```
-sudo firewall-cmd --list-all
+# sudo firewall-cmd --list-all
 ```
 
 ### 添加服务与端口
@@ -129,29 +130,34 @@ firewalld中的每个服务都对应于`/usr/lib/firewalld/services`下面的某
 
 - 查看当前开放的服务
 ```
-firewall-cmd --list-services
+# firewall-cmd --list-services
 ```
 
 - 查看还有哪些服务可以打开
 ```
-firewall-cmd --get-services
+# firewall-cmd --get-services
 ```
 
 - 查看所有打开的端口
 ```
-firewall-cmd --zone=public --list-ports
+# firewall-cmd --zone=public --list-ports
+```
+
+- 测试某个端口是否开放
+```
+# firewall-cmd --query-port=666/tcp
 ```
 
 - 添加许可服务
 将`name`替换成要添加的服务名称，--permanent表示永久添加
 ```
-sudo firewall-cmd --add-service=name --permanent
+# sudo firewall-cmd --add-service=name --permanent
 ```
 
 - 添加端口
-将`port_number`替换成端口数字，后面是相应的协议
+将`port_number`替换成端口数字，后面是相应的协议（添加端口之后要重启firewalld服务）
 ```
-sudo firewall-cmd --add-port=port_number/tcp --permanent
+# sudo firewall-cmd --add-port=port_number/tcp --permanent
 ```
 
 如果想要为自己要开放的端口定义一个服务，可以手动在`/usr/lib/firewalld/services`添加一个xml文件，进入该目录，随便复制一个其他的xml文件改成自己的名称，比如`my_serve.xml`，然后修改其中的内容：
@@ -167,12 +173,12 @@ sudo firewall-cmd --add-port=port_number/tcp --permanent
 
 保存文件后，再输入命令 (注意是文件名）即可添加服务：
 ```
-firewall-cmd --add-service=my_serve --permanent
+# firewall-cmd --add-service=my_serve --permanent
 ```
 
 然后重启firewall生效：
 ```
-systemctl restart firewalld.service
+# systemctl restart firewalld.service
 ```
 
 
@@ -182,34 +188,34 @@ CentOS 系统默认安装了python2.7版本，使用python3需要自己手动安
 
 - 首先安装一系列的依赖包：
 ```
-sudo yum install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel -y
+# sudo yum install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make libffi-devel -y
 ```
 其中`zlib-devel` `wget` `gcc` `make` `libffi-devel`这几个包比较重要，如果没装可能会编译错误
 
 - 之后在官网下载源码包
 ```
-wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
+# wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
 ```
 
 - 对源码包进行解压以及解压缩
 ```
-- xz -d Python-3.7.4.tar.xz
-- tar -xvf Python-3.7.4.tar
+# xz -d Python-3.7.4.tar.xz
+# tar -xvf Python-3.7.4.tar
 ```
 
 - 然后进行编译
 ```
-- cd Python-3.7.4
-- ./configure --prefix=/usr/local/python3
-- make  //这一步会花费较长时间
-- sudo make install
+# cd Python-3.7.4
+# ./configure --prefix=/usr/local/python3
+# make  //这一步会花费较长时间
+# sudo make install
 ```
 `prefix`后面是预安装目录，可以自行设定
 
 - 最后把python3和pip3的目录添加到环境变量中
 ```
-sudo ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
-sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
+# sudo ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
+# sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 ```
 
 这时在命令行输入`python3`就能够进入到python3的解释器中，并能够看到python3的版本
@@ -217,9 +223,9 @@ sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 
 - 在安装了python3之后，需要对yum进行重新配置，因为yum是基于python2工作的
 ```
-- vi /usr/bin/yum 
+# vim /usr/bin/yum 
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2 
-- vi /usr/libexec/urlgrabber-ext-down 
+# vim /usr/libexec/urlgrabber-ext-down 
 把 #! /usr/bin/python 修改为 #! /usr/bin/python2
 ```
 
@@ -230,26 +236,26 @@ sudo ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 ### 安装依赖
 
 ```
-yum install python-devel
-yum install mysql-devel
-yum install gcc
+# yum install python-devel
+# yum install mysql-devel
+# yum install gcc
 ```
 
 ### 安装mysqlclient
 
 ```
-pip3 install mysqlclient
+# pip3 install mysqlclient
 ```
 这时可能会出现一个错误，提示`/usr/bin cannot find -lmariadb`之类的
 
 这里特别坑，其实是他库文件命名的问题，输入命令查找一下：
 ```
-find / -name libmariadb*
+# find / -name libmariadb*
 ```
 
 会发现在/usr/lib64下面有一个`libmariadbd.so`，注意尾部多了一个`d`。将他软链接一下：
 ```
-ln -s /usr/bin/libmariadbd.so /usr/bin/libmariadb.so
+# ln -s /usr/bin/libmariadbd.so /usr/bin/libmariadb.so
 ```
 
 后面的去掉结尾的`d`，这样就可以安装mysqlclient了
