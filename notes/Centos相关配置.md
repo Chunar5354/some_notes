@@ -53,6 +53,8 @@ In su mode:
 # usermod -aG wheel username
 ```
 
+- Then reboot
+
 ### Disable root remote login in
 
 - 1. In a non-root user, edit file:
@@ -64,7 +66,7 @@ sudo vim /etc/ssh/sshd_config
 
 - 3. Type the command
 ```
-# sudo service sshd resuart
+# sudo service sshd restart
 ```
 
 ### 修改时区
