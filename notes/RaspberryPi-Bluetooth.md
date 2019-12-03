@@ -11,14 +11,14 @@ Then you will be in `bluetooth` command line, something like this:
 
 And there are some commands you can use to operate bluetooth:
 ```
-list  // show available controllers
-power on/off   // Set controller power
+list                    // show available controllers
+power on/off            // Set controller power
 discoverable on/off     // Set controller discoverable mode
-devices   // show devices available to connect
-pair [device_id]  // pair with the device
-trust [device_id]     //   Trust the device
-connect [device_id]    // connect with the device
-quit    // quit bluetooth
+devices                 // show devices available to connect
+pair [device_id]        // pair with the device
+trust [device_id]       // Trust the device
+connect [device_id]     // connect with the device
+quit                    // quit bluetooth
 ```
 
 You can using `devices` to find your phone and use `pair`+`trust`+`connect` to connect with your phone. 
@@ -46,19 +46,19 @@ Save and quit.
 
 - 2. Restart bluetooth:
 ```
-sudo systemctl daemon-reload
-sudo systemctl restart bluetooth
+# sudo systemctl daemon-reload
+# sudo systemctl restart bluetooth
 ```
 Then change permissions on `/var/run/sdp`:
 ```
-sudo chmod 777 /var/run/sdp
+# sudo chmod 777 /var/run/sdp
 ```
 
 - 3. Test
 
 Now when you type the command:
 ```
-Sdptool browse local
+# Sdptool browse local
 ```
 you will see some information on the screen.
 
@@ -66,26 +66,26 @@ you will see some information on the screen.
 
 Type this to let other devices can find raspberry pi
 ```
-sudo hciconfig hci0 piscan
+# sudo hciconfig hci0 piscan
 ```
 
 Then you can open your phone to get pair with raspiberry pi
 
 If your phone can't find raspiberry pi, you can try this:
 ```
-bt-adapter --set Discoverable 1
+# bt-adapter --set Discoverable 1
 ```
 
 - 5. Connect
 
 Add pi to user group
 ```
-sudo usermod -G bluetooth -a pi
+# sudo usermod -G bluetooth -a pi
 ```
 
 Then type this to get raspberry pi ready
 ```
-sudo rfcomm watch hci0
+# sudo rfcomm watch hci0
 ```
 
 By this way, I can get my app connect with raspberrypi.
