@@ -35,4 +35,4 @@ LeetCode刷题记录
 - 31 [Next Permutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NextPermutation.md)
 - 32 [Longest Valid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestValidParentheses.md)
 - 33 [Search In Rotated Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchInRotatedSortedArray.md)
-- 34 [Find First And Last Position Of Element In Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindFirstAndLastPositionOfElementInSortedArray.md)  **! Official approach **
+- 34 [Find First And Last Position Of Element In Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindFirstAndLastPositionOfElementInSortedArray.md)  **! Official approach**
