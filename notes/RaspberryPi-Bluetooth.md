@@ -32,7 +32,7 @@ I can use my phone bluetooth to connect with the `build-in bluetooth`, but I can
 
 There is a way to connect by an app.
 
-- 1. Edit this file`/etc/systemd/system/dbus-org.bluez.service`, change this line:
+- 1.Edit this file`/etc/systemd/system/dbus-org.bluez.service`, change this line:
 ```
 ExecStart=/usr/lib/bluetooth/bluetoothd --compat
 ```
@@ -44,7 +44,7 @@ ExecStartPost=/usr/bin/sdptool add Sp
 
 Save and quit.
 
-- 2. Restart bluetooth:
+- 2.Restart bluetooth:
 ```
 # sudo systemctl daemon-reload
 # sudo systemctl restart bluetooth
@@ -54,7 +54,7 @@ Then change permissions on `/var/run/sdp`:
 # sudo chmod 777 /var/run/sdp
 ```
 
-- 3. Test
+- 3.Test
 
 Now when you type the command:
 ```
@@ -62,7 +62,7 @@ Now when you type the command:
 ```
 you will see some information on the screen.
 
-- 4. Pair
+- 4.Pair
 
 Type this to let other devices can find raspberry pi
 ```
@@ -76,7 +76,7 @@ If your phone can't find raspiberry pi, you can try this:
 # bt-adapter --set Discoverable 1
 ```
 
-- 5. Connect
+- 5.Connect
 
 Add pi to user group
 ```
