@@ -38,3 +38,4 @@ LeetCode刷题记录
 - 34 [Find First And Last Position Of Element In Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindFirstAndLastPositionOfElementInSortedArray.md)  **! Official approach**
 - 35 [Search Insert Position](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchInsertPosition.md)
 - 36 [Valid Sodoku](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidSodoku.md)  **! A magic method**
+- 37 [Sudoku Solver](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SudokuSolver.md)  **! Fucking recursing**
