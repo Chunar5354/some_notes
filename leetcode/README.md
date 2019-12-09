@@ -41,3 +41,4 @@ LeetCode刷题记录
 - 37 [Sudoku Solver](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SudokuSolver.md)  **! Fucking recursing**
 - 38 [Count And Say](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountAndSay.md)
 - 39 [Combination Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum.md)
+- 40 [Combination Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum2.md)
