@@ -435,3 +435,13 @@ application = ProtocolTypeRouter({
 ```
 
 此时已经基本搭建好了channels框架
+
+## 设置时区以及中文显示
+
+修改`mysite/settings.py`，文件，将其中的
+```python
+LANGUAGE_CODE = 'zh-Hans'     # 显示中文
+TIME_ZONE = 'Asia/Shanghai'   # 设置时区
+USE_TZ = False                # 如果原来数据库中已经有关于时间的数据，就要设置这个
+```
+三行改成这个样子
