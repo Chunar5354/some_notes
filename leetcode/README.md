@@ -42,3 +42,4 @@ LeetCode刷题记录
 - 38 [Count And Say](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountAndSay.md)
 - 39 [Combination Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum.md)
 - 40 [Combination Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum2.md)
+- 41 [First Missing Positive](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstMissingPositive.md)
