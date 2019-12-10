@@ -48,3 +48,5 @@ class Solution:
 
 In this approach, the magic is because we are dealing with positive integers, the target number must be `smaller than the length 
 of nums`.
+
+And this approach is more common because it just use hashmap and traverse. All the languaues have these method.
