@@ -62,6 +62,7 @@
 - [使用Anaconda 和 Jupyter Notebook](https://github.com/Chunar5354/some_notes/blob/master/notes/Anaconda%E4%BD%BF%E7%94%A8.md)
 - [Python数据处理](https://github.com/Chunar5354/some_notes/blob/master/notes/Python%E5%8F%AF%E8%A7%86%E5%8C%96_%E6%95%B0%E6%8D%AE_%E5%9B%BE%E5%83%8F.md)
 - [脚本后台运行](https://github.com/Chunar5354/some_notes/blob/master/notes/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8CPython%E8%84%9A%E6%9C%AC.md)
+- [django 网页app开发学习](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E4%BB%8E0%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%90%9C%E7%B4%A2%E7%BD%91%E9%A1%B5.md)
 
 ## go学习
 
@@ -86,8 +87,4 @@
 
 ## ssh远程连接
 
-- [ssh相关操作](https://github.com/Chunar5354/some_notes/blob/master/notes/ssh%E6%93%8D%E4%BD%9C.md)
-
-## 算法
-
-- [LeetCode刷题笔记](https://github.com/Chunar5354/some_notes/tree/master/leetcode)
+- [ssh相关操作](https://github.com/Chunar5354/some_notes/blob/master/notes/ssh
