@@ -87,4 +87,4 @@
 
 ## ssh远程连接
 
-- [ssh相关操作](https://github.com/Chunar5354/some_notes/blob/master/notes/ssh
+- [ssh相关操作](https://github.com/Chunar5354/some_notes/blob/master/notes/ssh%E6%93%8D%E4%BD%9C.md)
