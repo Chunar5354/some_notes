@@ -44,3 +44,4 @@ LeetCode刷题记录
 - 40 [Combination Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum2.md)
 - 41 [First Missing Positive](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstMissingPositive.md)
 - 42 [Trapping Rain Water](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TrappingRainWater.md)  **! See the official solutions**
+- 43 [Multiply Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MultiplyStrings.md) **! Other's approach**
