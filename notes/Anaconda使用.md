@@ -84,6 +84,19 @@ $ conda activate test
 (test) [something]$ pip install module 
 ```
 
+### windows powershell中使用anaconda
+
+powershell默认不支持anaconda，需要安装一个脚本，打开`anaconda prompt`：
+```
+# conda install -n root -c pscondaenvs pscondaenvs
+```
+
+然后用管理员权限打开powershell，设置允许外部脚本运行
+```
+# Set-ExecutionPolicy RemoteSigned
+```
+弹出来的选项中选择`Y`，重新打开powershell就可以使用anaconda了
+
 ## Jupyter Notebook使用
 
 ### 安装
