@@ -46,3 +46,4 @@ LeetCode刷题记录
 - 42 [Trapping Rain Water](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TrappingRainWater.md)  **! See the official solutions**
 - 43 [Multiply Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MultiplyStrings.md) **! Other's approach**
 - 44 [Wild card Match](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WildcardMatch.md)  **! A good method**
+- 45 [Jump Game 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/JumpGame2.md)
