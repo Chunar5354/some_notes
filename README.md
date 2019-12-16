@@ -17,7 +17,8 @@
 - [输入法错误时的处理](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%BE%93%E5%85%A5%E6%B3%95%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.md)
 - [设置外部时钟](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%AE%BE%E7%BD%AE%E5%A4%96%E9%83%A8%E6%97%B6%E9%92%9F.md)
 - [树莓派上配置LAMP](https://github.com/Chunar5354/some_notes/blob/master/notes/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AELAMP.md)'
-- [树莓派实现蓝牙数据传输](https://github.com/Chunar5354/some_notes/blob/master/notes/RaspberryPi-Bluetooth.md)
+- [树莓派内置蓝牙数据传输](https://github.com/Chunar5354/some_notes/blob/master/notes/RaspberryPi-Bluetooth.md)
+- [树莓派使用HC-05蓝牙模块](https://github.com/Chunar5354/some_notes/blob/master/notes/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8HC-05%E8%93%9D%E7%89%99%E6%A8%A1%E5%9D%97.md)
 
 ## 关于linux系统
 
