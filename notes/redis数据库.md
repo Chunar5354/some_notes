@@ -138,6 +138,77 @@ conn.expire(name, time)
 # time可以是整数，单位为秒；或者可以是datetime格式化的时间
 ```
 
+## php中操作redis
+
+### 安装扩展
+
+- 1.下载源码包
+php操作redis需要先安装扩展，在[这里](https://github.com/phpredis/phpredis/releases)找到最新版本的安装包下载，如：
+```
+# wget https://github.com/phpredis/phpredis/archive/5.1.1.tar.gz
+```
+然后解压，进入到文件目录下
+```
+# tar -zxvf 5.1.1.tar.gz
+# cd phpredis-5.1.1
+```
+
+- 2.编译
+
+然后先使用`phpize`编译，如果没有的话需要先安装phpize，以centos系统为例：
+```
+# sudo yum install php-devel
+```
+注意有可能安装了多个php（比如我有两个，一个在`/etc`路径下，一个在`/etc/opt/remi/php73/`路径下），则以下所有的php
+相关的文件（`php.ini`, `phpize`, `php-config`）都有两份，要进行两次相同的操作，如果不确定自己的php安装路径可以通过`find`进行查找。
+
+phpize编译
+```
+# /etc/opt/remi/php73/phpize
+```
+
+然后找到`php-config`的位置
+```
+# sudo find / -name php-config
+```
+
+进行编译
+```
+# ./configure --with-php-config=/opt/remi/php73/root/usr/bin/php-config
+# sudo make
+# sudo make install
+```
+
+- 3.修改配置
+
+这里比较坑，网上大多数的说法是再php.ini文件中直接添加exension，但是这样会出错;
+
+正确的做法是在`php.d`文件夹下创建新文件`redis.ini`，在`redis.ini`里加入`extension=redis.so`这行.
+
+我这里是以`/etc/opt/remi/php73/`路径下的php为例，实际可能要在另一个路径下的php重复上面的操作。
+
+- 4.重启apache
+
+redis扩展已经配置完毕，重启服务
+```
+# sudo systemctl restart httpd.service
+```
+
+### 代码示例
+
+可以参考这篇[文章](https://learnku.com/articles/22942)
+
+简单测试：
+```php
+// 实例化redis
+$redis = new Redis();
+// 连接
+$redis->connect('127.0.0.1', 6379);
+// 通过密码连接
+$redis->auth('password');
+// 检测是否连接成功
+echo "Server is running: " . $redis->ping();   // 输出结果 Server is running: +PONG 
+```
 
 ## 内存淘汰
 
