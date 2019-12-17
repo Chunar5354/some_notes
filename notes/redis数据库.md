@@ -143,6 +143,7 @@ conn.expire(name, time)
 ### 安装扩展
 
 - 1.下载源码包
+
 php操作redis需要先安装扩展，在[这里](https://github.com/phpredis/phpredis/releases)找到最新版本的安装包下载，如：
 ```
 # wget https://github.com/phpredis/phpredis/archive/5.1.1.tar.gz
