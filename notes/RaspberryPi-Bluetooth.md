@@ -89,3 +89,28 @@ Then type this to get raspberry pi ready
 ```
 
 By this way, I can get my app connect with raspberrypi.
+
+
+## Use bluetooth in Python
+
+Python has a bluetooth module `pybluez`. If your raspberry pi is the newest(4B in 2019-12), you can install it by these commands:
+```
+# sudo apt-get install libbluetooth-dev
+# sudo pip install pybluez
+```
+
+If raspberrypi is not the newest version, there will be an error when install libbluetooth-dev.
+
+### codes
+
+Find source code [here](https://github.com/pybluez/pybluez/tree/master/examples/simple)
+
+A littie test (find bluetooth devices around):
+```python
+import bluetooth
+print("performing inquiry...")
+nearby_devices = bluetooth.discover_devices(lookup_names = True)
+print("found %d devices" % len(nearby_devices))
+for addr, name in nearby_devices:
+    print("  %s - %s" % (addr, name))
+```
