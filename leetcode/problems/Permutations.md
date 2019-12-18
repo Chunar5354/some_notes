@@ -21,3 +21,22 @@ class Solution:
         traceback([], nums)
         return res
 ```
+
+And there is also a method without recursing.
+```python
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        ans = [[]]        
+        
+        # Insert every number from nums into ans
+        for n in nums:
+            new_ans = []
+            for l in ans:
+                # For each l, insert current number in every position of l
+                for i in range(len(l)+1):
+                    new_ans.append(l[:i] + [n] + l[i:])
+            ans = new_ans
+        
+        return ans
+```
