@@ -49,3 +49,4 @@ LeetCode刷题记录
 - 45 [Jump Game 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/JumpGame2.md)
 - 46 [Permutations](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Permutations.md)
 - 47 [Permutation 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Permutation2.md)
+- 48 [Rotate Image](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateImage.md)
