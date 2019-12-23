@@ -52,3 +52,4 @@ LeetCode刷题记录
 - 48 [Rotate Image](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateImage.md)
 - 49 [Group Anagrams](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GroupAnagrams.md)
 - 50 [Pow(x, n)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pow-x-n.md)
+- 51 [N-Queens](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens.md)
