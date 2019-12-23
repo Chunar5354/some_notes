@@ -40,7 +40,7 @@ class Solution:
         return res_list
 ```
 
-This code has a problem. In the code aboce where commentd by `Problrm here`.
+This code has a problem. In the code aboce where commentd by `Problem here`.
 
 By using `return` or not, this code will return different result. There may be short of elements or extra elements in 
 he final result.
