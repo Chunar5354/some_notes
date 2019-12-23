@@ -1,12 +1,15 @@
 * [CentOS系统的配置](#centos%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%85%8D%E7%BD%AE)
-* [修改时区](#%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA)
-* [CentOS的防火墙操作](#centos%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E6%93%8D%E4%BD%9C)
+  * [Create new user and give it root privilege](#create-new-user-and-give-it-root-privilege)
+  * [Disable root remote login in](#disable-root-remote-login-in)
+  * [修改时区](#%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA)
+  * [CentOS的防火墙操作](#centos%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%E6%93%8D%E4%BD%9C)
   * [基本操作](#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C)
   * [添加服务与端口](#%E6%B7%BB%E5%8A%A0%E6%9C%8D%E5%8A%A1%E4%B8%8E%E7%AB%AF%E5%8F%A3)
 * [在CentOS上安装Python3](#%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%85python3)
 * [CentOS7安装mysqlclient](#centos7%E5%AE%89%E8%A3%85mysqlclient)
   * [安装依赖](#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96)
   * [安装mysqlclient](#%E5%AE%89%E8%A3%85mysqlclient)
+
 
 
 ## CentOS系统的配置
