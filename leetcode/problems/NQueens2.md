@@ -1,10 +1,10 @@
 ## Approach
 
-[Problem link](https://leetcode.com/problems/n-queens/)
+[Problem link](https://leetcode.com/problems/n-queens-ii/)
 
 - My approach
 
-This problem is the same as [N-Queens](), the difference is in this problem, we just need to return the count of available answers.
+This problem is the same as [N-Queens](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens.md), the difference is in this problem, we just need to return the count of available answers.
 
 So we can use the same method, and add a number when find the right answer.
 ```python
