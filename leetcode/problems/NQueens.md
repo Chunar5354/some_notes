@@ -1,6 +1,6 @@
 ## Approach
 
-[Problem link]()
+[Problem link](https://leetcode.com/problems/n-queens/)
 
 - My solution
 
@@ -106,4 +106,34 @@ class Solution:
         
         traceback(0, [])
         return res
+```
+
+- A smarter method
+
+When doing the [N-Queens2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens2.md) problem, I find a smart method by judging with index of rows and columns. And it can be used 
+in this problem.
+```python
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res_list = []
+        
+        def traceback(res, rl, rr):
+            l = len(res)
+            if l == n:
+                sub_res = []
+                for r in res:
+                    current_line = ['.']*n
+                    current_line[r] = 'Q'
+                    current_line = ''.join(current_line)
+                    sub_res.append(current_line)
+                return res_list.append(sub_res)
+
+            for i in range(n):
+                # res stands for column, the index of elements in res stands for row,
+                # rl stands for left diagonal, rr stands for right diagonal
+                if i not in res and l+i not in rl and l-i not in rr:
+                    traceback(res+[i], rl+[l+i], rr+[l-i])
+        
+        traceback([], [], [])
+        return res_list
 ```
