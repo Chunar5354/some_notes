@@ -612,3 +612,59 @@ class C:
     pass
 C = decorator(C)
 ```
+
+## 异常
+
+- Python中的异常是一个`类`，
+
+- 如果要自定义一个异常，通常需要继承自`Exception`类
+
+- 通过`try except`语句来捕获异常时，在except后面只要列出异常的父类，就能够捕获其对应的全部子类
+
+- 在使用`except`抛出异常的时候，为了缩小覆盖面，最好指定异常类型，如果不确定的话就写一个错误的代码测试一下
+会抛出什么样的异常，比如`IndexError`之类的
+
+### 自定义异常类
+
+异常类像普通的类一样可以传入参数，默认传入的参数储存在类中的`args`属性里面，作为一个元组，例如：
+```python
+class E(Exception): pass
+try:
+    raise E('test', 'second')
+except E as X:
+    print(X)
+    print(X.args)
+    print(repr(X))
+```
+运行该程序，输出的结果为：
+```
+('test', 'second')
+('test', 'second')
+E('test', 'second')
+```
+
+异常类也可以自定义方法，用来在出现该异常时进行相关处理，例如：
+```python
+class FormatError(Exception):
+    logfile = 'formaterror.txt'
+    def __init__(self, line, file_):
+        self.line = line
+        self.file = file_
+    def logerror(self):
+        log = open(self.logfile, 'a')
+        print('Error at:', self.file, self.line, file=log)
+
+def parser():
+    raise FormatError(40, 'errorTest.txt')
+
+if __name__ == '__main__':
+    try:
+        parser()
+    except FormatError as exc:
+        exc.logerror()
+```
+
+运行该程序之后，会将异常类传入的参数写入到文件`formaterror.txt`中：
+```
+Error at: errorTest.txt 40
+```
