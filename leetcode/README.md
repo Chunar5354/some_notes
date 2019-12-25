@@ -54,3 +54,4 @@ LeetCode刷题记录
 - 50 [Pow(x, n)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pow-x-n.md)
 - 51 [N-Queens](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens.md)
 - 52 [N-Queens 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens2.md)
+- 53 [Maximum Subarray](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumSubarray.md)  **! Divide and conquer method**
