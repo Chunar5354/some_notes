@@ -55,3 +55,4 @@ LeetCode刷题记录
 - 51 [N-Queens](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens.md)
 - 52 [N-Queens 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NQueens2.md)
 - 53 [Maximum Subarray](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumSubarray.md)  **! Divide and conquer method**
+- 54 [Sprial Matirx](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SprialMatirx.md)
