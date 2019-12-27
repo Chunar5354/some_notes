@@ -35,9 +35,9 @@ class Solution:
         return True
 ```
 
-- Offical approach
+- Official approach
 
-There is a smart idea by offical solution. Traverse from right to left, and reset the target element.
+There is a smart idea by official solution. Traverse from right to left, and reset the target element.
 ```python
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
@@ -52,4 +52,4 @@ class Solution:
         return target == 0
 ```
 
-For more details can read the offical solution.
+For more details can read the official solution.
