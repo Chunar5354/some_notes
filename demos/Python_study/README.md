@@ -706,3 +706,91 @@ Python3中的bytes对象是一个`小整数`序列（0~255）
 >>> list(s)
 [97, 98, 99, 100]
 ```
+
+### 字符串类型转换
+
+- 编码：根据一个期望的编码名称，把字符串翻译为原始字节形式的过程
+  - str.encode()
+  - bytes(s, encoding='')
+- 解码：根据编码名称，把一个原始字节串翻译为字符串形式的过程
+  - bytes.decode()
+  - str(b, encoding='')
+ 
+- 有一点要注意，如果在使用str方法时不指定编码名称，会返回bytes对象的`打印字符串`，而不是我们想要的str形式
+```
+>>> b = b'test'
+>>> c = str(b)
+>>> c
+"b'test'"
+>>> d = str(b, encoding='utf-8')
+>>> d
+'test'
+>>> len(c)
+7
+>>> len(d)
+4
+>>>
+```
+
+### 编写Unicode字符串
+
+为了在字符串中编写任意的，甚至在键盘上无法输入的特殊字符，Python的字符串字面量支持`\xNN`十六进制转义和`\uNNNN`与`\UNNNNNNNN`unicode转义
+
+#### 常规的ASCII文本
+
+常规的7位ASCII文本每个字节表示一个字符
+```
+>>> s = 'xyz'
+>>> b = s.encode('utf-8')
+>>> b
+b'xyz'
+>>> [c for c in b]
+[120, 121, 122]
+```
+
+#### 非ASCII文本
+
+对于非ASCII文本，可以在str字符串中通过转义字符进行转义
+
+- `\xNN`十六进制转义，编写单个字节的值
+```
+>>> s = '\xc4\xe8'
+>>> s
+'Äè
+```
+
+- `\uNNNN`双字节Unicode转义
+```
+>>> s = '\u00c4\u00e8'
+>>> s
+'Äè'
+```
+
+- `\UNNNNNNNN`四字节Unicode转义
+```
+>>> s = '\U000000c4\U000000e8'
+>>> s
+'Äè'
+```
+
+### 文件中的BOM序列
+
+一些编码方式在文件的开始处存储了一个特殊的字节顺序标记（BOM）序列，来指定数据的大小尾方式（字符串哪一端的位对其值更加重要）或声明编码类型
+
+- 在`utf-8`中，使用更为特定的编码名称`utf-8-sig`编码名称会在输入和输出的时候分别跳过和写入BOM，常规的utf-8不会这样做
+
+比如打开一个带有3字节UTF-8 BOM序列的文本文件`test`
+```
+>>> open('test', 'rb').read()
+b'\xef\xbb\xbftest1\r\ntest2\r\n'
+>>> open('test', 'r').read()
+'锘縯est1\ntest2\n'
+>>> open('test', 'r', encoding='utf-8').read()
+'\ufefftest1\ntest2\n'
+>>> open('test', 'r', encoding='utf-8-sig').read()
+'test1\ntest2\n'
+>>>     
+```
+
+- 在`utf-16`中，总是进行BOM处理，还可以使用`utf-16-le`来指定小尾格式，`utf-16-be`指定大尾格式
+  - utf-16并不常用，所以在此不给出例子，详细内容参考书中`P1172`
