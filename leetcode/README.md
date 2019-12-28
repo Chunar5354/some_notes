@@ -57,3 +57,4 @@ LeetCode刷题记录
 - 53 [Maximum Subarray](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumSubarray.md)  **! Divide and conquer method**
 - 54 [Sprial Matirx](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SprialMatirx.md)
 - 55 [Jump Game](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/JumpGame.md)   **! See the official solution**
+- 56 [Merge Intervals](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeIntervals.md)
