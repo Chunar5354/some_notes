@@ -59,3 +59,4 @@ LeetCode刷题记录
 - 55 [Jump Game](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/JumpGame.md)   **! See the official solution**
 - 56 [Merge Intervals](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeIntervals.md)
 - 57 [Insert Interval](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InsertInterval.md) 
+- 58 [Length Of Last Word](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LengthOfLastWord.md)
