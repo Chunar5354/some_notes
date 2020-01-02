@@ -22,12 +22,12 @@ LoadModule ssl_module modules/mod_ssl.so
 
 但是通常这一句本来是没有的，因为没有安装mod_ssl模块，解决方法为：
 
-- 1. 安装apache工具
+- 1.安装apache工具
 ```
 # sudo yum install httpd-devel
 ```
 
-- 2. 安装mod_ssl
+- 2.安装mod_ssl
 
 首先使用`httpd -v`查看当前的apache版本，然后到[这里](http://archive.apache.org/dist/httpd/)找到对应的apache压缩文件下载（下面以2.4.6版本为例）
 ```
@@ -54,7 +54,7 @@ LoadModule ssl_module modules/mod_ssl.so
 
 **注意**不要按照官方教程所说的添加`Include conf/extra/httpd-ssl.conf`这一行，因为本身配置文件中已经添加过了(`IncludeOptional conf.d/*.conf`)
 
-- 3. 配置ssl.conf
+- 3.配置ssl.conf
 
 首先安装
 ```
