@@ -26,6 +26,7 @@
 - [Centos系统配置](https://github.com/Chunar5354/some_notes/blob/master/notes/Centos%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE.md)
 - [.sh执行文件](https://github.com/Chunar5354/some_notes/blob/master/notes/Linux%E4%B8%ADsh%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.md)
 - [Linux系统相关知识点](https://github.com/Chunar5354/some_notes/blob/master/notes/LinuxNotes.md)
+- [服务器配置SSL证书](https://github.com/Chunar5354/some_notes/blob/master/notes/Apache%E9%85%8D%E7%BD%AESSL.md)
 
 ## 关于爬虫的
 
