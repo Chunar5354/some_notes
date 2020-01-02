@@ -22,7 +22,12 @@ class Solution:
         while n:
             # In permutation answers, the value of first position depends on the value of (k/(n-1)!),
             # because for each number as the beginning, there are (n-1)! results in he permutation,
-            # like 
+            # like giving number 3, the total permutation is '123, 132, 213, 231, 312, 321',
+            # and there are (3-1)!=2*1 elements which start with '1', '2' or '3'
+            
+            # After cealing with the first number, use the same method do deal with the second number,
+            # but this time, k is the remainder(余数) of (k/(n-1)!), and fac is (n-2)!,
+            # until n = 0.
             fac = int(fac/n)
             index, k = divmod(k, fac)
             res.append(arr[index])
