@@ -61,4 +61,5 @@ LeetCode刷题记录
 - 57 [Insert Interval](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InsertInterval.md) 
 - 58 [Length Of Last Word](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LengthOfLastWord.md)
 - 59 [Sprial Matrix 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SprialMatrix2.md)
-- 60 [Permutation Sequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PermutationSequence.md)
+- 60 [Permutation Sequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PermutationSequence.md)   **! The using of (n-1)!**
+- 61 [Rotate List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateList.md)   **! The none-list method**
