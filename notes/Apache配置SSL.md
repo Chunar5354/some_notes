@@ -63,7 +63,7 @@ LoadModule ssl_module modules/mod_ssl.so
 
 这样在`/etc/httpd/conf.d`中出现了`ssl.conf`文件，然后按照官方教程的内容修改`ssl.conf`
 
-- 4. 重启apache
+- 4.重启apache
 ```
 # sudo systemctl restart httpd
 ```
