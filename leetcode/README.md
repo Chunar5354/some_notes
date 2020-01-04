@@ -64,3 +64,4 @@ LeetCode刷题记录
 - 60 [Permutation Sequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PermutationSequence.md)   **! The using of (n-1)!**
 - 61 [Rotate List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateList.md)   **! The none-list method**
 - 62 [Unique Paths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniquePaths.md)
+- 63 [Unique Paths 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniquePaths2.md)
