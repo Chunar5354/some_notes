@@ -4,7 +4,7 @@
 
 - My approach
 
-Use the same method as [](), and set the number of obstacles to 0.
+Use the same method as [Unique Paths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniquePaths.md), and set the number of obstacles to 0.
 ```python
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
