@@ -66,3 +66,4 @@ LeetCode刷题记录
 - 62 [Unique Paths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniquePaths.md)
 - 63 [Unique Paths 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniquePaths2.md)
 - 64 [Minimun Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimunPath.md)
+- 65 [Valid Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidNumber.md)
