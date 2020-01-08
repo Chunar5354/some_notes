@@ -68,3 +68,4 @@ LeetCode刷题记录
 - 64 [Minimun Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimunPath.md)
 - 65 [Valid Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidNumber.md)
 - 66 [Plus One](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PlusOne.md)
+- 67 [Add Binary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddBinary.md)
