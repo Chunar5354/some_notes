@@ -69,3 +69,4 @@ LeetCode刷题记录
 - 65 [Valid Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidNumber.md)
 - 66 [Plus One](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PlusOne.md)
 - 67 [Add Binary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddBinary.md)
+- 68 [Text Justification](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TextJustification.md)
