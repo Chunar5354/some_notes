@@ -70,3 +70,4 @@ LeetCode刷题记录
 - 66 [Plus One](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PlusOne.md)
 - 67 [Add Binary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddBinary.md)
 - 68 [Text Justification](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TextJustification.md)
+- 69 [Sqrt(x)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Sqrt-x.md)
