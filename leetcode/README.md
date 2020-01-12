@@ -72,3 +72,4 @@ LeetCode刷题记录
 - 68 [Text Justification](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TextJustification.md)
 - 69 [Sqrt(x)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Sqrt-x.md)
 - 70 [Climbing Stairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ClimbingStairs.md)
+- 71 [Simplify Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SimplifyPath.md)
