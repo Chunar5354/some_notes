@@ -634,7 +634,7 @@ def decorator(F):
 # 这种调用方式等价于：
 # def func(x, y):
 #    print('In func: ', x, y)
-# decorator(func)
+# decorator(func)(1, 2)
 @decorator
 def func(x, y):
     print('In func: ', x, y)
@@ -658,6 +658,116 @@ In wrapper 3 4
 因为最终返回的可调用对象是装饰器函数`decorator中定义的wrapper`，所以func和method中的代码都没有被执行
 
 #### 基于函数的类装饰器
+
+基本格式为：
+```python
+def decorator(cls):
+    # do something
+    return cls
+```
+
+也可以不返回最初传入的类对象，而是返回一个绑定了最初传入类的包装器
+```python
+def decorator(cls):
+    class Wrapper:
+        def __init__(self, *args):
+            self.wrapped = cls(*args)
+        def __getattr__(self, attrname):
+            return getattr(self.wrapped, attrname)
+    return Wrapper
+```
+
+用上面的装饰器来装饰一个类
+```python
+# 这个操作等价于：
+# class C:
+#     pass
+# C = decorate(C)
+@decorator
+class C:
+    def __init__(self, x):
+        self.x = x
+        self.attr = 'chunar'
+        
+X = C(2)
+print(X.x)
+print(X.attr)
+```
+
+其输出结果为
+```
+2
+chunar
+```
+
+#### 基于类的函数装饰器
+
+在这种应用中主要使用了内置函数`__call__()`
+```python
+class Decorator:
+    def __init__(self, func):
+        self.func = func
+    def __call__(self, *args):
+        print('Decorator', *args)
+        return self.func
+```
+
+用它来装饰一个函数：
+```python
+@Decorator
+def func(x, y):
+    print('In func: ', x, y)
+
+func(6, 7)
+```
+
+输出结果为
+```
+Decorator 6 7
+```
+
+#### 基于类的类装饰器
+
+和`基于类的函数装饰器`形式基本一致，但是它有一个弊端，即被装饰类创建的新实例会覆盖旧实例，如:
+```python
+class Decorator:
+    def __init__(self, C):
+        self.C = C
+    def __call__(self, *args):
+        print('in call', *args)
+        self.wrapped = self.C(*args)
+        return self
+    def __getattr__(self, attrname):
+        print('in getattr')
+        return getattr(self.wrapped, attrname)
+```
+
+用它来装饰一个类：
+```python
+@Decorator
+class C:
+    def __init__(self, x):
+        self.x = x
+
+A = C(1)
+B = C(2)   # B实例会覆盖A实例，输出的 A.x也是2
+print(A.x)
+print(B.x)
+```
+
+输出结果为
+```
+in call 1
+in call 2
+in getattr
+2
+in getattr
+2
+```
+
+可以看到创建实例B之后，实例A中的x属性也变成了2
+
+而使用`基于函数的类装饰器`则不会出现这种问题
 
 ## 异常
 
