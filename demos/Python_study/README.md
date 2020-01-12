@@ -530,9 +530,11 @@ if __name__ == '__main__':
 
 ## 装饰器
 
+装饰器是一个返回可调用对象的可调用对象
+
 ### 函数装饰器
 
-可以理解为装饰器是一个`传入函数作为参数`的方法，它能将装饰器中包含的属性以及方法赋予被传入的函数
+可以理解为装饰器本身是一个`传入函数作为参数`的方法，它能将装饰器中包含的属性以及方法赋予被传入的函数
 
 例子：
 ```python
@@ -612,6 +614,50 @@ class C:
     pass
 C = decorator(C)
 ```
+
+### 装饰器的创建
+
+创建装饰器也可以通过`函数`和`类`两种方式
+
+#### 基于函数的函数装饰器
+
+```python
+def decorator(F):
+    print('func is: ', F)
+    def wrapper(*args):
+        print('In wrapper', *args)
+    return wrapper   # 返回的可调用对象可以不是最初传入的那个可调用对象，比如传入的是F，最终返回的是wrapper
+```
+
+它可以分别用来装饰函数和类中的方法：
+```python
+# 这种调用方式等价于：
+# def func(x, y):
+#    print('In func: ', x, y)
+# decorator(func)
+@decorator
+def func(x, y):
+    print('In func: ', x, y)
+    
+class C:
+    @decorator
+    def method(self, x, y):
+        print('In class: ', x, y)
+        
+func(1, 2)
+X = C(3, 4)
+X.method()
+```
+
+输出的结果为
+```
+In wrapper 1 2
+In wrapper 3 4
+```
+
+因为最终返回的可调用对象是装饰器函数`decorator中定义的wrapper`，所以func和method中的代码都没有被执行
+
+#### 基于函数的类装饰器
 
 ## 异常
 
