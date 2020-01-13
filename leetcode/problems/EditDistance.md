@@ -64,3 +64,14 @@ class Solution:
         word1, word2 = map(list, (word1, word2))
         return dp(0, 0)
 ```
+
+## Knowledge
+
+- Decorator `lru_cache` can set a memory to recursing function, so it can save time.
+```python
+from functools import lru_cache
+
+@lru_cache
+def traceback():
+    # do something
+```
