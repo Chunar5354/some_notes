@@ -73,3 +73,4 @@ LeetCode刷题记录
 - 69 [Sqrt(x)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Sqrt-x.md)
 - 70 [Climbing Stairs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ClimbingStairs.md)
 - 71 [Simplify Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SimplifyPath.md)
+- 72 [Edit Distance](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EditDistance.md)   **! Dynamic program**
