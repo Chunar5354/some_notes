@@ -75,3 +75,4 @@ LeetCode刷题记录
 - 71 [Simplify Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SimplifyPath.md)
 - 72 [Edit Distance](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EditDistance.md)   **! Dynamic program**
 - 73 [Set Matrix Zero](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SetMatrixZero.md)
+- 74 [Search a 2D Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchA2DMatrix.md)
