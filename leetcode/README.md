@@ -77,3 +77,5 @@ LeetCode刷题记录
 - 73 [Set Matrix Zero](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SetMatrixZero.md)
 - 74 [Search a 2D Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchA2DMatrix.md)
 - 75 [Sort Colors](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SortColors.md)
+- 76 [Minimun Window Substring](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimunWindowSubstring.md)      **!Unfinished**
+- 77 [Combinations](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Combinations.md)    **!Other's approach**
