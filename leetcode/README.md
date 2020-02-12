@@ -79,3 +79,4 @@ LeetCode刷题记录
 - 75 [Sort Colors](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SortColors.md)
 - 76 [Minimun Window Substring](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimunWindowSubstring.md)      **!Unfinished**
 - 77 [Combinations](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Combinations.md)    **!Other's approach**
+- 78 [Subsets](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Subsets.md)
