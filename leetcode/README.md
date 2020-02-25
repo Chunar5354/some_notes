@@ -80,3 +80,4 @@ LeetCode刷题记录
 - 76 [Minimun Window Substring](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimunWindowSubstring.md)      **!Unfinished**
 - 77 [Combinations](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Combinations.md)    **!Other's approach**
 - 78 [Subsets](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Subsets.md)
+- 79 [Word Search](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordSearch.md)
