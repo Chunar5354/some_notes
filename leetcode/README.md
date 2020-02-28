@@ -84,3 +84,4 @@ LeetCode刷题记录
 - 80 [Remove Dplicates From Sorted Array 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicatesFromSortedArray2.md)
 - 81 [Search In Rotated Sorted Array 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchInRotatedSortedArray2.md)
 - 82 [Remove Duplications From Sorted List 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicationsFromSortedList2.md)
+- 83 [Remove Duplications From Sorted List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicationsFromSortedList.md)
