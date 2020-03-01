@@ -57,14 +57,15 @@
 - [获取unix时间戳](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E8%8E%B7%E5%BE%97unix%E6%97%B6%E9%97%B4%E6%88%B3.md)
 - [socket模块学习](https://github.com/Chunar5354/some_notes/blob/master/notes/socket%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0.md)
 - [socketserver模块](https://github.com/Chunar5354/some_notes/blob/master/notes/socketserver%E6%A8%A1%E5%9D%97.md)
-- [python中解包](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E4%BC%98%E5%8C%96%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9.md)
+- [Python中解包](https://github.com/Chunar5354/some_notes/blob/master/notes/python%E4%BC%98%E5%8C%96%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86%E7%82%B9.md)
 - [pymysql学习](https://github.com/Chunar5354/some_notes/tree/master/demos/pymysql)
 - [《Python学习手册》笔记](https://github.com/Chunar5354/some_notes/tree/master/demos/Python_study)
-- [django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
+- [Django框架学习](https://github.com/Chunar5354/some_notes/tree/master/demos/django_study)
 - [使用Anaconda 和 Jupyter Notebook](https://github.com/Chunar5354/some_notes/blob/master/notes/Anaconda%E4%BD%BF%E7%94%A8.md)
 - [Python数据处理](https://github.com/Chunar5354/some_notes/blob/master/notes/Python%E5%8F%AF%E8%A7%86%E5%8C%96_%E6%95%B0%E6%8D%AE_%E5%9B%BE%E5%83%8F.md)
 - [脚本后台运行](https://github.com/Chunar5354/some_notes/blob/master/notes/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8CPython%E8%84%9A%E6%9C%AC.md)
-- [django 网页app开发学习](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E4%BB%8E0%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%90%9C%E7%B4%A2%E7%BD%91%E9%A1%B5.md)
+- [Django 网页app开发学习](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E4%BB%8E0%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%90%9C%E7%B4%A2%E7%BD%91%E9%A1%B5.md)
+- [Django 嵌入图表](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8.md)
 
 ## go学习
 
