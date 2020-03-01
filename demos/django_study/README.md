@@ -445,3 +445,55 @@ TIME_ZONE = 'Asia/Shanghai'   # 设置时区
 USE_TZ = False                # 如果原来数据库中已经有关于时间的数据，就要设置这个
 ```
 三行改成这个样子
+
+
+## Django中使用redis作为缓存
+
+设置了redis作为django的缓存数据库后就可以使用django内置的cache方法来直接缓存数据，不需要再通过额外的调用python的redis扩展库
+
+需要安装`django-redis`扩展库，[官方文档](https://django-redis-chs.readthedocs.io/zh_CN/latest/)
+
+```
+# pip install django-redis
+```
+
+### 使用方法
+
+首先需要再settings中添加这样一段：
+```python
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",      # IP 端口 和数据库编号
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "mysecret"    # 密码
+        }
+    }
+}
+```
+
+然后就可以在django项目中直接访问redis
+```python
+from django.conf  import settings
+from django.core.cache import cache   # 通过cache来访问缓存，此时的默认缓存已经设置成了redis
+
+#read cahce user_id
+def read_from_cache(self,username)
+   key='user_id_of'+username
+   value=cache.get(key)
+   if value==none:
+       data=none
+   else:
+       date=json.loads(value)
+   return data
+
+#write cahche
+def write_to_cache(self,username)
+    key='user_id_of'+username
+    cache.set(key,json.dumps(username),settint.NEVER_REDIS_TIMEOUT)
+```
+
+- tips
+
+django-redis的功能不是很全，查询和写入时只能够使用简单的get和set方法，不能使用诸如hash等功能
