@@ -87,3 +87,4 @@ LeetCode刷题记录
 - 83 [Remove Duplications From Sorted List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicationsFromSortedList.md)
 - 84 [Largest Rectangle In Histogram](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestRectangleInHistogram.md)    **!Other's approach**
 - 85 [Maximal Rectangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximalRectangle.md)
+- 86 [Partition List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PartitionList.md)
