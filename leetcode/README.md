@@ -89,3 +89,4 @@ LeetCode刷题记录
 - 85 [Maximal Rectangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximalRectangle.md)
 - 86 [Partition List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PartitionList.md)
 - 87 [Scramble String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ScrambleString.md)   **!DFS method**
+- 88 [Merge Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MergeSortedArray.md)
