@@ -341,7 +341,7 @@ python manage.py inspectdb > ./app/models.py
 
 此时会在该app的models.py文件中生成相应的代码用来构造数据库
 
-注意要将models.py中的Meta里面manage属性修改为True，使得django有操作数据库的权限：
+注意要将models.py中的Meta里面managed属性修改为True，使得django有操作数据库的权限：
 ```python
 class Meta:
     managed = True
