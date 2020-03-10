@@ -95,3 +95,4 @@ LeetCode刷题记录
 - 91 [Decode Ways](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DecodeWays.md)  **!A Difficult Undersianding Method**
 - 92 [Reverse Linked List 2]9https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseLinkedList2.md）
 - 93 [Restore IP Addresses]https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RestoreIPAddresses.md）
+- 94 [Binary Tree Inorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeInorderTraversal.md)
