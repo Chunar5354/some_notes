@@ -96,4 +96,5 @@ LeetCode刷题记录
 - 92 [Reverse Linked List 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseLinkedList2.md)
 - 93 [Restore IP Addresses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RestoreIPAddresses.md)
 - 94 [Binary Tree Inorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeInorderTraversal.md)
-- 95 [Unique Binary Search Trees 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueBinarySearchTrees2.md)  **!BTS**
+- 95 [Unique Binary Search Trees 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueBinarySearchTrees2.md)  **!BST**
+- 96 [Unique Binary Search Trees](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueBinarySearchTrees.md)  **!BST Regular Pattern**
