@@ -4,7 +4,8 @@
 
 - My approach
 
-Firstly I want use the method like [](), (I don't understand why Unique Binary Search Trees 2 is 95 and 
+Firstly I want use the method like [Unique Binary Search Trees 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueBinarySearchTrees2.md), 
+(I don't understand why Unique Binary Search Trees 2 is 95 and 
 Unique Binary Search Trees is 96), but it's time exceeded.
 
 And after searching other's approach, I found there is a regular pattern of BST.
