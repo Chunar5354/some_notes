@@ -100,3 +100,4 @@ LeetCode刷题记录
 - 96 [Unique Binary Search Trees](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueBinarySearchTrees.md)  **!BST Regular Pattern**
 - 97 [Interleaving String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InterleavingString.md)
 - 98 [Validate Binary Search Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidateBinarySearchTree.md)
+- 99 [Recover Binary Search Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RecoverBinarySearchTree.md)
