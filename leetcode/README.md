@@ -106,4 +106,4 @@ LeetCode刷题记录
 - 102 [Binary Tree Level Order Traverse](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraverse.md)
 - 103 [Binary Tree Zigzag Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeZigzagLevelOrderTraversal.md)
 - 104 [Maximum Depth Of Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumDepthOfBinaryTree.md)
-- 105 [Construct Binary Tree From Prorder And Inorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructbinaryTreeFromProrderAndInorderTraversal.md)
+- 105 [Construct Binary Tree From Preorder And Inorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructBinaryTreeFromPreorderAndInorderTraversal.md)
