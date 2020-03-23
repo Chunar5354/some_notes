@@ -4,7 +4,7 @@
 
 - My approach
 
-This queestion is like [Binary Tree Level Order Traverse](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraverse.md). 
+This queestion is like [Binary Tree Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraversal.md). 
 the only difference is the order of result.
 
 ```python
