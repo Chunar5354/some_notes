@@ -103,8 +103,9 @@ LeetCode刷题记录
 - 99 [Recover Binary Search Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RecoverBinarySearchTree.md)  **!Other's approach**
 - 100 [Same Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SameTree.md)
 - 101 [Symmetric Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SymmetricTree.md)
-- 102 [Binary Tree Level Order Traverse](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraverse.md)
+- 102 [Binary Tree Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraversal.md)
 - 103 [Binary Tree Zigzag Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeZigzagLevelOrderTraversal.md)
 - 104 [Maximum Depth Of Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumDepthOfBinaryTree.md)
 - 105 [Construct Binary Tree From Preorder And Inorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructBinaryTreeFromPreorderAndInorderTraversal.md)   **!Other's approach**
 - 106 [Construct Binary Tree From Inorder And Postorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructBinaryTreeFromInorderAndPostorderTraversal.md)
+- 107 [Binary Tree Level Order Traversal 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeLevelOrderTraversal2.md)
