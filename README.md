@@ -70,6 +70,7 @@
 ## go学习
 
 - [go语言学习](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study)
+- [7天Go语言web框架总结](https://github.com/Chunar5354/some_notes/blob/master/notes/7-days-go-web-framework-learn.md)
 
 ## 数据库
 
