@@ -61,12 +61,11 @@ Engine在`gee.go`文件中定义，最终要暴露给用户，用户可以通过
 其结构为：
 ```go
 type Engine struct {
-	// 一个指向router结构体的指针
-  router *router
+  	router *router   // 一个指向router结构体的指针
 	// 不加变量名，直接给一个指针，这样可以使得Engine和RouterGroup共用，
-  // 这样在调用*Engine的时候就相当于调用了*RouterGroup，可以直接访问*RouterGroup中的属性
-  *RouterGroup
-  // 路由分组的数组
+  	// 这样在调用*Engine的时候就相当于调用了*RouterGroup，可以直接访问*RouterGroup中的属性
+  	*RouterGroup
+  	// 路由分组的数组
 	groups []*RouterGroup
 }
 ```
@@ -126,3 +125,21 @@ type router struct {
 	handlers map[string]HandlerFunc  // http请求到处理方法的映射，键的形式为 method-pattern, 如"GET-/index"
 }
 ```
+
+
+## 2.框架运行的逻辑
+
+### 路由表注册
+
+一个web应用最基本的是通过在浏览器输入一个地址，能够返回相应的页面内容，这就需要将url地址与处理函数对应起来，也就是`路由表`
+
+比如在`main.go`中有这样一段代码：
+```go
+r.GET("/index", func(c *gee.Context) {
+		c.HTML(http.StatusOK, "<h1>Hello Gee</h1>")
+	})
+```
+
+它就执行了一个路由表注册的功能，执行逻辑如下图所示
+
+![image](https://github.com/Chunar5354/some_notes/blob/master/images/register-router.png)
