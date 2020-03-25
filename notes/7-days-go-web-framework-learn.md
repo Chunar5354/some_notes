@@ -142,4 +142,4 @@ r.GET("/index", func(c *gee.Context) {
 
 它就执行了一个路由表注册的功能，执行逻辑如下图所示
 
-<img src="https://github.com/Chunar5354/some_notes/blob/master/images/register-router.png" width=75% height=75%/>
+<div align=center><img src="https://github.com/Chunar5354/some_notes/blob/master/images/register-router.png" width=80% height=80%/></div>
