@@ -3,7 +3,7 @@
 
 # 一些Go的基本知识
 
-## 1.自建package
+##  1.自建package
 
 在Go语言中，只要拥有相同的`package name`开头的所有文件都可以视为是同一package中，比如本项目中有一个`gee`文件夹：
 ```
@@ -29,7 +29,7 @@ package gee
 更神奇的是这三个.go文件可以直接访问互相的内容，比如在context.go中定义了一个`Context`结构体，并为其定义了`GET()`方法，那么在另外两个文件中
 就可以直接通过`Context.GET()`来调用，就`好像这三个文件是一个文件`，只不过为了实现各自专门的功能而拆分成三个文件
 
-## 2.重定向package
+##  2.重定向package
 
 注意项目根目录中的`go.mod`文件：
 
@@ -48,7 +48,7 @@ replace gee => ./gee
 
 # 7天web框架
 
-## 1.框架的基本结构
+##  1.框架的基本结构
 
 这个框架很简单，依赖于Go内置的`net/http`库，只有一个gee模块
 
@@ -127,9 +127,19 @@ type router struct {
 ```
 
 
-## 2.框架运行的逻辑
+##  2.框架运行的逻辑
 
-### 路由表注册
+框架最简单的使用逻辑为：
+
+- 1. 创建一个Engine对象
+- 2. 通过Engine的相应方法注册路由表
+- 3. 监听端口，开启http服务
+
+可以用下面的图片表示：
+
+<div align=center><img src="https://github.com/Chunar5354/some_notes/blob/master/images/register-router.png" width=80% height=80%/></div>
+
+### 1.路由表注册
 
 一个web应用最基本的是通过在浏览器输入一个地址，能够返回相应的页面内容，这就需要将url地址与处理函数对应起来，也就是`路由表`
 
@@ -140,6 +150,4 @@ r.GET("/index", func(c *gee.Context) {
 	})
 ```
 
-它就执行了一个路由表注册的功能，执行逻辑如下图所示
-
-<div align=center><img src="https://github.com/Chunar5354/some_notes/blob/master/images/register-router.png" width=80% height=80%/></div>
+它就执行了一个路由表注册的功能
