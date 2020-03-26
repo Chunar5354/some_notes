@@ -28,9 +28,33 @@ PHP7.0语法学习
 
 ## 安装
 
-- 在树莓派上
+以下安装均针对PHP7.3版本
+
+- 在Debian系统上
 ```
-sudo apt-get install php7.0 php7.3-mysql   // 7.3版本
+# sudo apt-get install php7.0 php7.3-mysql
+```
+
+- 在Centos系统上
+
+首先可以安装一个`Remi`源，通过它来安装php
+```
+# sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+```
+
+配置启用Remi源
+```
+# sudo yum-config-manager --enable remi-php73
+```
+
+安装php
+```
+# sudo yum install php73-php -y
+```
+
+安装依赖管理器`composer`
+```
+# sudo yum install composer -y
 ```
 
 ## 配置
