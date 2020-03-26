@@ -35,14 +35,70 @@ sudo apt-get install php7.0 php7.3-mysql   // 7.3版本
 
 ## 配置
 
+### 配置nginx运行php文件
+
+nging需要通过`php-fpm`来运行php文件，安装:
+```
+# yum install php-fpm php-pdo php-mysql php-xml
+```
+
+启动php-fpm：
+```
+# systemctl start php-fpm
+```
+
+修改nginx的配置文件
+
+```
+# vim /etc/nginx/nginx.conf
+```
+
+添加以下内容:
+```
+		location / {
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+
+        # 这里是新增内容
+        # PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI协议默认配置.
+        # Fastcgi服务器和程序(PHP,Python)沟通的协议.
+        location ~ \.php$ {
+            # 设置php文件存放路径, php-fpm默认的路径是/var/www/html, 与nginx不同
+			root /var/www/html;
+			# 设置监听端口，php-fpm默认端口是9000
+            fastcgi_pass   127.0.0.1:9000;
+            # 设置nginx的默认首页文件(可以没有)
+            fastcgi_index  index.php;
+            # 设置脚本文件请求的路径
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            # 引入fastcgi的配置文件
+            include        fastcgi_params;
+        }
+```
+
+然后重启nginx:
+
+```
+systemctl restart nginx
+```
+
+然后将php文件放到`/var/www/html`路径中就可以通过http请求来运行
+
 ### 显示错误信息
 
 通常.php文件在运行时默认不会在浏览器上显示错误信息，可以通过修改配置文件来显示，方便调试程序
 
 在树莓派上，修改以下文件：
 ```
---sudo vi /etc/php/7.0/apache2/php.ini 
-sudo vi /etc/php/7.0/cli/php.ini
+# sudo vi /etc/php/7.0/apache2/php.ini 
+# sudo vi /etc/php/7.0/cli/php.ini
 ```
 改变其中两个参数如下：
 ```
@@ -488,14 +544,14 @@ workerman是一个php的服务器框架，使用它可以方便地处理各种�
 
 首先查看是否已经安装了workerman所需要的依赖：
 ```
-curl -Ss http://www.workerman.net/check.php | php
+# curl -Ss http://www.workerman.net/check.php | php
 ```
 
 如果输出的每一行后面都有`[ok]`字样，说明已经安装了全部依赖（树莓派上似乎按照上面的方法安装php就已经同时完成了依赖的安装）
 
 安装workerman（其实是一个代码包，从github上下载）：
 ```
-git clone https://github.com/walkor/workerman
+# git clone https://github.com/walkor/workerman
 ```
 
 ### 测试
@@ -526,7 +582,7 @@ Worker::runAll();
 
 然后在命令行输入命令：
 ```
-php test_worker.php start
+# php test_worker.php start
 ```
 
 此时workerman会以调试模式运行，打开浏览器，输入`localhost:2347`，每次刷新页面都会在命令行输出一个"success"
