@@ -55,7 +55,7 @@ nging需要通过`php-fpm`来运行php文件，安装:
 
 添加以下内容:
 ```
-		location / {
+	location / {
         }
 
         error_page 404 /404.html;
