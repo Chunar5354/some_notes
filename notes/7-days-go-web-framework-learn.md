@@ -151,3 +151,96 @@ r.GET("/index", func(c *gee.Context) {
 ```
 
 它就执行了一个路由表注册的功能
+
+将"index"这个地址及其所使用的方法"GET"映射到了第二个参数定义的的处理方法
+
+### 2.获取页面内容
+
+既然已经将路由地址对应的处理方法储存好了，那么当我们在浏览器输入url地址的时候，程序是怎样分析这个地址并最终找到处理方法，呈现内容的呢？
+
+在`main.go`中有这样一段代码：
+```go
+r.Run(":9999")
+```
+
+是调用了`gee.go`中的`Run()`方法：
+```go
+func (engine *Engine) Run(addr string) (err error) {
+	return http.ListenAndServe(addr, engine)
+}
+```
+
+其中`ListenAndServe()`方法是http库中的方法，运行该方法就会监听对应的端口号，实现http服务。第一个参数是端口号，第二个参数必须要带有一个`ServeHTTP()`方法
+
+所以需要为Engine结构体实现一个ServeHTTP()方法:
+```go
+func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	c := newContext(w, req)
+	engine.router.handle(c)
+}
+```
+
+而在ServerHTTP()中又调用了`router.handle()`方法：
+```go
+func (r *router) handle(c *Context) {
+	n, params := r.getRoute(c.Method, c.Path)
+	if n != nil {
+		c.Params = params
+		key := c.Method + "-" + n.pattern
+		r.handlers[key](c)
+	} else {
+		c.String(http.StatusNotFound, "404 NOt FOUND: %s\n", c.Path)
+	}
+}
+```
+
+在router.handle()中，通过`GetRoute()`方法去路由表中查找当前Context对象中包含的方法名和URL路径对应的处理方法`HandlerFunc`，然后执行它
+
+至此完成了路由地址到路由表中对应处理方法的运行逻辑
+
+### 3.路由处理
+
+#### 3.1 Trie树
+
+路由地址一般都是以`前缀树`（Trie树）的形式来存储，如下图所示：
+
+<div align=center><img src="https://github.com/Chunar5354/some_notes/blob/master/images/Trie-tree.png" width=80% height=80%/></div>
+
+根据url地址一层一层的向下查找
+
+而且这样也可以实现`动态路由`：通过设置某些通配符(如上面图片中的`:`)，可以将某一类路由映射到相同的方法
+
+比如在上面的Trie树中，`/jcak/a`和`/lucy/a`都会匹配到`/:name/a`的内容，并且将name参数分别设置成jack和lucy
+
+在gee框架中，为了实现Trie树，在`trie.go`中创建了一个`node`结构体，结构如下：
+```go
+type node struct {
+	pattern string     // 待匹配路由
+	part string        // 路由的一部分，在两个//之间
+	children []*node   // 子节点
+	isWild bool        // 是否精确匹配, part以:或*开头的为true
+}
+```
+
+并创建了`insert()`和`search()`方法用来向Trie树中插入节点和在Trie树中查找结点
+
+#### 3.2 路由分组
+
+有时需要为某一类路由实现同样的方法，如：
+
+以`/admin`开头的路由需要检测权限
+以`/post`开头的路由匿名可访问
+
+那么可以将路由进行分组，比如以`/post`前缀分组，`/post/a`和`/post/b`是该分组下的子分组。作用在/post分组上的中间件(middleware)，也都会作用在子分组，子分组还可以应用自己特有的中间件
+
+为了实现路由分组，在`gee.go`中新创建了一个`RouterGroup`结构体，结构如下：
+```go
+type RouterGroup struct {
+	prefix string    // 该路由分组的前缀，比如'/p/a'和'/p/b' 都有共同的前缀'/p'
+	middlewares []HandlerFunc   // 中间件
+	parent *RouterGroup   // 一个指向RouterGroup的指针，使得该对象能够嵌套使用
+	engine *Engine   // 指向Engine，方便通过Engine来调用各种借口
+}
+```
+
+如果不应用中间件的话，RouterGroup和Engine有着类似的功能，它们都实现了`addRoute()`和`GET()`以及`POST()`等注册路由的方法
