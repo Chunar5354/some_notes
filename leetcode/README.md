@@ -113,3 +113,4 @@ LeetCode刷题记录
 - 109 [Convert Sorted List To Binary Search Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConvertSortedListToBinarySearchTree.md)
 - 110 [Minimum Depth Of Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumDepthOfBinaryTree.md)
 - 111 [Path Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum.md)
+- 112 [Path Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum2.md)
