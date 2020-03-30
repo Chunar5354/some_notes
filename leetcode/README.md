@@ -115,3 +115,4 @@ LeetCode刷题记录
 - 111 [Minimum Depth Of Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumDepthOfBinaryTree.md)
 - 112 [Path Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum.md)
 - 113 [Path Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum2.md)
+- 114 [Flatten Binary Tree To Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenBinaryTreeToLinkedList.md)
