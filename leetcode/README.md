@@ -117,3 +117,4 @@ LeetCode刷题记录
 - 113 [Path Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum2.md)
 - 114 [Flatten Binary Tree To Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenBinaryTreeToLinkedList.md)
 - 115 [Distinct Subsequences](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DistinctSubsequences.md)   **!Other's dynamic program**
+- 116 [Populating Next Right Pointer In Each Node](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PopulatingNextRightPointerInEachNode.md)
