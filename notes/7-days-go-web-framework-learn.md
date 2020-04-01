@@ -97,6 +97,11 @@ type Context struct {
 	Method string   // http请求的方法，如GET，POST等
 	StatusCode int   // http响应状态码，如200，301等
 	Params map[string]string   // 一个关于路由地址的map，用于处理包含:或*等通配符的url路径
+	// 两个关于中间件的属性
+	handlers []HandlerFunc  // 中间件函数列表
+	index int  //表示中间件进行的层级
+	// 为了添加HTML功能，在Context中也加上一个Engine属性
+	engine *Engine
 }
 ```
 
@@ -244,3 +249,156 @@ type RouterGroup struct {
 ```
 
 如果不应用中间件的话，RouterGroup和Engine有着类似的功能，它们都实现了`addRoute()`和`GET()`以及`POST()`等注册路由的方法
+
+注意`mian.go`中的这段代码：
+```go
+v1 := r.Group("/v1")
+```
+
+通过RouterGroup中的`Group()`方法创建了一个路由分组，Group()方法在`gee.go`中：
+```go
+func (group *RouterGroup) Group(prefix string) *RouterGroup {
+	engine := group.engine
+	// 创建一个新的RouterGroup对象，因为groups是engine的一个属性，所以所有的groups共用一个个engine
+	newGroup := &RouterGroup{
+		// 新RouterGroup对象的路由前缀要包含当前RouterGroup对象的路由前缀
+		prefix: group.prefix + prefix,
+		// 新的RouterGroup对象是当前Routergroup的一个子分组
+		parent: group,
+		engine: engine,
+	}
+	// 将当前的分组存储到Engine的groups属性中
+	engine.groups = append(engine.groups, newGroup)
+	return newGroup
+}
+```
+
+新建了分组之后，就可以为当前的分组进行添加中间件、定制路由规则等操作，在`main.go`中：
+```go
+// 为v1分组添加一个中间件
+v1.Use(onlyForV1())
+{
+	// 此时对v1分组的操作会自动加上 "/v1" 路由前缀
+	v1.GET("/hello/:name", func(c *gee.Context) {
+	c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
+	})
+	v1.POST("/login", func(c *gee.Context) {
+		c.JSON(http.StatusOK, gee.H{
+			"username": c.PostForm("username"),
+			"password": c.PostForm("password"),
+		})
+	})
+}
+```
+
+
+### 中间件
+
+中间件`middleware`是用户自定义的处理方法，用来嵌入到框架中
+
+在Gee框架中，中间件的定义与路由映射的Handler一致，处理的输入是`Context`对象，并应用在`RouterGroup`对象上
+
+注意`main.go`中的代码：
+```go
+r.Use(gee.Logger(), gee.Recovery())
+```
+
+该句代码的意思是将logger()这个中间件添加到当前的RouterGroup对象r中
+
+User()方法在`gee.go`中
+```go
+// ...HandlerFunc表示可以收任意多个middlewares参数，类似Python中的*args解包
+func (group *RouterGroup) Use(middlewares ...HandlerFunc) {
+	// 将中间件添加到Group中
+	group.middlewares = append(group.middlewares, middlewares...)
+}
+```
+
+通过Use()方法将传入的logger()函数添加到了RouterGroup的`middlewares`属性中
+
+因为设计中间件是要用来处理Context对象，所以还要讲中间件函数添加到`Context`的`handlers`属性中，这时要对`ServeHTTP()`方法做一些修改
+
+在`gee.go`文件中:
+```go
+func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	var middlewares []HandlerFunc  // 这里不能用 :=
+	for _, group := range engine.groups {
+		// 通过url的前缀判断，将与当前url对应的RouterGroup中的中间件添加到Context的handlers中
+		if strings.HasPrefix(req.URL.Path, group.prefix) {
+			middlewares = append(middlewares, group.middlewares...)
+		}
+	}
+	c := newContext(w, req)
+	c.handlers = middlewares
+	c.engine = engine
+	engine.router.handle(c)
+}
+```
+
+注意到最后又调用了`handle()`方法，在`router.go`中对handle()方法也作出了修改：
+```go
+func (r *router) handle(c *Context) {
+	n, params := r.getRoute(c.Method, c.Path)  // 获得路由信息
+	// 将router中储存的地址信息和路由处理函数都添加到Context中
+	if n != nil {
+		c.Params = params
+		key := c.Method + "-" + n.pattern
+		c.handlers = append(c.handlers, r.handlers[key])
+		// r.handlers[key](c)  运行HandlerFunc不再由Router来完成，而是由添加了中间件和router中所有HandlerFunc的Context来完成
+	} else {
+		c.handlers = append(c.handlers, func(c *Context) {
+			c.String(http.StatusNotFound, "404 NOt FOUND: %s\n", c.Path)
+		})
+	}
+	c.Next()  // Next会执行从 c.index+1 开始的所有c.handlers中的方法
+}
+```
+
+在handle()中只是将所有的处理方法添加到了Context的handlers属性中，并没有调用这些方法，调用方法是在`c.Nect()`中实现的，在`context.go`中：
+```go
+func (c *Context) Next() {
+	c.index++
+	s := len(c.handlers)
+	// 调用从 c.index+1 开始直到handlers最后一个中间件函数
+	for ; c.index < s; c.index++ {
+		c.handlers[c.index](c)
+	}
+}
+```
+
+那为什么不直接在handle()中就直接调用这些方法呢？主要在于通过Next()方法和Context.index属性可以控制程序执行的顺序
+
+注意在Context.handlers中添加方法的`顺序`为：先自定义中间件, 后路由表注册的处理方法
+
+例如应用了中间件 A 和 B，和路由映射的 Handler，c.handlers是这样的[A, B, Handler]，c.index初始化为-1，A和B的结构分别为
+```
+func A(c *Context) {
+    part1
+    c.Next()
+    part2
+}
+func B(c *Context) {
+    part3
+    c.Next()
+    part4
+}
+```
+
+这时调用c.Next()，执行流程为:
+```
+1. c.index++，c.index 变为 0
+   0 < 3，调用 c.handlers[0]，即 A
+2. 执行 part1，调用 c.Next()
+   c.index++，c.index 变为 1
+3. 1 < 3，调用 c.handlers[1]，即 B
+4. 执行 part3，调用 c.Next()
+   c.index++，c.index 变为 2
+5. 2 < 3，调用 c.handlers[2]，即Handler
+6. Handler 调用完毕，返回到 B 中的 part4，执行 part4
+7. part4 执行完毕，返回到 A 中的 part2，执行 part2
+8. part2 执行完毕，结束。
+```
+
+执行顺序为：`part1 -> part3 -> Handler -> part 4 -> part2`
+
+至此实现了中间件函数的执行
