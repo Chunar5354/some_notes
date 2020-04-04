@@ -120,3 +120,4 @@ LeetCode刷题记录
 - 116 [Populating Next Right Pointer In Each Node](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PopulatingNextRightPointerInEachNode.md)
 - 117 [Populating Next Right Pointer In Each Node 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PopulatingNextRightPointerInEachNode2.md)
 - 118 [Pascal's Triangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pascal'sTriangle.md)
+- 119 [Pascal's Triangle 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pascal'sTriangle2.md)
