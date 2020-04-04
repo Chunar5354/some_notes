@@ -529,7 +529,7 @@ func (group *RouterGroup) Static(relativePath string, root string) {
 所以，`r.Static("assets", "./static")`就是将./static这个本地的路径映射到了assert这个url请求的路径，并通过通配符`*`使得可以匹配以`assert/`开头的
 所有地址，即`./static`目录下的所有静态文件
 
-下面来看`createStaticHandler()`方法，他也在`gee.go`中：
+下面来看`createStaticHandler()`方法，它也在`gee.go`中：
 ```go
 func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileSystem) HandlerFunc {
 	absolutePath := path.Join(group.prefix, relativePath)
@@ -573,5 +573,5 @@ static/
 		geektutu.css
 ```
 
-每当加载css.tmpl的时候，就像本地发起一个请求，请求的地址就是"assets/css/geektutu.css"，由于之前已经注册过asset，所以会使用静态文件处理方法的
+每当加载css.tmpl的时候，就像本地发起一个请求，请求的地址就是"assets/css/geektutu.css"，由于之前已经注册过assets，所以会使用静态文件处理方法的
 fileServer.ServeHTTP()，通过http库内置的方法来加载静态文件，用以渲染页面
