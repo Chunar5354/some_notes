@@ -402,3 +402,176 @@ func B(c *Context) {
 执行顺序为：`part1 -> part3 -> Handler -> part 4 -> part2`
 
 至此实现了中间件函数的执行
+
+### 5.模板和静态文件
+
+#### 加载HTML模板
+
+为了显示更丰富的页面内容，需要使用html文件，并在框架中渲染它，为了实现这一功能，为Engine对象新增了两个属性，在`gee.go`文件中
+```go
+type Engine struct {
+	router *router
+	*RouterGroup
+	groups []*RouterGroup
+	// 新增html模板属性
+	htmlTemplates *template.Template  // 将模板加载进内存
+	funcMap template.FuncMap  // 自定义模板渲染函数
+}
+```
+
+这里使用了Go内置的`html/template`库，用于加载模板相关的功能
+
+注意到`main.go`中有这样一段代码
+```go
+r.LoadHTMLGlob("templates/*")
+```
+
+调用了Engine对象的LoadHTMLGlob()方法，这个方法定义在`gee.go`文件中：
+```go
+func (engine *Engine) LoadHTMLGlob(pattern string) {
+	engine.htmlTemplates = template.Must(template.New("").Funcs(engine.funcMap).ParseGlob(pattern))
+}
+```
+
+使用了一系列template库中的方法，最终的功能是指定模板的加载路径，`r.LoadHTMLGlob("templates/*")`就是将项目根目录下的tamplates文件夹设置为
+模板路径，注意后面的用法，还是在`main.go`中：
+```go
+r.GET("date", func(c *gee.Context) {
+	// gee.H在context.go中定义，是一个map
+	c.HTML(http.StatusOK, "custom_func.tmpl", gee.H{
+		"title": "chun",
+		"now": time.Date(2020, 3, 19, 0, 1, 2, 3, time.UTC),
+	})
+})
+```
+
+这还是一个注册路由表的操作，将"date"路由映射到了后面的处理方法，不过此时`c.HTML`有所改变，他的第二个参数是html文件名，而这个html文件就要存放在
+前面设置的templates目录下，这样程序才能够找到这个文件，从而显示其中的内容
+
+c.HTML()方法定义在`context.go`文件中:
+```go
+func (c *Context) HTML(code int, name string, data interface{}) {
+	c.SetHeader("Content-Type", "text/html")
+	c.Status(code)
+	// 通过engine中设置好的路径来加载模板文件，并可以通过数据接口传递数据
+	if err := c.engine.htmlTemplates.ExecuteTemplate(c.Writer, name, data); err != nil {
+		c.Fail(500, err.Error())
+	}
+}
+```
+
+注意最终html模板的加载是通过`c.engine.htmlTemplates.ExecuteTemplate(c.Writer, name, data)`来实现的，也就是通过内置的template库来实现的，
+而其中的第三个参数`data`需要是一个map对象
+
+#### 模板渲染（定制函数）
+
+注意到`main.go`中还有这样一段代码
+```go
+r.SetFuncMap(template.FuncMap{
+	"formatAsDate": formatAsDate,
+})
+```
+
+它调用了r.SetFuncMap()方法，这个方法定义在`gee.go`中：
+```go
+func (engine *Engine) SetFuncMap(funcMap template.FuncMap) {
+	engine.funcMap = funcMap
+}
+```
+
+他将funcMap参数添加到了Engine的funcMap属性中，而funcMap参数是一个map对象，键是字符串，值是一个函数，比如上面的例子就是将"formatAsDate"与
+formatAsDate这个函数对应了起来
+
+SetFuncMap()只是将funcMap添加到了Engine中，而真正的加载到html模板，是在`LoadHTMLGlob()`中实现的，还是在`gee.go`文件中
+```go
+func (engine *Engine) LoadHTMLGlob(pattern string) {
+	engine.htmlTemplates = template.Must(template.New("").Funcs(engine.funcMap).ParseGlob(pattern))
+}
+```
+
+通过template库的`Funcs()`方法将funcMap加载到了html模板中
+
+同时在对应的模板文件里面也要做相应的设置，查看`custom_func.tmpl`文件，（这里的后缀用的是tmpl，其实用作html也一样，因为内容是html文档）
+```html
+<!-- templates/arr.tmpl -->
+<html>
+<body>
+    <p>hello, {{.title}}</p>
+    <p>Date: {{.now | formatAsDate}}</p>
+</body>
+</html>
+```
+
+其中.title和.now都是通过HTML()方法传入的参数，formatAsDate就是前面设置的funcMap中的键，通过Funcs()方法传入模板，`{{.now | formatAsDate}}`
+的意思就是用formatAsDate对应的函数处理.now对应的数据
+
+#### 静态文件
+
+为了渲染页面，有时需要添加css样式，所以框架也需要支持css渲染的功能
+
+在`main.go`中
+```go
+r.Static("assets", "./static")
+```
+
+它的目的就是设置静态文件的路径，Static()方法在`gee.go`中：
+```go
+func (group *RouterGroup) Static(relativePath string, root string) {
+	handler := group.createStaticHandler(relativePath, http.Dir(root))
+	urlPattern := path.Join(relativePath, "/*filepath")
+	group.GET(urlPattern, handler)
+}
+```
+
+可以看到它首先调用`createStaticHandler()`方法创建了一个处理函数（这个方法会在后面介绍），然后生成了一个含有通配符`*`的新url路径，将它注册到了
+路由表中
+
+所以，`r.Static("assets", "./static")`就是将./static这个本地的路径映射到了assert这个url请求的路径，并通过通配符`*`使得可以匹配以`assert/`开头的
+所有地址，即`./static`目录下的所有静态文件
+
+下面来看`createStaticHandler()`方法，他也在`gee.go`中：
+```go
+func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileSystem) HandlerFunc {
+	absolutePath := path.Join(group.prefix, relativePath)
+	// 通过http库中的方法来加载静态文件
+	fileServer := http.StripPrefix(absolutePath, http.FileServer(fs))
+	return func(c *Context) {
+		file := c.Param("filepath")
+		if _, err := fs.Open(file); err != nil {
+			c.Status(http.StatusNotFound)
+			return
+		}
+		// 通过哦fileServer来调用ServeHTTP
+		fileServer.ServeHTTP(c.Writer, c.Req)
+	}
+}
+```
+
+它的功能是通过http库内置的方法，创建静态文件对象，并返回一个处理静态文件对象的方法，这个方法通过用静态文件对象调用ServeHTTP来实现静态文件相关的功能
+
+关于静态文件使用的示例，在`main.go`中：
+```go
+r.GET("/", func(c *gee.Context) {
+	c.HTML(httptatusOK, "css.tmpl", nil)
+})
+```
+
+这是加载模板文件，而在`css.tmpl`中：
+```go
+<html>
+    <link rel="stylesheet" href="assets/css/geektutu.css">
+    <p>geektutu.css is loaded</p>
+</html>
+```
+
+注意开头的link标签中，href的链接是`assets`开头的，也就是前面使用Static()方法映射的url地址
+
+此时在本地`static`路径的格式为：
+```
+static/
+	css/
+		geektutu.css
+```
+
+每当加载css.tmpl的时候，就像本地发起一个请求，请求的地址就是"assets/css/geektutu.css"，由于之前已经注册过asset，所以会使用静态文件处理方法的
+fileServer.ServeHTTP()，通过http库内置的方法来加载静态文件，用以渲染页面
