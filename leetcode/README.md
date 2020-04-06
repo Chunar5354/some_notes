@@ -122,3 +122,4 @@ LeetCode刷题记录
 - 118 [Pascal's Triangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pascal'sTriangle.md)
 - 119 [Pascal's Triangle 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Pascal'sTriangle2.md)
 - 120 [Triangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Triangle.md)
+- 121 [Best Time To Buy And Sell Stock](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeToBuyAndSellStock.md)
