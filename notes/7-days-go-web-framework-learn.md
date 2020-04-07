@@ -45,6 +45,110 @@ replace gee => ./gee
 
 前面两行是自动生成的，后面两行是自定义的，意思是导入一个gee模块，并指定其路径（v0.0.0对于自定义的模块来说似乎没什么用，但是必须要加上，否则build的时候会出错）
 
+## Ⅲ.异常处理
+
+### 主动抛出异常panic
+
+与Python语言进行类比，Go中也有主动抛出异常的命令`panic`，用法：
+```go
+func main() {
+	fmt.Println("before panic")
+	panic("crash")
+	fmt.Println("after panic")
+}
+```
+
+运行结果：
+```
+before panic
+panic: crash
+
+goroutine 1 [running]:
+main.main()
+        /main.go:7 +0x9c
+exit status 2
+```
+
+可见程序运行到panic处捕获了一个异常，当前线程在此处停止
+
+### defer
+
+Go中的`defer`命令有点类似Python中的`try...finally...`，即无论是否发生异常，defer中的命令总要运行，并且在出现异常处`中断`
+
+而且defer有一个特点是可以重复使用，而执行的顺序和defer的顺序相反（类似堆栈），用法：
+
+```go
+func main() {
+	defer func() {
+		fmt.Println("defer 1")
+	}()
+
+	defer func() {
+		fmt.Println("defer 2")
+	}()
+
+	panic("panic")
+	fmt.Printf("after panic\n")
+}
+```
+
+运行结果为:
+```
+defer 2
+defer 1
+panic: panic
+
+goroutine 1 [running]:
+        /main.go:14 +0x6f
+exit status 2
+```
+
+当程序运行出现异常之后，会先运行defer中的内容（先定义后运行顺序），然后再打印错误的信息，并且再出现异常处中断
+
+defer中的命令即使再没有异常产生的时候也会运行，如果注释掉`panic("panic")`这一行，运行结果变成
+```
+after panic
+defer 2
+defer 1
+```
+
+### recover
+
+Go中的`recover`则类似Python中的`try...except...`，当发生异常时，会去执行 defer 中的内容，如果在defer中使用了 recover，则会执行 
+recover 中的内容，然后程序会在发生异常的位置（函数体之外）`继续`向下执行
+
+recover必须在defer中使用，用法:
+```go
+func testRecover() {
+	defer func() {
+		fmt.Println("before recover")
+		if err := recover(); err != nil {   // recover在这里
+			fmt.Println("recover")
+		}
+		fmt.Println("after recover")
+	}()
+
+	panic("panic")
+	fmt.Println("after panic")
+}
+
+func main() {
+	testRecover()
+	fmt.Println("after testRecover")
+}
+```
+
+运行结果：
+```
+before recover
+recover
+after recover
+after testRecover
+```
+
+这里新定义了一个函数`testRecover()`，并在其中设置了一个异常点，可以看出，程序在运行时捕捉到异常，转而执行defer中的内容，
+而defer含有revocer，所以在执行完defer中的内容之后，程序会继续运行，但却`不是在testRecover内部恢复`，所以panic后面的内容都不会运行
+
 
 # 7天web框架
 
