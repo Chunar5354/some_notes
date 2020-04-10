@@ -126,3 +126,4 @@ LeetCode刷题记录
 - 122 [Best Time To Buy And Sell Stock 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeToBuyAndSellStock2.md)
 - 123 [Best Time To Buy And Sell Stock 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeToBuyAndSellStock3.md)  **!Other's approach**
 - 124 [Binary Tree Maximum Path Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeMaximumPathSum.md)
+- 125 [Valid Palindrome](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPalindrome.md)
