@@ -129,3 +129,4 @@ LeetCode刷题记录
 - 125 [Valid Palindrome](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPalindrome.md)
 - 126 [Word Ladder 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordLadder2.md)   **!Not finished**
 - 127 [Word Ladder](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordLadder.md)  **!Official solution**
+- 128 [Longest Consecutive Sequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestConsecutiveSequence.md)
