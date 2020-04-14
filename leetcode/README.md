@@ -130,3 +130,4 @@ LeetCode刷题记录
 - 126 [Word Ladder 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordLadder2.md)   **!Not finished**
 - 127 [Word Ladder](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordLadder.md)  **!Official solution**
 - 128 [Longest Consecutive Sequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestConsecutiveSequence.md)
+- 129 [Sum Root To Leaf Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumRootToLeafNumbers.md)
