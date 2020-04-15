@@ -43,7 +43,7 @@ class Solution:
         for i in range(m):
             if board[i][0] == 'O':
                 helper(i, 0)
-        # Finally the 'O' which posiiton is in visitted should not be changed
+        # Finally the 'O' which posiiton is in visited should not be changed
         for i in range(m):
             for j in range(n):
                 if board[i][j] == 'O' and (i, j) not in visited:
