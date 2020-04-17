@@ -31,9 +31,32 @@ class Solution:
         return res
 ```
 
-- Example
+  - Example
 
 If the given `s` is "abcbaa", `dicOfPali` will be:
 ```python
 {0: [0, 4], 1: [1, 3], 2: [2], 3: [3], 4: [4, 5], 5: [5]}
+```
+
+And there is a brief method from others.
+
+- Other's approach
+
+```python
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        ret = []
+        def isPal(s):
+            return s == s[::-1]
+        
+        def fn(s, l):
+            if not s:
+                ret.append(l)
+                return
+            # Traverse s, if current s[:i] is a palindrome, add s[:i] to result and go to traverse s[:i]
+            for i in range(1, len(s)+1):
+                if isPal(s[:i]):
+                    fn(s[i:], l+[s[:i]])
+        fn(s, [])
+        return ret
 ```
