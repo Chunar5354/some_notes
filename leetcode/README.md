@@ -137,3 +137,4 @@ LeetCode刷题记录
 - 133 [Clone Graph](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CloneGraph.md)  **!Other's approach**
 - 134 [Gas Station](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GasStation.md)
 - 135 [Candy](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Candy.md)  **!Official solution**
+- 136 [Single Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber.md)
