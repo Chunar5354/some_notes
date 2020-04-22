@@ -138,3 +138,4 @@ LeetCode刷题记录
 - 134 [Gas Station](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GasStation.md)
 - 135 [Candy](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Candy.md)  **!Official solution**
 - 136 [Single Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber.md)
+- 137 [Single Number 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber2.md)
