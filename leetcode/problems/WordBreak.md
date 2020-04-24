@@ -4,7 +4,7 @@
 
 - My approach
 
-Use recursing method, check if there is a prefix of s in wordDict. If yes, modify s as s[len(w):] and go on until s = ''.
+Use recursing method, check if there is a prefix of s in wordDict. If yes, modify s as `s[len(w):]` and go on until `s = ''`.
 
 ```python
 class Solution:
@@ -49,4 +49,4 @@ class Solution:
 
 - Knowledge
 
-When use a recursing code, to save he running time, we can use `@lru_cache` as amemory.
+When use a recursing code, to save he running time, we can use `@lru_cache`(least recently used) as amemory.
