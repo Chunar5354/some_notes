@@ -141,3 +141,4 @@ LeetCode刷题记录
 - 137 [Single Number 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber2.md)
 - 138 [Copy List With Random Pointer](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CopyListWithRandomPointer.md)
 - 139 [Word Break](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordBreak.md)  **!lru_cache**
+- 140 [Word Break 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordBreak2.md)
