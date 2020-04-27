@@ -143,3 +143,4 @@ LeetCode刷题记录
 - 139 [Word Break](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordBreak.md)  **!lru_cache**
 - 140 [Word Break 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordBreak2.md)
 - 141 [Linked List Cycle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListCycle.md)
+- 142 [Linked List Cycle 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListCycle2.md)  **!O(1) method**
