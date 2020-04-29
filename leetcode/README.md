@@ -145,3 +145,4 @@ LeetCode刷题记录
 - 141 [Linked List Cycle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListCycle.md)
 - 142 [Linked List Cycle 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListCycle2.md)  **!O(1) method**
 - 143 [Reorder List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReorderList.md)  **!Other's approach**
+- 144 [Binary Tree Preorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreePreorderTraversal.md)
