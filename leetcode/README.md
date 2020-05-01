@@ -147,3 +147,4 @@ LeetCode刷题记录
 - 143 [Reorder List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReorderList.md)  **!Other's approach**
 - 144 [Binary Tree Preorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreePreorderTraversal.md)
 - 145 [Binary Tree Postorder Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreePostorderTraversal.md)
+- 146 [LRU Cache](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LRUCache.md)
