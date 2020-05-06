@@ -152,3 +152,4 @@ LeetCode刷题记录
 - 148 [Sort List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SortList.md)  **!Merge sort**
 - 149 [Max Points On A Line](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaxPointsOnALine.md)
 - 150 [Evaluate Reverse Polish Notation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EvaluateReversePolishNotation.md)
+- 151 [Reverse Words In A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseWordsInAString.md)
