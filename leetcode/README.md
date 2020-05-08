@@ -154,3 +154,5 @@ LeetCode刷题记录
 - 150 [Evaluate Reverse Polish Notation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EvaluateReversePolishNotation.md)
 - 151 [Reverse Words In A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseWordsInAString.md)
 - 152 [Maximum Product Subarray](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumProductSubarray.md)
+- 153 [Find Munimum In Rotate Sorted Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindMunimumInRotateSortedArray.md)
+- 154 [Find Minimum In Roated Sorted Array 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindMinimumInRoatedSortedArray2.md)
