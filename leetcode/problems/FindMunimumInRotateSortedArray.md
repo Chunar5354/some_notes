@@ -16,3 +16,4 @@ class Solution:
         return nums[0]
 ```
 
+And the problem [Find Minimum In Roated Sorted Array2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindMininumInRoatedSortedArray2.md) can be solved by the same code.
