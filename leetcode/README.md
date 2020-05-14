@@ -161,3 +161,4 @@ LeetCode刷题记录
 - 162 [Find Peak Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindPeakElement.md)
 - 164 [Maximun Gap](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximunGap.md)
 - 165 [Compare Version Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CompareVersionNumbers.md)
+- 166 [Fraction To Recurring Decimal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FractionToRecurringDecimal.md)
