@@ -164,3 +164,4 @@ LeetCode刷题记录
 - 166 [Fraction To Recurring Decimal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FractionToRecurringDecimal.md)
 - 167 [Two Sum 2 - Input Array Is Sorted](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TwoSum2-InputArrayIsSorted.md)
 - 168 [Excel Sheet Column Title](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ExcelSheetColumnTitle.md)
+- 169 [Majority Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MajorityElement.md)
