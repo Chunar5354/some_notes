@@ -167,3 +167,4 @@ LeetCode刷题记录
 - 169 [Majority Element](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MajorityElement.md)
 - 171 [Excel Sheet Column Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ExcelSheetColumnNumber.md)
 - 172 [Factorial Trailing Zeroes](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FactorialTrailingZeroes.md)
+- 173 [Binary Search Tree Iterator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinarySearchTreeIterator.md)
