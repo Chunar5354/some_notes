@@ -172,3 +172,4 @@ LeetCode刷题记录
 - 175 [Combine Two Tables](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombineTwoTables.md)
 - 176 [Second Highest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SecondHighestSalary.md)
 - 177 [Nth Highest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NthHighestSalary.md)
+- 178 [Rank Scores](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RankScores.md)
