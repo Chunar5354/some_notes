@@ -33,7 +33,7 @@ By adding a parameter `key` to sorted funciton, we can customize the sorting rul
 
 There are two ways to do this:
 
-  - 1. Create a new class and overload the operator `<`(__lt__, less than).
+  - 1 Create a new class and overload the operator `<`(`__lt__`, less than).
   
   ```python
   class LargerNumKey(str):
@@ -49,7 +49,7 @@ There are two ways to do this:
           return '0' if largest_num[0] == '0' else largest_num
   ```
   
-  2. Create a new function, and use Python build-in method cmp_to_key.
+  - 2 Create a new function, and use Python build-in method cmp_to_key.
   
   ```python
   from functools import cmp_to_key
