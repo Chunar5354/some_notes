@@ -174,3 +174,4 @@ LeetCode刷题记录
 - 177 [Nth Highest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NthHighestSalary.md)
 - 178 [Rank Scores](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RankScores.md)
 - 179 [Largest Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestNumber.md)  **!Customize sorting**
+- 180 [Consecutive Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConsecutiveNumbers.md)
