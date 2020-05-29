@@ -176,3 +176,4 @@ LeetCode刷题记录
 - 179 [Largest Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestNumber.md)  **!Customize sorting**
 - 180 [Consecutive Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConsecutiveNumbers.md)
 - 181 [Employees Earning More Than Their Managers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EmployeesEarningMoreThanTheirManagers.md)
+- 182 [Duplicate Emails](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DuplicateEmails.md)
