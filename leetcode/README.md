@@ -178,3 +178,4 @@ LeetCode刷题记录
 - 181 [Employees Earning More Than Their Managers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EmployeesEarningMoreThanTheirManagers.md)
 - 182 [Duplicate Emails](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DuplicateEmails.md)
 - 183 [Customers Who Never Order](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CustomersWhoNeverOrder.md)
+- 184 [Department Heightest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DepartmentHeightestSalary.md)
