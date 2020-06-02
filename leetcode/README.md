@@ -180,3 +180,4 @@ LeetCode刷题记录
 - 183 [Customers Who Never Order](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CustomersWhoNeverOrder.md)
 - 184 [Department Heightest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DepartmentHeightestSalary.md)
 - 185 [Department Top Three Salaries](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DepartmentTopThreeSalaries.md)
+- 186 [Repeated DNA Sequences](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RepeatedDNASequences.md)
