@@ -181,3 +181,4 @@ LeetCode刷题记录
 - 184 [Department Heightest Salary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DepartmentHeightestSalary.md)
 - 185 [Department Top Three Salaries](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DepartmentTopThreeSalaries.md)
 - 186 [Repeated DNA Sequences](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RepeatedDNASequences.md)
+- 188 [Best Time To buy And Sell Stock4](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeTobuyAndSellStock4.md)  **!Attention**
