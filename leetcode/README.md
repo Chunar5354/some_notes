@@ -185,3 +185,4 @@ LeetCode刷题记录
 - 189 [Rotate Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateArray.md)
 - 190 [Reverse Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseBits.md)   **!Only bit operation**
 - 191 [Number Of 1 Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOf1Bits.md)
+- 192 [Word Frequency](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordFrequency.md)
