@@ -187,3 +187,4 @@ LeetCode刷题记录
 - 191 [Number Of 1 Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOf1Bits.md)
 - 192 [Word Frequency](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordFrequency.md)
 - 193 [Valid Phone Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPhoneNumbers.md)
+- 194 [Transpose File](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TransposeFile.md)
