@@ -6,7 +6,7 @@
 
 We can use `awk` command and write some codes in it.
 
-```bash
+```shell
 awk '{ for (i=1; i<=NF; i++) {
             if (NR==1) s[i]=$i; 
             else s[i] = s[i] " " $i;
