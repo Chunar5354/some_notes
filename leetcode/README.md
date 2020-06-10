@@ -188,3 +188,4 @@ LeetCode刷题记录
 - 192 [Word Frequency](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordFrequency.md)
 - 193 [Valid Phone Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPhoneNumbers.md)
 - 194 [Transpose File](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TransposeFile.md)
+- 195 [Tenth Line](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TenthLine.md)
