@@ -189,3 +189,4 @@ LeetCode刷题记录
 - 193 [Valid Phone Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPhoneNumbers.md)
 - 194 [Transpose File](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TransposeFile.md)
 - 195 [Tenth Line](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TenthLine.md)
+- 196 [Delete Duplicated Emails](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DeleteDuplicatedEmails.md)
