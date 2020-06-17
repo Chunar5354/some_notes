@@ -195,3 +195,4 @@ LeetCode刷题记录
 - 199 [Binary Tree Right Side View](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreeRightSideView.md)
 - 200 [Number Of Islands](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfIslands.md)
 - 201 [Bitwise And Of Numbers Range](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BitwiseAndOfNumbersRange.md)
+- 202 [Happy Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/HappyNumber.md)
