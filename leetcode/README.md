@@ -201,3 +201,4 @@ LeetCode刷题记录
 - 205 [Lsomorphic Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LsomorphicStrings.md)
 - 206 [Reverse Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseLinkedList.md)  **!Other's approach**
 - 207 [Course Schedule](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CourseSchedule.md)
+- 208 [Implement Trie (Prifex Tree)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementTrie(PrifexTree).md)  **!Trie**
