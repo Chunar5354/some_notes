@@ -4,7 +4,7 @@
 
 - My approach
 
-We can use the method like [](). See this problem as a graph, and save the relationship into two dictionaries.
+We can use the method like [Course Schedule](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CourseSchedule.md). See this problem as a graph, and save the relationship into two dictionaries.
 
 Every time take the course which indegree(value in num_dic) is 0. Then reduce the indegree of the courses after current course(find from pre_dic).
 
