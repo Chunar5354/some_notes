@@ -203,3 +203,4 @@ LeetCode刷题记录
 - 207 [Course Schedule](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CourseSchedule.md)
 - 208 [Implement Trie (Prifex Tree)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementTrie(PrifexTree).md)  **!Trie**
 - 209 [Minimum Size Subarray Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumSizeSubarraySum.md)
+- 210 [Course Schedule 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CourseSchedule2.md)
