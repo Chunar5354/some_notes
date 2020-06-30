@@ -2,7 +2,7 @@
 
 [题目链接](https://leetcode.com/problems/reverse-integer/solution/)
 
-今天绝对大成就：
+今天终于与取得了不错的成绩：
 
 >Runtime: 28 ms, faster than 99.36% of Python3 online submissions for Reverse Integer.   
 Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Reverse Integer.
