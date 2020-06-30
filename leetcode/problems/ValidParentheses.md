@@ -1,6 +1,6 @@
 ## Solving
 
-Sorry, from today on, the articles will be writed in English
+From today on, the articles will be writed in English
 
 [Problem Link](https://leetcode.com/problems/valid-parentheses/)
 
