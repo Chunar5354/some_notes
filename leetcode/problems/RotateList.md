@@ -5,6 +5,7 @@
 - My approach
 
 My idea is store the value of every node in a list, and rotate the list, finally transform the list into a linked list.
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:
