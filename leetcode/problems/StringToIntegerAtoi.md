@@ -2,7 +2,7 @@
 
 [题目链接](https://leetcode.com/problems/string-to-integer-atoi/)
 
-这道题没有太大的含金量啊，就是没啥知识点（官方连答案都没给），关键在于如何找到目标字符串：
+这道题没啥知识点（官方连答案都没给），关键在于如何找到目标字符串：
 ```python
 class Solution:
     def myAtoi(self, str: str) -> int:
