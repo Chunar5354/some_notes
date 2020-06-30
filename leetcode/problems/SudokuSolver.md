@@ -2,7 +2,7 @@
 
 [Problem link](https://leetcode.com/problems/sudoku-solver/)
 
-This is a complex problem, the best way is recursing(which I'm not good at). Because we need to try every position for every number, 
+This is a complex problem, the best way is recursing. Because we need to try every position for every number, 
 and in this process, we must record the status. So the traceback method is a good way.
 ```python
 from collections import defaultdict
