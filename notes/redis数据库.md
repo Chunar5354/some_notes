@@ -75,6 +75,22 @@ $ redis-cli
 OK
 ```
 
+## 常用命令
+
+### 删除
+
+- 删除当前数据库中的所有key
+
+```
+flushdb
+```
+
+- 删除所有数据库中的key
+
+```
+flushall
+```
+
 ## Python中的redis模块
 
 使用redis扩展包可以通过python操作redis。[官网链接](https://pypi.org/project/redis/)
