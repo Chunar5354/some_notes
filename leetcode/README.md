@@ -208,3 +208,4 @@ LeetCode刷题记录
 - 212 [Word Search 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordSearch2.md)
 - 213 [House Robber 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/HouseRobber2.md)
 - 214 [Shortest Palidrome](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ShortestPalidrome.md)  **!Official solution**
+- 215 [Kth Largest Element In An Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/KthLargestElementInAnArray.md)
