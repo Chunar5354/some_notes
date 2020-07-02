@@ -1,4 +1,4 @@
-在Django的网页中嵌入图表，涉及到Python中的echart库：`pyechart`，以及Django`前后端分离`操作
+在Django的网页中嵌入图表，涉及到Python中的echart库：`pyecharts`，以及Django`前后端分离`操作
 
 ## pyecharts
 
