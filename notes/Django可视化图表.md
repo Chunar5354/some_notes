@@ -48,7 +48,7 @@ Django中前后端分离的用法就相当于用前端的html文件去调用后�
 前端的html文件：
 
 ```html
-<--! templates/indedx.html -->
+<--! templates/index.html -->
 <script>
     var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
 
@@ -129,7 +129,7 @@ urlpatterns = [
 以上面的代码为例：
 
 ```html
-<--! templates/indedx.html -->
+<--! templates/index.html -->
 <script>
     var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
 
