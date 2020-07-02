@@ -10,7 +10,7 @@
 # pip install pyecharts
 ```
 
-pyecharts提供了很好的web的嵌入功能，具体的使用方法根据官方文档的介绍很容易就能实现
+pyecharts提供了很好的图表嵌入功能，具体的使用方法根据官方文档的介绍很容易就能实现
 
 ## Django前后端分离
 
@@ -62,6 +62,7 @@ Django中前后端分离的用法就相当于用前端的html文件去调用后�
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:8000/demo/bar",  // 此处的url对应views.py中的一个函数
+            // 实际使用的时候http链接的方式通常不能正确的访问到views.py中的函数，最好是写成相对地址的形式，比如 url: "../bar"
             dataType: 'json',
             success: function (result) {
                 chart.setOption(result.data);
@@ -115,11 +116,92 @@ urlpatterns = [
 这样整个流程就是：
 - 1.在浏览器输入url访问views.py中的IndexView
 - 2.IndexView读取index.html文件
-- 3.index.html反过来调用views.py中的ChartView
+- 3.在index.html中通过Ajax调用views.py中的ChartView
 
 以上在views.py和index.html两个文件之间的接口是JSON数据（index.html读取ChartView的时候）以及html文件（IndexView读取index.html的时候），
 对于前后端修改的时候只要保持这两个接口不变，单独的修改就不会影响到另一端
 
-- tips
 
-由于这里使用了python中的echart图表功能，所以前端修改图表的话还是要对views.py进行修改，似乎不是很明显的前后端分离
+### 前后端互相传递数据
+
+像前面所用到的一样，通过Ajax(Asynchronous JavaScript and XML)，可以实现前后端的异步数据交互
+
+以上面的代码为例：
+
+```html
+<--! templates/indedx.html -->
+<script>
+    var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+
+    $(
+        function () {
+            fetchData(chart);
+        }
+    );
+
+    function fetchData() {
+        $.ajax({
+            type: "GET",
+            url: "../bar",
+            dataType: 'json',
+            success: function (result) {
+                chart.setOption(result.data);
+            }
+        });
+    }
+</script>
+```
+
+在`fetchData()`中，使用了Ajax向`../bar`指向的地址通过GET方法来获取数据
+
+而该地址最终指向的是views.py中的`ChartView`函数，该函数将图表数据以json的格式通过GET方法发送给前端
+
+```python
+class ChartView(APIView):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse(json.loads(bar_base()))
+```
+
+同样的，前端也可以通过Ajax向后端发送数据：
+
+```javascript
+function fetchData() {
+    var data_send = "test";
+    $.ajax({
+        type: "GET",
+        url: "../bar",
+        dataType: 'json',
+        data: {test: data_send},  // 指定发送的数据
+        success: function (result) {
+            chart.setOption(result.data);
+        }
+    });
+ }
+```
+
+然后在views.py中把前端传过来的数据打印出来
+
+```python
+class ChartView(APIView):
+    def get(self, request, *args, **kwargs):
+        print(request.GET)
+        return JsonResponse(json.loads(bar_base()))
+```
+
+这样页面运行时就能在控制台打印出`{"test": "test"}`字样
+
+这里除了使用GET，也可以使用POST方法
+
+- 题外话：
+
+在html中嵌入的js代码，定义了一个函数之后，要通过：
+
+```javascript
+$(
+    function () {
+        fetchData(chart);
+    }
+);
+```
+
+这样的方式来使用
