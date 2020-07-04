@@ -72,6 +72,10 @@
 - [go语言学习](https://github.com/Chunar5354/some_notes/tree/master/demos/go_study)
 - [7天Go语言web框架总结](https://github.com/Chunar5354/some_notes/blob/master/notes/7-days-go-web-framework-learn.md)
 
+## Java学习
+
+- [Java学习笔记](https://github.com/Chunar5354/some_notes/blob/master/notes/Java%E5%AD%A6%E4%B9%A0.md)
+
 ## 数据库
 
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
