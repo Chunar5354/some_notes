@@ -211,3 +211,4 @@ LeetCode刷题记录
 - 215 [Kth Largest Element In An Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/KthLargestElementInAnArray.md)
 - 216 [Combination Sum 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum3.md)
 - 217 [Contains Duplicate](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate.md)
+- 218 [The Skyline Problem](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TheSkylineProblem.md)  **1Other's approach**
