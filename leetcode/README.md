@@ -212,4 +212,4 @@ LeetCode刷题记录
 - 216 [Combination Sum 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum3.md)
 - 217 [Contains Duplicate](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate.md)
 - 218 [The Skyline Problem](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TheSkylineProblem.md)  **!Other's approach**
-- 219 [Conains Duplicate 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConainsDuplicate2.md)
+- 219 [Contains Duplicate 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate2.md)
