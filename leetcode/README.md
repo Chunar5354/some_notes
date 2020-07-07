@@ -214,3 +214,4 @@ LeetCode刷题记录
 - 218 [The Skyline Problem](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TheSkylineProblem.md)  **!Other's approach**
 - 219 [Contains Duplicate 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate2.md)
 - 220 [Contains Duplicate 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate3.md)
+- 221 [Maximal Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximalSquare.md)  **!Dynamic**
