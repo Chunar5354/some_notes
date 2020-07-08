@@ -181,3 +181,156 @@ public enum Size { SMALL, MEDIUM, LARGE, EXTRA_LARGE};
 ## 反射
 
 能够分析类能力的程序称为反射
+
+## 接口
+
+描述类具有什么功能，而不给出每个功能的具体实现
+
+接口不能含有`实例域`
+
+接口不是类，不能使用`new`来实例化一个接口，不能构造接口对象
+
+但可以声明接口变量，而且接口变量必须引用`实现了接口的类对象`
+
+```java
+Comparable x;  // Comparable是一个接口
+```
+
+而且接口变量必须引用实现了该接口类的类对象
+
+```java
+x = new Employee();
+
+public class Employee implements Comparable<T> {
+
+}
+```
+
+与类继承相似，接口也可以通过`extends`来进行扩展
+
+每个类智能继承于`一个超类`，但可以实现`多个接口`
+
+
+## lambda表达式
+
+参数，箭头`->`以及表达式
+
+```java
+(int a, int b) -> {
+    if (a > b) return 1;
+    else if (a < b) return -1;
+    else return 0;
+}
+```
+
+一个lambda表达式包含
+
+- 1.一个代码块
+- 2.参数
+- 3.自由变量的值（值非参数而且`不在lambda表达式中定义`的变量），自由变量必须是`不可变的`
+
+## 函数式接口
+
+只有一个抽象方法的接口
+
+当需要函数式接口的对象时，可以提供一个lambda表达式
+
+## 方法引用
+
+有时候有一些现成的方法已经实现了想要传递到其他代码的某的动作，此时可以通过方法引用的方式来实现
+
+比如：
+
+```java
+Timer t = new Timer(10000, event -> System.out.println(event));
+```
+
+将在触发定时器的时候打印事件对象，这行代码等价于：
+
+```java
+Timer t = new Timer(10000, System.out::println);
+```
+
+其中`::`操作符就是方法引用
+
+方法引用不能独立存在，一般是作为其他方法的参数，它最终会转换为`函数式接口的实例`
+
+
+## 内部类
+
+内部类是定义在另一个类中的类，它有几个性质：
+
+- 1.内部类的方法可以访问定义它的类中的数据，包括私有数据
+- 2.内部类可以对同一个包中其他的类隐藏起来
+- 3.只有内部类可以是`私有类`，其他的类必须是公有或包可见（默认）
+
+### 局部内部类
+
+如果某个内部类只使用了一次，可以将其定义在`方法`内
+
+### 匿名内部类
+
+入宫某个内部类只生成一个对象，可以不为这个类命名
+
+
+## 代理
+
+使用代理可以在运行时创建一个实现了一组给定接口的新类
+
+代理类是在`程序运行中`被创建的，一旦创建，它就变成了常规类
+
+关于代理的实现方法，可以看一个示例程序
+
+```java
+package proxy;
+
+import java.lang.reflect.*;
+import java.util.*;
+
+
+public class ProxyTest {
+    public static void main(String[] args) {
+        Object[] elements = new Object[1000];
+
+        for (int i=0; i<elements.length; i++) {
+            Integer value = i + 1;
+            InvocationHandler handler = new TraceHandler(value);
+            // 在这里使用了代理，首先为Comparable添加了代理，然后在InvocationHandler接口中重载invoke方法，将proxy作为第一个参数传递
+            // 此后每当调用被handler代理的方法（比如compareTo），就会执行invoke中的内容
+            Object proxy = Proxy.newProxyInstance(null, new Class[] { Comparable.class }, handler);
+            elements[i] = proxy;
+        }
+
+        Integer key = new Random().nextInt(elements.length) + 1;
+
+        int result = Arrays.binarySearch(elements, key);
+
+        if (result > 0) System.out.println(elements[result]);
+    }
+}
+
+class TraceHandler implements InvocationHandler {
+    private Object target;
+
+    public TraceHandler(Object t) {
+        target = t;
+    }
+
+    // 这里的第一个参数proxy基本用不到，它可以任意命名，和上面的proxy变量没有关系
+    public Object invoke(Object proxy, Method m, Object[] args) throws Throwable {
+        // System.out.println("-- " + proxy);
+        System.out.print(target);
+        System.out.print("." + m.getName() + "(");
+        if (args != null) {
+            for (int i=0; i<args.length; i++) {
+                System.out.print(args[i]);
+                if (i < args.length - 1) System.out.print(", ");
+            }
+        }
+        System.out.println(")");
+
+        return m.invoke(target, args);
+    }
+}
+```
+
