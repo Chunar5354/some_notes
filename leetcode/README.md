@@ -216,3 +216,5 @@ LeetCode刷题记录
 - 220 [Contains Duplicate 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ContainsDuplicate3.md)
 - 221 [Maximal Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximalSquare.md)  **!Dynamic**
 - 222 [Count Complete Tree Nodes](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountCompleteTreeNodes.md)
+- 223 [Rectangle Area](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RectangleArea.md)  **!Other'a approach**
+
