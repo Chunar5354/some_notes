@@ -334,3 +334,135 @@ class TraceHandler implements InvocationHandler {
 }
 ```
 
+
+## 异常
+
+Java中所有的异常对象都派生于`Throwable`类的实例
+
+异常的层次结构可以分为：
+
+- Throwable
+    - Error
+    Error描述了Java运行时系统的内部错误和资源耗尽错误，应用程序一般不会抛出这种异常
+    - Exception
+        - RuntimeException
+        通常是用户编写程序时的错误，包括`错误的类型转换`，`数组访问越界`，`访问null指针`等
+        - 其他异常
+        如`试图在文件尾部读取数据`，`打开一个不存在的文件`等
+
+其中Error和RuntimeException类派生出的异常称为`非受查`异常，其他的异常称为`受查`异常
+
+一个方法必须声明所有可能的受查异常
+
+- 带资源的try语句
+
+```java
+try (Recourse res = ...)
+{
+    work with res
+}
+```
+
+就是在try关键词后面加上参数，通常是文件或数据库之类需要使用后关闭的资源，通过这样带资源的try语句可以`自动关闭资源`，而不需人为地加上fially语句
+
+
+## 断言 assert
+
+断言机制允许在`测试期间`向代码中插入一些检查语句，当代码发布时，插入的检测语句将`自动被移走`
+
+默认情况下啊断言被禁用，需要在运行程序时加上`enableassertions`或`ea`参数
+
+```
+# java -ea MyApp
+```
+
+而禁用某个特定类或包的断言需要加上`disableassertions`或`da`参数
+
+```
+# java -ea:... -da:MyClass MyApp
+```
+
+启用或禁用断言是`类加载器`的功能，因此`不需要`重新编译程序
+
+
+## 泛型
+
+泛型就是在定义类或方法的时候传入一个类型参数，可以使得该泛型类或泛型方法可以被`不同类型的对象`重用
+
+### 泛型类
+
+下面是一个定义简单泛型类的例子
+
+```java
+public class Pair<T> {
+    private T first;
+    private T second;
+
+    public Pair() {
+        first = null;
+        second = null;
+    }
+
+    public Pair(T first, T second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public T getFirst() {
+        return first;
+    }
+
+    public T getSecond() {
+        return second;
+    }
+}
+```
+
+注意类名后面的`<T>`，这种用尖括号括起来的参数就是一个类型参数，可以在创建Pair对象的时候指定任意的类型，比如：
+
+```java
+Pair<String> p = new Pair<>("abc", "123");
+```
+
+这里在前面声明类型的时候指定了String，后面的尖括号可以不用加类型，编译器能够自行推导出该用什么类型
+
+### 泛型方法
+
+在定义泛型方法的时候，需要将类型变量放在返回类型的前面，如
+
+```java
+public static <T> Pair<T> minmax(T[] a) {
+}
+```
+
+同时可以对类型变量加以约束，比如规定该类型必须要实现某些方法，如
+
+```java
+public static <T extends Comparable> Pair<T> minmax(T[] a) {
+}
+```
+
+此时minmax()方法只能被实现了Comparable接口的类所调用，注意这里使用的是`extends`修饰符
+
+### 泛型代码和虚拟机
+
+虚拟机中没有泛型类和泛型方法，他们的类型变量都被`擦除`了
+
+桥方法可以保持多态
+
+### 一些注意事项
+
+- 不能创建参数化类型的数组，如
+
+```java
+Pair<String>[] table = new Pair<String>[10];
+```
+
+- 不能实例化类型变量，如 `new T()`，`new T[]` 或 `T.class`
+
+- 不能构造泛型数组
+
+- 不能在`静态`域或方法中引用类型变量
+
+- 不能抛出或捕获`泛型类对象`，泛型类不能扩展`Throwable`，但可以使用`类型变量`
+
