@@ -90,3 +90,71 @@ PDU（Protocal Data Unit，协议数据单元）是在各层传输的数据包
 应用程序用于请求网络程序的`接口`，而不是应用程序本身
 
 应用层定义了应用程序能够从网络上请求的几种类型的`服务`，并且规定了`数据所采用的格式`
+
+## TCP/IP网络模型
+
+是与OSI参考模型对应的另一种模型，它分为4层
+
+### 1.网络访问层
+
+对应物理层+数据链路层
+
+PPP(Point to Point Protocal)点对点协议，用于在两个网络设备之间建立直接的连接
+
+网络访问层（OSI第二层）还包括一些不属于TCP/IP协议族的协议：
+
+- HDLC（High-level Data Link Control) 高速数据链路控制协议
+- 帧中继（Frame Raley）
+- ATM （Asynchronous Transfer Mode） 异步传输模式
+
+
+- 2.互联网层
+
+对应网络层
+
+主要有三个基本功能：数据分片、寻址、路由
+
+互联网层的主要协议：
+
+- IP （Internet Protocal） 网际协议：负责把数据包从发送方路由到接收方
+- ICMP （Internet Control Message Protocal） Internet控制消息协议
+- ARP （Address Resolution Protocal） 地址解析协议：IP地址--MAC地址
+- RARP （Reverse Address Resolution Protocal） 反向地址解析协议：MAC地址--IP地址
+- BOOTP （Bootstrap Protocal） 自举协议
+- RIP （Routing Information Protocal） 路由信息协议：定义了`跳数`（发送方到接收方经过的路由器个数）
+- OSFP （Open Shortest Path First） 开放式最短路径优先协议
+- BGP （Border Gateway Protocal） 边界网关协议
+
+- 3.传输层
+
+对应传输层
+
+提供了一台主机到另一台主机的数据移动
+
+基本功能包括发送方到接收方的`可靠数据传输`、出站前必要的`消息分段`以及在把数据交给应用层之前`重组分段`
+
+传输层的协议有两个：
+
+- TCP （Transmission Control Protocal） 传输控制协议
+
+`面向连接的`协议，发送数据之前在发送方和接收方之间协商并`维持连接`
+
+- UDP （User Datagram Protocal） 用户数据报协议
+
+`无连接的`协议，以一种“尽最大努力交付”的方式简单地发送数据，在接收方没有任何后续的检验
+
+- 4.应用层
+
+对应会话层+表示层+应用层
+
+协议栈与主机上的应用程序进行交互的地方
+
+TCP/IP服务的运行依赖于两个要素：`守护进程`和`端口地址`
+
+
+## 套接字
+
+特定`IP地址`+`动态分配端口号`的组合称为套接字地址（Socket Address），简称套接字（Socket）
+
+动态分配端口号指的是`1024~65536`之间的，在需要时为发送方和接收方之间提供有限数据交换的`临时`连接时用到的端口号
+
