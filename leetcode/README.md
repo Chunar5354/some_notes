@@ -217,4 +217,5 @@ LeetCode刷题记录
 - 221 [Maximal Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximalSquare.md)  **!Dynamic**
 - 222 [Count Complete Tree Nodes](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountCompleteTreeNodes.md)
 - 223 [Rectangle Area](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RectangleArea.md)  **!Other'a approach**
+- 224 [Basic Calculator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BasicCalculator.md)
 
