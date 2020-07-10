@@ -15,6 +15,8 @@ IPV6 可以支持128位，目前运营商提供的一般为64位
 
 ## ISO/OSI 网络参考模型
 
+ISO/OSI全名 International Organization for Standardization Open Systems Interconnection (国际标准化组织开放系统互连)
+
 前四层为主机层，后三层为介质层
 
 |  数据   | 分层  |
