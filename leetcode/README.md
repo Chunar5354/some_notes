@@ -197,7 +197,7 @@ LeetCode刷题记录
 - 201 [Bitwise And Of Numbers Range](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BitwiseAndOfNumbersRange.md)
 - 202 [Happy Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/HappyNumber.md)
 - 203 [Removed Linked List Elements](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemovedLinkedListElements.md)
-- 204 [Count Primies](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountPrimies.md)
+- 204 [Count Primies](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountPrimies.md)  **Other's approach**
 - 205 [Lsomorphic Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LsomorphicStrings.md)
 - 206 [Reverse Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseLinkedList.md)  **!Other's approach**
 - 207 [Course Schedule](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CourseSchedule.md)
