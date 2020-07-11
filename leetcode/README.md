@@ -219,4 +219,5 @@ LeetCode刷题记录
 - 223 [Rectangle Area](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RectangleArea.md)  **!Other'a approach**
 - 224 [Basic Calculator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BasicCalculator.md)
 - 225 [Implement Stack Using Queues](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementStackUsingQueues.md)
+- 226 [Invert Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InvertBinaryTree.md)
 
