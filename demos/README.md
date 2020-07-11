@@ -1,1 +1,1 @@
-There are some notes with their demos
+There are some demo programs.
