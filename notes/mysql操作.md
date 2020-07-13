@@ -187,6 +187,44 @@ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
 注释掉其中的`bind-address  = 127.0.0.1`这一行  
 然后保存，重启
 
+### 忘记密码
+
+这里针对MariaDB在Centos7系统上的情况，如果忘记root密码，可以首先修改配置文件`vim /etc/my.cnf`
+
+在其中添加
+
+```
+[mysqld]
+skip-grant-tables
+```
+
+这样就能在登录的时候跳过权限认证，然后重启MariaDB
+
+```
+# sudo systemctl restart mariadb
+```
+
+然后在命令行输入`mysql`进入mysql
+
+首先刷新权限
+```
+MaiaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+设置新密码
+
+```
+MaiaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+```
+
+然后再刷新权限
+
+```
+MaiaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+这样新的root密码就修改好了
+
 ## 常用命令
 
 参考[官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
