@@ -360,9 +360,15 @@ show full processlist;
 
 ### 1.中文字符
 
-有时为了在数据库中存储中文字符，需要在创建数据库的时候指定`字符集`，（修改现有的数据库似乎不好用 [参考这里](https://www.twblogs.net/a/5c2afb11bd9eee01606d494d/zh-cn)）
+有时为了在数据库中存储中文字符，需要在创建数据库的时候指定`字符集`
 ```
 create database db_name default charset=utf8;
+```
+
+或者可以修改现有的表
+
+```
+alter table table_name convert to character set utf8;
 ```
   
 ## MYSQL中的索引
