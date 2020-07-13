@@ -593,7 +593,64 @@ finally {
 
 锁是`可重入`的，因为线程可以重复地获得已经持有的锁。锁保持一个`持有计数`来跟踪对`同一个lock`的嵌套调用
 
-- 2.synchronized （没有第一个常用）
+- 2.synchronized
+
+Java中的每一个对象都有一个`内部锁`，如果一个方法用synchronized关键字声明，对象的锁将保护`整个方法`
+
+以下两种方式是等价的
+
+```java
+public synchronized void method() {
+    method body
+}
+```
+
+```java
+public void method() {
+    this.intrinsicLock.lock();
+    try {
+        method body
+    }
+    finally {
+        this.intrinsicLock.unlock();
+    }
+}
+```
+
+内部锁的`wait`方法等价于条件对象的await，`notifyAll`等价于singalAll
+
+如下两个代码是等价的：
+
+```java
+    public synchronized void method() throws InterruptedException{
+        while (!(ok for proceed))
+            wait();
+            
+        method body
+        
+        notifyAll();
+    }
+```
+
+```java
+    private Lock theLock = new ReentrantLock();
+    private Condition theCondition = theLock.newCondition();
+    
+    public void method() throws InterruptedException{
+        theLock.lock();
+        try {
+            while (!(ok for proceed))
+                theCondition.await();
+                
+            method body
+            
+            theCondition.signalAll();
+        }
+        finally {
+            theLock.unlock();
+        }
+    }
+```
 
 ### 公平锁与非公平锁
 
