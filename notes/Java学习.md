@@ -723,3 +723,336 @@ myCondition.await(100, TimeUnitMILLISECONDS)
 这样在该线程被singalAll激活、被中断或者超时时限已达到时，await方法将会返回
 
 - `读/写锁` 如果很多线程从一个数据结构读取数据而很少线程修改其中数据的话，使用读锁是非常有用的
+
+### 阻塞队列
+
+对于一些多线程问题，可以使用一个或多个队列以优雅安全的方式将其形式化，生产者线程向队列插入元素，消费者线程读取它们
+
+当试图向队列添加元素而元素已满，或者想从队列移出元素而队列为空的时候，`阻塞队列`导致线程阻塞，而且队列会自动`平衡负载`
+
+关于阻塞队列，请看一个很实用的例程，该程序能够在指定的目录中搜索全部包含指定关键词的文件，并打印其位置
+
+```java
+package blockingQueue;
+
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class BlockingQueueTest {
+    private static final int FILE_QUEUE_SIZE = 10;
+    private static final int SEARCH_THREADS = 100;
+    // 文件处理
+    private static final File DUMMY = new File("");
+    // 阻塞队列
+    private static BlockingQueue<File> queue = new ArrayBlockingQueue<>(FILE_QUEUE_SIZE);
+
+    public static void main(String[] args) {
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.print("Enter base directory (e.g. /opt/jdk1.8.0/src): ");
+            String directory = in.nextLine();
+            System.out.print("Enter keyword (e.g. volatile): ");
+            String keyword = in.nextLine();
+
+            // 遍历所有文件的线程
+            Runnable enumerator = () -> {
+                try {
+                    enumerate(new File(directory));
+                    // 将一个空文件名放到队列尾，用来标志一个阻塞队列的结束
+                    queue.put(DUMMY);
+                }
+                catch (InterruptedException e) {
+
+                }
+            };
+            new Thread(enumerator).start();
+  
+            for (int i = 1; i <= SEARCH_THREADS; i++) {
+                // 在文件中查找关键词的线程
+                Runnable searcher = () -> {
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            File file = queue.take();
+                            if (file == DUMMY) {
+                                queue.put(file); // 当前队列全部搜索完之后，将DUMMY再次放入队列中，这样可以结束这一线程
+                                done = true;
+                            }
+                            else search(file, keyword);
+                        }
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    catch (InterruptedException e) {
+
+                    }
+                };
+                new Thread(searcher).start();
+            }
+        }
+    }
+
+    public static void enumerate(File directory) throws InterruptedException {
+        File[] files = directory.listFiles();
+        // 找到所有子目录中的文件
+        for (File file: files) {
+            if (file.isDirectory()) enumerate(file);
+            else queue.put(file);
+        }
+    }
+
+    public static void search(File file, String keyword) throws IOException {
+        try (Scanner in = new Scanner(file, "UTF-8")) {
+            int lineNumber = 0;
+            // 在文件的每一行查找关键词
+            while (in.hasNextLine()) {
+                lineNumber++;
+                String line = in.nextLine();
+                if (line.contains(keyword)) {
+                    System.out.printf("%s:%d:%s%n", file.getPath(), lineNumber, line);
+                }
+            }
+        }
+    }
+}
+```
+
+### 线程安全的集合
+
+Java中有一些线程安全的集合，在并发访问时，即使不人为地加锁，也可以进行安全的访问
+
+这些集合包括`ConcurrentHashMap`、`ConcurrentSkipListMap`、`ConcurrentSkipListSet`和`ConcurrentLinkedQueue`
+
+### Callable与Future
+
+`Callable`与Runnable类似，只不过Callable会返回一个结果，结果的类型由类型参数决定
+
+Callable接口是只有一个方法call：
+
+```java
+public interface Callable<V> {
+    V call() throws Exception;
+}
+```
+
+`Future`可以保存异步计算的结果，可以通过Future中的get方法获取这个结果
+
+`FutureTask`包装器可以将Callable转换成Future和Runnable，同时实现二者的接口
+
+下面是一个查找文件中关键词程序的修改版，使用了Callable和Future来实现
+
+```java
+package future;
+
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class FutureTest {
+    public static void main(String[] args) {
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.print("Enter base directory (e.g. /opt/jdk1.8.0/src): ");
+            String directory = in.nextLine();
+            System.out.print("Enter keyword (e.g. volatile): ");
+            String keyword = in.nextLine();
+
+            MatchCounter counter = new MatchCounter(new File(directory), keyword);
+            // FutureTask是一个包装器，可以将Callable转换成Future和Runnable，同时使用二者的方法
+            FutureTask<Integer> task = new FutureTask<>(counter);
+            Thread t = new Thread(task);
+            t.start();
+            try {
+                System.out.println(task.get() + " matching files");
+            }
+            catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            catch (InterruptedException e) {
+
+            }
+        }
+    }
+}
+
+class MatchCounter implements Callable<Integer> {
+    private File directory;
+    private String keyword;
+
+    public MatchCounter(File directory, String keyword) {
+        this.directory = directory;
+        this.keyword = keyword;
+    }
+
+    // 通过重写Callable接口中的call方法，Callable与Runnable类似，当执行多线程时会自动调用call方法中的内容
+    public Integer call() {
+        int count = 0;
+        try {
+            File[] files = directory.listFiles();
+            List<Future<Integer>> results = new ArrayList<>();
+
+            for (File file: files) {
+                if (file.isDirectory()) {
+                    MatchCounter counter = new MatchCounter(file, keyword);
+                    FutureTask<Integer> task = new FutureTask<>(counter);
+                    results.add(task);
+                    Thread t = new Thread(task);
+                    t.start();
+                }
+                else {
+                    if (search(file)) count++;
+                }
+            }
+
+            for (Future<Integer> result: results) {
+                try {
+                    // get是Future对象的一个方法，由于在这里通过FutureTask将MatchCounter对象进行了包装，
+                    // 所以get方法其实是递归调用counter.call，得到的是当前子目录中的count
+                    int res = result.get();
+                    System.out.println(res);
+                    count += res;
+                }
+                catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (InterruptedException e) {
+
+        }
+        return count;
+    }
+
+    public boolean search(File file) {
+        try {
+            try (Scanner in = new Scanner(file, "UTF-8")) {
+                boolean found = false;
+                while (!found && in.hasNextLine()) {
+                    String line = in.nextLine();
+                    if (line.contains(keyword)) found = true;
+                }
+                return found;
+            }
+        }
+        catch (IOException e) {
+            return false;
+        }
+    }
+}
+```
+
+
+### 线程池
+
+构建一个新线程是有代价的，因为涉及到与操作系统的交互，如果程序中创建了大量的`生命周期很短`的线程，应该使用`线程池`
+
+一个线程池中包含许多准备运行的`空闲线程`，将Runnable对象交给线程池，将会有一个线程调用其中的run方法，当run方法退出时，线程`不会死亡`，而是在池中准备为下一个请求提供服务
+
+使用线程池可以`减少并发线程的数目`
+
+可以通过`执行器`（Executer）类来构建线程池
+
+下面是使用线程池实现搜索文件中的关键词实例
+
+```java
+package threadPool;
+
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class ThreadPoolTest {
+    public static void main(String[] args) throws Exception {
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.print("Enter base directory (e.g. /opt/jdk1.8.0/src): ");
+            String directory = in.nextLine();
+            System.out.print("Enter keyword (e.g. volatile): ");
+            String keyword = in.nextLine();
+
+            // 创建一个线程池
+            ExecutorService pool = Executors.newCachedThreadPool();
+
+            MatchCounter counter = new MatchCounter(new File(directory), keyword, pool);
+            // 将一个Callable对象交给线程池去执行
+            Future<Integer> result = pool.submit(counter);
+
+            try {
+                System.out.println(result.get() + " matching files.");
+            }
+            catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            catch (InterruptedException e) {
+
+            }
+            // 关闭线程池，这个操作会先完成已经提交的任务而不再接收新任务
+            pool.shutdown();
+
+            int largestPoolSize = ((ThreadPoolExecutor) pool).getLargestPoolSize();
+            System.out.println("largest pool size = " + largestPoolSize);
+        }
+    }
+}
+
+class MatchCounter implements Callable<Integer> {
+    private File directory;
+    private String keyword;
+    private ExecutorService pool;
+    private int count;
+
+    public MatchCounter(File directory, String keyword, ExecutorService pool) {
+        this.directory = directory;
+        this.keyword = keyword;
+        this.pool = pool;
+    }
+
+    public Integer call() {
+        count = 0;
+        try {
+            File[] files = directory.listFiles();
+            List<Future<Integer>> results = new ArrayList<>();
+
+            for (File file: files) {
+                if (file.isDirectory()) {
+                    MatchCounter counter = new MatchCounter(file, keyword, pool);
+                    Future<Integer> result = pool.submit(counter);
+                    results.add(result);
+                }
+                else {
+                    if (search(file)) count++;
+                }
+            }
+
+            for (Future<Integer> result: results) {
+                try {
+                    count += result.get();
+                }
+                catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (InterruptedException e) {
+
+        }
+        return count;
+    }
+
+    public boolean search(File file) {
+        try {
+            try (Scanner in = new Scanner(file, "UTF-8")) {
+                boolean found = false;
+                while (!found && in.hasNextLine()) {
+                    String line = in.nextLine();
+                    if (line.contains(keyword)) found = true;
+                }
+                return found;
+            }
+        }
+        catch (IOException e) {
+            return false;
+        }
+    }
+}
+```
+
