@@ -54,7 +54,7 @@
 
 - 首先创建一个配置文件
 ```
-sudo vim /etc/yum.repos.d/MariaDB.repo
+# sudo vim /etc/yum.repos.d/MariaDB.repo
 ```
 
 官方针对不同的系统给出了不同的配置文件内容，具体可以在[官网](https://downloads.mariadb.org/mariadb/repositories/)查看，比如centos7：
@@ -70,16 +70,16 @@ gpgcheck=1
 
 - 然后可以安装：
 ```
-sudo yum install MariaDB-server MariaDB-client -y
-sudo systemctl start mariadb.service       // 启动mysql
-sudo systemctl enable mariadb.service      // 设置开机自动启动
+# sudo yum install MariaDB-server MariaDB-client -y
+# sudo systemctl start mariadb.service       // 启动mysql
+# sudo systemctl enable mariadb.service      // 设置开机自动启动
 ```
 
 更换源之后如果提示安装包不存在，可以先执行`sudo yum clean all`再进行安装
 
 之后进行安全性的配置：
 ```
-sudo mysql_secure_installation
+# sudo mysql_secure_installation
 ```
 
 输入命令之后根据提示进行配置就可以了
@@ -90,39 +90,39 @@ centos由于有防火墙的存在，默认是无法远程连接mysql的，需要
 
 首先查看当前firewalld的zones：
 ```
-sudo firewall-cmd --get-active-zones
+# sudo firewall-cmd --get-active-zones
 ```
 
 结果中一般只有一个public，如果有其他的，需要为每一个zone都开放端口（将下面的public替换成对应的zone名称）：
 ```
-sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
-sudo firewall-cmd --reload         // 重启防火墙
+# sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
+# sudo firewall-cmd --reload         // 重启防火墙
 ```
 
 - 卸载mysql
 
 首先查看安装了哪些包：
 ```
-yum list installed mariadb*
+# yum list installed mariadb*
 ```
 
 把他们全部卸载掉：
 ```
-yum remove pkg_name
+# yum remove pkg_name
 ```
 
 之后还要删除一些残留的文件
 
 先查看这些文件是否存在：
 ```
-ls /etc/my.cnf
-ll /var/lib/mysql/
+# ls /etc/my.cnf
+# ll /var/lib/mysql/
 ```
 
 删除：
 ```
-rm -rf /etc/my.cnf
-rm -rf /var/lib/mysql/
+# rm -rf /etc/my.cnf
+# rm -rf /var/lib/mysql/
 ```
 
 ## 配置
@@ -182,7 +182,7 @@ drop user 'username'@'host'
 - 对于树莓派
 修改配置文件
 ```
-sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
+# sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 注释掉其中的`bind-address  = 127.0.0.1`这一行  
 然后保存，重启
@@ -229,36 +229,83 @@ MaiaDB [(none)]> FLUSH PRIVILEGES;
 
 参考[官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
-- 首先可以使用`show databases;`命令查看已有数据库
-- 对于已有的数据库，使用`use`命令进入该数据库，比如：`use mysql`（此命令可不加分号）
-- 若想创建一个新的数据库，使用`create`命令:`create database your_name`
-- 进入数据库之后，使用`show tables`命令查看表格
-- 同样可以使用`create`命令来创建表格
-  - `create table your_name (column1 varchar(10), column2 varchar(20), column3 char(1), column4 date)`
-  - 其中，`your_name`为创建的表格名称，`column`为列标签，后面带的参数表示这一列的数据类型和长度
-- 使用`describe`命令查看表格的内容：`describe your_name`
+### 1.新建
 
-### 1.为数据库添加数据
+- 可以使用
+
+```
+show databases;
+```
+查看已有数据库
+
+- 对于已有的数据库，使用`use`命令进入该数据库（此命令可不加分号），比如：
+
+```
+use mysql
+```
+
+- 若想创建一个新的数据库，使用`create`命令:
+```
+create database your_table
+```
+
+- 进入数据库之后，使用
+```
+show tables;
+```
+查看表格
+
+- 同样可以使用`create`命令来创建表格
+
+```
+create table your_table (column1 varchar(10), column2 varchar(20), column3 char(1), column4 date);
+```
+其中，`your_name`为创建的表格名称，`column`为列标签，后面带的参数表示这一列的数据类型和长度
+
+- 使用`describe`命令查看表格的内容：
+
+```
+describe your_table;
+```
+
+### 2.为数据库添加数据
 
 可以从文件中加载数据添加到数据库表格中
 
-- 从文件：首先编辑一个`pet.txt`文件，各项之间用`tab`隔开，没有的值使用`\N`或者`NULL`代替
-  - 如：`Whistler        Gwen    bird    \N      1997-12-09      \N`
-  - 注意这里面的各项要对应创建表格时候的各个列
-  - 使用load命令加载：`LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet`
+- 从文件：首先编辑一个`pet.txt`文件，各项之间用`tab`隔开，没有的值使用`\N`或者`NULL`代替，如：
+
+```
+Whistler        Gwen    bird    \N      1997-12-09      \N
+```
+注意这里面的各项要对应创建表格时候的各个列
+
+然后使用load命令加载：
+
+```sql
+LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet
+```
+
 - 如果需要为表格增加新行，使用`insert`命令
-  - `INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);`
+
+```sql
+INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
+```
   
-### 2.修改数据库中的数据
+### 3.修改数据库中的数据
 
 使用`update`命令
 
-- 如：将name为Browser的宠物birth改为1989-08-31：`UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';`
-  
-### 3.从数据库中提取数据
+如：将name为Browser的宠物birth改为1989-08-31：
+
+```sql
+UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
+```
+
+### 4.从数据库中提取数据
 
 使用`select`命令，主要格式为：
-```
+
+```sql
 SELECT 'what_to_select' // 选择哪一项数据，可以用 * 表示全部数据
 FROM 'which_table' // 从哪一个表格
 WHERE 'conditions_to_satisfy'; // 满足哪些条件
@@ -273,35 +320,35 @@ WHERE 'conditions_to_satisfy'; // 满足哪些条件
   
 - `max()`函数寻找最大值
 
-### 4.删除行
+### 5.删除行
 
-```
+```sql
 DELETE FROM tablename WHERE condition;
 ```
 
 `tablename`为要操作的表，`condition`为删除的行所满足的条件
 
-### 5.为数据分组
+### 6.为数据分组
 
 使用`group by`语句，将表中的行按照所选择的相同值来分组
 
-### 6.LIKE查找
+### 7.LIKE查找
 
 按`like 'b%' '%f' '%w%' `形式查找，也可以使用`_`下划线占位按长度查找
 
-### 7.JOIN方法将两个表关联起来
+### 8.JOIN方法将两个表关联起来
 
 - INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。（NATURAL JOIN）
 - LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。
 - RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。
 
-### 8.AS方法
+### 9.AS方法
 
 `AS`可以将一个一个元素暂时命名为另一个元素，而且不修改原来的元素
 如`...TABLE pet AS p1 ...;`
 或者`SELECT name as n1 FROM pet;`
   
-### 9.日期计算
+### 10.日期计算
 
 使用`TIMESTAMPDIFF()`命令，需要传递三个参数：
 
@@ -312,16 +359,16 @@ DELETE FROM tablename WHERE condition;
   - 其中`DURDATE()`是内置函数，返回当前日期
   - `AS`表示将其前面的内容（TIMESTAMPDIFF那一串）作为其后面的参数（age）显示在pet表格中
   
-### 10.修改表中列的名称、类型
+### 11.修改表中列的名称、类型
 
-```
+```sql
 ALTER TABLE 'tablename'  MODIFY COLUMN 'column_name'  'new_name'  'new_type'    新默认值     新注释;  
 ALTER TABLE   'table1'   MODIFY COLUMN   'column1'    'column2'  'float(4,2)'  DEFAULT NULL  COMMENT '注释';  // 示例
 ```
 
-### 11.插入新列
+### 12.插入新列
 
-```
+```sql
 ALTER TABLE 'tablename'
 	ADD COLUMN 'colomnname' 'type' NOT NULL AFTER `columnname`;
 ```
@@ -331,26 +378,29 @@ ALTER TABLE 'tablename'
 #### 插入自增列
 
 插入名为`id`的自增列并将其设为主键（FIRST表示插入到第一列）
-```
+
+```sql
 ALTER TABLE tablename ADD id INT AUTO_INCREMENT PRIMARY KEY FIRST
 ```
 
 
-### 12.查询前几行或后几行
+### 13.查询前几行或后几行
 
 使用`MILIT`语句，LIMIT后可以接受一个或两个整数参数：
-```
+
+```sql
 SELECT * FROM table LIMIT 5;            // 查询前5行
 SELECT * FROM table LIMIT 5, 10;        // 查询从第6行开始的10行（6-15）
 SELECT * FROM table LIMIT 5, -1;        // 查询第6行到最后一行
 ```
 
 可以通过加上`DESC`倒叙排列来查询后几行：
-```
+
+```sql
 SELECT * FROM table WHERE id>$id ORDER BY id DESC LIMIT 5;     // 查询最后5行
 ```
 
-### 查看当前运行的命令
+### 14.查看当前运行的命令
 
 ```
 show full processlist;
@@ -361,6 +411,7 @@ show full processlist;
 ### 1.中文字符
 
 有时为了在数据库中存储中文字符，需要在创建数据库的时候指定`字符集`
+
 ```
 create database db_name default charset=utf8;
 ```
@@ -380,6 +431,7 @@ alter table table_name convert to character set utf8;
 ### 1.创建INDEX索引
 
 通过ALTER创建：
+
 ```
 ALTER TABLE pet ADD INDEX(name(10));
 ```
@@ -393,6 +445,7 @@ ALTER TABLE pet ADD INDEX(name(10));
 主键是每行都不同的`唯一`值，使用逐渐可以唯一的检索到某一行，在关系型数据库中一个表的主键通常会作为另一个表的外键`foreign key`
 
 通过ALTER创建：
+
 ```
 ALTER TABLE pet ADD PRIMARY KEY(id(10));
 ```
@@ -403,7 +456,7 @@ ALTER TABLE pet ADD PRIMARY KEY(id(10));
 
 ### 3.在创建表时创建索引
 
-```
+```sql
 CREATE TABLE classics (
 author VARCHAR(128),
 title VARCHAR(128),
@@ -432,15 +485,18 @@ EXPLAIN SELECT* FROM pet;
 对于一些重复使用的命令，可以将其保存在文件中调用
 
 ### 在命令行中使用：
+
 ```
 shell> mysql -h host -u user -p < finename
 Enter password: ********
 ```
+
 - 可以加上参数`-t`来使输出的格式与直接在命令行输入SQL命令时的输出格式一致
 - 可以加上参数`-v`来打印所运行的SQL命令
 
 ### 在mysql中使用：
 有两种方法
+
 ```
 mysql> source filename;
 mysql> \. filename
@@ -474,6 +530,7 @@ mysql> \. filename
 ## 事务
 
 使用MYSQL中的事务功能可以撤销一些操作，使用方法：
+
 ```
 BEGIN;
 UPDATE .... ;
@@ -484,6 +541,7 @@ COMMIT;
 在`BEGIN`之后的操作都是暂时性的，直到通过`COMMIT`提交之前他们都是可撤回的
 
 撤回操作使用`ROLLBACK`
+
 ```
 BEGIN;
 UPDATE .... ;
@@ -502,9 +560,11 @@ ROLLBACK;
 LOCK TABLES .... ;
 ```
 备份之后用`UNLOCK`解锁
+
 ```
 UNLOCK TABLES;
 ```
+
 
 mysqldump命令的使用方法：
 ```
@@ -513,6 +573,7 @@ mysqldump -u user -ppassword database
 ```
 
 直接运行该命令会将备份的内容打印在屏幕上，也可以将这些数据保存到文件中，使用`>`符号：
+
 ```
 mysqldump -u user -ppassword database > database.sql
 ```
@@ -520,6 +581,7 @@ mysqldump -u user -ppassword database > database.sql
 然后可以查看该文件，其中的内容包含所有重新创建表的命令和重新填充它们的数据
 
 从备份文件中恢复数据库，使用`<`符号：
+
 ```
 mysqldump -u user -ppassword -D database < database.sql
 // -D表示恢复单个数据库
