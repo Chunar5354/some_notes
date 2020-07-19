@@ -6,11 +6,11 @@
 
 There are some regular patterns of number ones.
 
-There are one '1' in 0~9.
+There are one '1' in 0-9.
 
-And in 0~99, each x0~x9 has a '1', and 10~19 has 10 '1'. So there are `1*10+10=20` '1' in 0~99.
+And in 0-99, each x0-x9 has a '1', and 10-19 has 10 '1'. So there are `1*10+10=20` '1' in 0-99.
 
-And in 0~999, each x00~x99 has 20 '1', and 100~199 has 100 '1', so there are `20*10+100=300` '1' in 0~999.
+And in 0-999, each x00-x99 has 20 '1', and 100-199 has 100 '1', so there are `20*10+100=300` '1' in 0-999.
  
 So we can find the regular pattern. If we count the digit as i, the count of '1' in all the i-digit numbers will be `i * 10^(i-1)`.
 
