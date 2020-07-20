@@ -227,3 +227,4 @@ LeetCode刷题记录
 - 231 [Power Of Two](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PowerOfTwo.md)
 - 232 [Implement Queue Using Stacks](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ImplementQueueUsingStacks.md)
 - 233 [Number Of Digit One](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfDigitOne.md)
+- 234 [Palindrome Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PalindromeLinkedList.md)
