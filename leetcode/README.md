@@ -234,3 +234,4 @@ LeetCode刷题记录
 - 238 [Product Of Array Except Self](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ProductOfArrayExceptSelf.md)   **!Official solution**
 - 239 [Sliding Window Maximum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SlidingWindowMaximum.md)
 - 240 [Search A 2D Matrix 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SearchA2DMatrix2.md)
+- 241 [Different Ways To Add Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DifferentWaysToAddParentheses.md)  **!Divide and conquer**
