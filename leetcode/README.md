@@ -237,3 +237,4 @@ LeetCode刷题记录
 - 241 [Different Ways To Add Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DifferentWaysToAddParentheses.md)  **!Divide and conquer**
 - 242 [Valid Anagram](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidAnagram.md)
 - 257 [BinaryTreePath](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreePath.md)
+- 258 [Add Digits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddDigits.md)
