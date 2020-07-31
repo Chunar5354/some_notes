@@ -1,4 +1,8 @@
-## 安装
+WSGI(Web Server Gateway Interface) Web服务器网关接口，是Python中定义的一种`Web服务器`和`Web应用`之间的通用接口，是一种`协议`
+
+uWSGI是一个web服务器应用，通过它可以实现WSGI协议，部署Django项目的时候性能更好
+
+## 安装uwsgi
 
 在anaconda虚拟环境中：
 
@@ -7,7 +11,7 @@
 # conda install -c conda-forge uwsgi
 ```
 
-## 使用
+## 搭建
 
 ### 测试
 
