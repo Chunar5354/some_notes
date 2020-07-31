@@ -238,3 +238,4 @@ LeetCode刷题记录
 - 242 [Valid Anagram](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidAnagram.md)
 - 257 [BinaryTreePath](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryTreePath.md)
 - 258 [Add Digits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddDigits.md)
+- 260 [Single Number 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber3.md)  **!XOR method**
