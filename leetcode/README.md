@@ -240,3 +240,4 @@ LeetCode刷题记录
 - 258 [Add Digits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddDigits.md)
 - 260 [Single Number 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SingleNumber3.md)  **!XOR method**
 - 262 [Trips And Users](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TripsAndUsers.md)  **!Other's approach**
+- 263 [Ugly Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UglyNumber.md)
