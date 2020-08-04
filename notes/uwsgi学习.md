@@ -161,9 +161,30 @@ module = myproject.wsgi:application
 只需要在`mysite_nginx.conf`中做出如下修改：
 
 ```
+# 测试中使用了最简单的轮询方式
 upstream django {
     server 127.0.0.1:8001;
     server 111.1.1.1:8002; # 在upstream中添加对应服务的IP+PORT
 }
+
+server {
+    
+    location / {
+        proxy_pass  http://django;  将uwsgi_pass改成proxy_pass，并加上http前缀
+        include     /path/to/your/mysite/uwsgi_params;
+    }
+}
 ```
 
+并且启动本地的Django项目时，也要相应的改成http形式
+
+```
+[uwsgi]
+http = :8001
+chdir = /my/own/project/location/
+module = myproject.wsgi:application
+```
+
+而另一个服务器上111.1.1.1:8002的Django按照上面配置即可
+
+重启nginx，在浏览器输入`your_ip:8000`，并多刷新几次，就可以分别得到几个服务器上的响应
