@@ -153,3 +153,17 @@ module = myproject.wsgi:application
 ```
 
 此时可以在浏览器中输入`your_ip:8000`来访问页面，注意两次使用的端口与配置文件`mysite_nginx.conf`中配置的端口的关系
+
+### 负载均衡
+
+为了提高性能，可以将应用部署在多个服务器上，通过nginx的反向代理使得每次请求指向不同的服务器，达到负载均衡的效果
+
+只需要在`mysite_nginx.conf`中做出如下修改：
+
+```
+upstream django {
+    server 127.0.0.1:8001;
+    server 111.1.1.1:8002; # 在upstream中添加对应服务的IP+PORT
+}
+```
+
