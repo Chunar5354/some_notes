@@ -242,3 +242,4 @@ LeetCode刷题记录
 - 262 [Trips And Users](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TripsAndUsers.md)  **!Other's approach**
 - 263 [Ugly Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UglyNumber.md)
 - 264 [Ugly Number 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UglyNumber2.md)
+- 268 [Missing Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MissingNumber.md)
