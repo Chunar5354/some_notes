@@ -246,3 +246,4 @@ LeetCode刷题记录
 - 273 [Integer To English Words](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntegerToEnglishWords.md)
 - 274 [H-Index](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/H-Index.md)
 - 275 [H-Index 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/H-Index2.md)
+- 278 [First Bad Version](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstBadVersion.md)
