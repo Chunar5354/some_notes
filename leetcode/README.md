@@ -248,3 +248,4 @@ LeetCode刷题记录
 - 275 [H-Index 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/H-Index2.md)
 - 278 [First Bad Version](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstBadVersion.md)
 - 279 [Perfect Squares](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PerfectSquares.md)  **!Other's approach**
+- 282 [Expression Add Operators](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ExpressionAddOperators.md)  **!Official solution**
