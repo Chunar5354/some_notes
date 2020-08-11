@@ -249,3 +249,4 @@ LeetCode刷题记录
 - 278 [First Bad Version](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstBadVersion.md)
 - 279 [Perfect Squares](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PerfectSquares.md)  **!Other's approach**
 - 282 [Expression Add Operators](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ExpressionAddOperators.md)  **!Official solution**
+- 283 [Move Zeros](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MoveZeros.md)
