@@ -251,4 +251,5 @@ LeetCode刷题记录
 - 282 [Expression Add Operators](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ExpressionAddOperators.md)  **!Official solution**
 - 283 [Move Zeros](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MoveZeros.md)
 - 284 [Peeking Iterator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PeekingIterator.md)
-- 287 [Find The Duplicate Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindTheDuplicateNumber.md)
+- 287 [Find The Duplicate Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindTheDuplicateNumber.md)  **!Tortoise and the hare**
+- 289 [Game Of Life](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GameOfLife.md)
