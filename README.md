@@ -27,6 +27,7 @@
 - [.sh执行文件](https://github.com/Chunar5354/some_notes/blob/master/notes/Linux%E4%B8%ADsh%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6.md)
 - [Linux系统相关知识点](https://github.com/Chunar5354/some_notes/blob/master/notes/LinuxNotes.md)
 - [服务器配置SSL证书](https://github.com/Chunar5354/some_notes/blob/master/notes/Apache%E9%85%8D%E7%BD%AESSL.md)
+- [计算机系统学习](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 
 ## 关于爬虫的
 
