@@ -255,3 +255,4 @@ LeetCode刷题记录
 - 289 [Game Of Life](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GameOfLife.md)
 - 290 [Word Pattern](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WordPattern.md)
 - 292 [Nim Game](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NimGame.md)
+- 295 [Find Median From Data Stream](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindMedianFromDataStream.md)  **!Official solution**
