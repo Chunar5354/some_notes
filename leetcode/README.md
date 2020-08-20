@@ -258,3 +258,4 @@ LeetCode刷题记录
 - 295 [Find Median From Data Stream](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindMedianFromDataStream.md)  **!Official solution**
 - 297 [Serialize And Deserialize Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SerializeAndDeserializeBinaryTree.md)
 - 299 [Bulls And Cows](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BullsAndCows.md)
+- 300 [Longest Increasing Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingSubsequence.md)  **!Official solution**
