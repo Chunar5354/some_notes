@@ -259,4 +259,4 @@ LeetCode刷题记录
 - 297 [Serialize And Deserialize Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SerializeAndDeserializeBinaryTree.md)
 - 299 [Bulls And Cows](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BullsAndCows.md)
 - 300 [Longest Increasing Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingSubsequence.md)  **!Official solution**
-- 301 [RemoveInvalidParentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveInvalidParentheses.md)  **!Not finished**
+- 301 [Remove Invalid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveInvalidParentheses.md)  **!Not finished**
