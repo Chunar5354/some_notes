@@ -261,3 +261,4 @@ LeetCode刷题记录
 - 300 [Longest Increasing Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingSubsequence.md)  **!Official solution**
 - 301 [Remove Invalid Parentheses](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveInvalidParentheses.md)  **!Not finished**
 - 303 [Range Sum Query](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RangeSumQuery.md)
+- 304 [Range Sum Query 2D](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RangeSumQuery2D.md)
