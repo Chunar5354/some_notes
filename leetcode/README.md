@@ -264,3 +264,5 @@ LeetCode刷题记录
 - 304 [Range Sum Query 2D](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RangeSumQuery2D.md)
 - 305 [Additive Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AdditiveNumber.md)
 - 306 [Range Sum Query - Mutable](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RangeSumQuery-Mutable.md)  **!Official approach**
+- 307 [Best Time To Buy And Sell Stock With Cooldown](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeToBuyAndSellStockWithCooldown.md)  **!Dynamic program**
+- 309 [Minumum Height Trees](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinumumHeightTrees.md)  **!Other's approach**
