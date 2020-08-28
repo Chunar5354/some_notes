@@ -266,3 +266,4 @@ LeetCode刷题记录
 - 306 [Range Sum Query - Mutable](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RangeSumQuery-Mutable.md)  **!Official approach**
 - 307 [Best Time To Buy And Sell Stock With Cooldown](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BestTimeToBuyAndSellStockWithCooldown.md)  **!Dynamic program**
 - 309 [Minumum Height Trees](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinumumHeightTrees.md)  **!Other's approach**
+- 312 [Burst Balloons](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BurstBalloons.md)  **!Dynamic program**
