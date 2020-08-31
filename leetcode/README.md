@@ -269,3 +269,4 @@ LeetCode刷题记录
 - 312 [Burst Balloons](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BurstBalloons.md)  **!Dynamic program**
 - 313 [Super Ugly Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SuperUglyNumber.md)
 - 315 [Count Of Smaller Numbers After Self](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountOfSmallerNumbersAfterSelf.md)  **!Binary search tree**
+- 316 [Remove Duplicate Letters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicateLetters.md)  **!Other's approach**
