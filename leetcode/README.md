@@ -270,3 +270,4 @@ LeetCode刷题记录
 - 313 [Super Ugly Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SuperUglyNumber.md)
 - 315 [Count Of Smaller Numbers After Self](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountOfSmallerNumbersAfterSelf.md)  **!Binary search tree**
 - 316 [Remove Duplicate Letters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicateLetters.md)  **!Other's approach**
+- 318 [Maximum Product Of Word Lengths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumProductOfWordLengths.md)  **!Other's approach**
