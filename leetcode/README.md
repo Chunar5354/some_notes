@@ -272,3 +272,4 @@ LeetCode刷题记录
 - 316 [Remove Duplicate Letters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveDuplicateLetters.md)  **!Other's approach**
 - 318 [Maximum Product Of Word Lengths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumProductOfWordLengths.md)  **!Other's approach**
 - 319 [Bulb Switcher](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BulbSwitcher.md)
+- 321 [Create Maximum Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CreateMaximumNumber.md)
