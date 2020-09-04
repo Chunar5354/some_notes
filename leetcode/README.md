@@ -273,3 +273,4 @@ LeetCode刷题记录
 - 318 [Maximum Product Of Word Lengths](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumProductOfWordLengths.md)  **!Other's approach**
 - 319 [Bulb Switcher](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BulbSwitcher.md)
 - 321 [Create Maximum Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CreateMaximumNumber.md)
+- 322 [Coin Change](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CoinChange.md)  **!Greedy-dynamic program**
