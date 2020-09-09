@@ -278,3 +278,4 @@ LeetCode刷题记录
 - 326 [Power Of Three](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PowerOfThree.md)
 - 327 [Count Of Range Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountOfRangeSum.md)  **!Binary search tree**
 - 328 [Odd Even Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/OddEvenLinkedList.md)
+- 329 [Longest Increasing Path In A Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingPathInAMatrix.md)  **!Dynamic programming**
