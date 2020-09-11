@@ -280,3 +280,4 @@ LeetCode刷题记录
 - 328 [Odd Even Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/OddEvenLinkedList.md)
 - 329 [Longest Increasing Path In A Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingPathInAMatrix.md)  **!Dynamic programming**
 - 330 [Patching Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PatchingArray.md)  **!Other's approach**
+- 331 [Verify Preorder Serialization Of A Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/VerifyPreorderSerializationOfABinaryTree.md) **!Other's approach**
