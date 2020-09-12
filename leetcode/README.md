@@ -281,3 +281,4 @@ LeetCode刷题记录
 - 329 [Longest Increasing Path In A Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestIncreasingPathInAMatrix.md)  **!Dynamic programming**
 - 330 [Patching Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PatchingArray.md)  **!Other's approach**
 - 331 [Verify Preorder Serialization Of A Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/VerifyPreorderSerializationOfABinaryTree.md) **!Other's approach**
+- 332 [Reconstruct Ltinerary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReconstructLtinerary.md)  **DFS**
