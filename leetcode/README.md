@@ -282,3 +282,4 @@ LeetCode刷题记录
 - 330 [Patching Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PatchingArray.md)  **!Other's approach**
 - 331 [Verify Preorder Serialization Of A Binary Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/VerifyPreorderSerializationOfABinaryTree.md) **!Other's approach**
 - 332 [Reconstruct Ltinerary](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReconstructLtinerary.md)  **DFS**
+- 334 [Increasing Triplet Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IncreasingTripletSubsequence.md)
