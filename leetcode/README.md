@@ -285,3 +285,4 @@ LeetCode刷题记录
 - 334 [Increasing Triplet Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IncreasingTripletSubsequence.md)
 - 335 [Self Crossing](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SelfCrossing.md)  **!Other's approach**
 - 336 [Palindrome Paris](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PalindromeParis.md)  **!Other's approach**
+- 338 [Counting Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountingBits.md)
