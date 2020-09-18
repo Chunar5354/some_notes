@@ -286,3 +286,4 @@ LeetCode刷题记录
 - 335 [Self Crossing](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SelfCrossing.md)  **!Other's approach**
 - 336 [Palindrome Paris](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PalindromeParis.md)  **!Other's approach**
 - 338 [Counting Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountingBits.md)
+- 341 [Flatten Nested List Iterator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenNestedListIterator.md)
