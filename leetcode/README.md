@@ -287,3 +287,4 @@ LeetCode刷题记录
 - 336 [Palindrome Paris](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PalindromeParis.md)  **!Other's approach**
 - 338 [Counting Bits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountingBits.md)
 - 341 [Flatten Nested List Iterator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenNestedListIterator.md)
+- 342 [Power Of Four](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PowerOfFour.md)
