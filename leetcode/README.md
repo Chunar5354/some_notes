@@ -289,3 +289,4 @@ LeetCode刷题记录
 - 341 [Flatten Nested List Iterator](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenNestedListIterator.md)
 - 342 [Power Of Four](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PowerOfFour.md)
 - 343 [Integer Break](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntegerBreak.md)
+- 344 [Reverse String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseString.md)
