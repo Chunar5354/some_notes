@@ -291,3 +291,4 @@ LeetCode刷题记录
 - 343 [Integer Break](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntegerBreak.md)
 - 344 [Reverse String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseString.md)
 - 345 [Reserve Vowels Of A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReserveVowelsOfAString.md)
+- 347 [Top K Frequent Elements](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TopKFrequentElements.md)
