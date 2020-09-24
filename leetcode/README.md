@@ -292,3 +292,4 @@ LeetCode刷题记录
 - 344 [Reverse String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReverseString.md)
 - 345 [Reserve Vowels Of A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReserveVowelsOfAString.md)
 - 347 [Top K Frequent Elements](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/TopKFrequentElements.md)
+- 349 [Intersection Of Two Arrays](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntersectionOfTwoArrays.md)
