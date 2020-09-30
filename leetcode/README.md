@@ -298,3 +298,4 @@ LeetCode刷题记录
 - 354 [Russian Doll Envelopes](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RussianDollEnvelopes.md)
 - 355 [Design Twitter](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DesignTwitter.md)
 - 357 [Count Numbers With Unique Digits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountNumbersWithUniqueDigits.md)
+- 363 [Max Sum Of Rectangle No Larger Than K](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaxSumOfRectangleNoLargerThanK.md)  **!Other's approach**
