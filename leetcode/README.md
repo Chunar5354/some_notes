@@ -301,3 +301,4 @@ LeetCode刷题记录
 - 363 [Max Sum Of Rectangle No Larger Than K](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaxSumOfRectangleNoLargerThanK.md)  **!Other's approach**
 - 365 [Water And Jug Problem](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WaterAndJugProblem.md)
 - 367 [Valid Perfect Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPerfectSquare.md)
+- 368 [Largest Divisible Subset](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestDivisibleSubset.md)
