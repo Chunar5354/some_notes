@@ -302,3 +302,4 @@ LeetCode刷题记录
 - 365 [Water And Jug Problem](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WaterAndJugProblem.md)
 - 367 [Valid Perfect Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPerfectSquare.md)
 - 368 [Largest Divisible Subset](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestDivisibleSubset.md)
+- 371 [Sum Of Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumOfTwoIntegers.md)  **Other's approach**
