@@ -303,3 +303,4 @@ LeetCode刷题记录
 - 367 [Valid Perfect Square](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ValidPerfectSquare.md)
 - 368 [Largest Divisible Subset](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LargestDivisibleSubset.md)
 - 371 [Sum Of Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumOfTwoIntegers.md)  **Other's approach**
+- 372 [Super Pow](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SuperPow.md)  **Recursing method**
