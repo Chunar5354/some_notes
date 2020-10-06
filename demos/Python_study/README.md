@@ -292,6 +292,37 @@ f = lambda x,y : x+y
 # 生成一个元素为从0到9中偶数的平方的列表
 ```
 
+## map, filter 和 reduce
+
+这三个函数可以作用在可迭代对象上
+
+map将被传入的函数作用在可迭代对象的每一个元素上
+
+```python
+def inc(x):
+    return x + 10
+a = list(map(inc, [1, 2, 3, 4]))
+# a = [11, 12, 13, 14]
+```
+
+filter为可迭代对象进行筛选
+
+```python
+a = list(filter((lambda x: x > 0), range(-1, 5))
+# a = [1, 2, 3, 4]
+```
+
+reduce将可迭代对象中的元素进行合并
+
+在Python3中，recude是functools中的一个方法，使用时需要导入
+
+```python
+from functools import reduce
+
+a = reduce((lambda x, y: x + y), [1, 2, 3, 4])
+# a = 10
+```
+
 ## 生成器
 
 是一个可迭代对象，但它并不一次性得出这个对象的全部内容，而是在需要的时候才产生结果，这样能够节省内存
