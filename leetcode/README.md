@@ -305,3 +305,4 @@ LeetCode刷题记录
 - 371 [Sum Of Two Integers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumOfTwoIntegers.md)  **Other's approach**
 - 372 [Super Pow](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SuperPow.md)  **Recursing method**
 - 373 [Find K Pairs With Smallest Sums](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindKPairsWithSmallestSums.md)  **Heap**
+- 374 [Guess Number Higher Or Lower](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower.md)
