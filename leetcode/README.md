@@ -306,3 +306,4 @@ LeetCode刷题记录
 - 372 [Super Pow](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SuperPow.md)  **Recursing method**
 - 373 [Find K Pairs With Smallest Sums](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindKPairsWithSmallestSums.md)  **Heap**
 - 374 [Guess Number Higher Or Lower](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower.md)
+- 375 [Guess Number Higher Or Lower 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower2.md)  **Recursing and 2D cache**
