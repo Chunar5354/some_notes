@@ -307,3 +307,4 @@ LeetCode刷题记录
 - 373 [Find K Pairs With Smallest Sums](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindKPairsWithSmallestSums.md)  **Heap**
 - 374 [Guess Number Higher Or Lower](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower.md)
 - 375 [Guess Number Higher Or Lower 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower2.md)  **Recursing and 2D cache**
+- 376 [Wiggle Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WiggleSubsequence.md)  **!Other's approach**
