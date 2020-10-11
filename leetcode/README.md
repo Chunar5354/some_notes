@@ -308,3 +308,4 @@ LeetCode刷题记录
 - 374 [Guess Number Higher Or Lower](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower.md)
 - 375 [Guess Number Higher Or Lower 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/GuessNumberHigherOrLower2.md)  **Recursing and 2D cache**
 - 376 [Wiggle Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WiggleSubsequence.md)  **!Other's approach**
+- 377 [Combination Sum 4](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum4.md)  **!Dynamic proramming**
