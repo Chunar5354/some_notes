@@ -310,3 +310,4 @@ LeetCode刷题记录
 - 376 [Wiggle Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/WiggleSubsequence.md)  **!Other's approach**
 - 377 [Combination Sum 4](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CombinationSum4.md)  **!Dynamic proramming**
 - 378 [Kth Smallest ELement In A Sorted Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/KthSmallestELementInASortedMatrix.md)  **!Other's approach**
+- 380 [Insert Delete GetRandom O(1)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InsertDeleteGetRandomO(1).md)
