@@ -312,3 +312,4 @@ LeetCode刷题记录
 - 378 [Kth Smallest ELement In A Sorted Matrix](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/KthSmallestELementInASortedMatrix.md)  **!Other's approach**
 - 380 [Insert Delete GetRandom O(1)](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InsertDeleteGetRandomO(1).md)
 - 381 [Insert Delete GetRandom O(1) - Duplicates allowed](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/InsertDeleteGetRandomO(1)-DuplicatesAllowed.md)
+- 382 [Linked List Random Node](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListRandomNode.md)
