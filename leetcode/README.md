@@ -315,3 +315,4 @@ LeetCode刷题记录
 - 382 [Linked List Random Node](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LinkedListRandomNode.md)
 - 383 [Ransom Note](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RansomNote.md)
 - 384 [Shuffle An Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ShuffleAnArray.md)
+- 385 [Mini Parser](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MiniParser.md)
