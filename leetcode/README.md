@@ -318,3 +318,4 @@ LeetCode刷题记录
 - 385 [Mini Parser](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MiniParser.md)
 - 386 [Lexicographical Numbers](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LexicographicalNumbers.md)  **DFS+Tree**
 - 387 [First Unique Character in a String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FirstUniqueCharacterInAString.md)
+- 388 [Longest Absolute File Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestAbsoluteFilePath.md)
