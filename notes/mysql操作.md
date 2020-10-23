@@ -588,3 +588,206 @@ mysqldump -u user -ppassword -D database < database.sql
 ```
 
 
+# MySQL必知必会
+
+SQL(Structured Query Language，结构化查询语言)，是专门用来与数据库通信的语言
+
+## MySQL简介
+
+对于数据库的所有操作都是通过`DBMS`（数据库管理系统）完成的，MySQL就是一种DBMS
+
+DBMS可分为两类：基于`共享文件系统`的DBMS和基于`客户机-服务器`的DBMS，前者常用于较低端的桌面用途
+
+MySQL，Oracle等数据库是基于客户机-服务器的数据库，服务器部分是负责所有数据访问和处理的一个`软件`，且只有服务器软件与数据文件打交道；客户机是与`用户`打交道的软件
+
+## 查询SELECT
+
+- WHERE后可以添加BETWEEN...AND语句来实现范围查找，如
+
+```sql
+SELECT name FROM table1 WHERE id BETWEEN 1 and 10;
+```
+
+- 查找NULL值的时候需要使用`IS NULL`来匹配，而不是等号
+
+- 在WHERE种，AND操作符的优先级比OR高
+
+## 通配符
+
+通配符必须跟在`LIKE`关键字之后，它可以指示MySQL使用通配符匹配而不是直接相等匹配
+
+- `%` 表示任意字符出现`任意次数`
+
+```sql
+... WHERE name LIKE 'abc%';
+```
+
+搜索以abc开头的内容，%表示任意字符串
+
+- `_` 表示`单个的`任意字符
+
+## 正则表达式
+
+MySQL中的正则表达式只是正则表达式的一个子集
+
+需要使用关键字`REGEXP`
+
+- 正则表达式中的匹配是包含匹配，而不是相等匹配，即`REGEXE '123'`会匹配到所有包含'123'的字符串
+
+- OR操作：`'123|456'`会匹配包含'123'或'465'的字符串
+
+- `[]`可以匹配括号中的字符之一，`'[123]'`可以匹配到1、2或3
+
+- 如果要否定一个字符集，可以在括号里面的开始处加上`^`，即`'[^123]'`可以匹配除了1、2或3之外的任意字符
+
+- 可以使用`-`来指定匹配范围，如`'[1-9]'`匹配1到9的数字，而`'[a-z]'`匹配任意字母
+
+- 通过`\\`来将特殊字符转义
+
+- 通过`*`指定任意多个字符的匹配，如`'s*'`可以匹配任意多个s（包括0个），`+`表示一个或多个，`?`表示0个或1个，还可以通过`{n, m}`来指定范围
+
+- 通过`^`来定位在文本的`开始`（注意不要放在括号里，那就变成了否定），通过`$`来定位文本的`结尾`（`'s$'`表示匹配以s结尾的字符串，注意是放在后面）
+
+## 计算字段
+
+在SELECT查找时对数据进行预处理
+
+### 拼接
+
+通过`Concat()`函数将多个字符串拼接在一起
+
+```sql
+SELECT Concat(id, ' - ', name) FROM table1;
+```
+
+输出的形式就是`id - name`的格式
+
+### 去掉空格
+
+`RTrim()`去掉右边的空格
+
+`LTrim()`去掉左边的空格
+
+## 分组
+
+- `HAVING`类似于WHERE，对结果进行筛选，但HAVING作用于分组
+
+## 联结表
+
+- 1.可以通过WHERE子句来联结两个表，如：
+
+```sql
+SELECT id, name, prod_name 
+    FROM vendors, products 
+    WHERE id = vend_id 
+    ORDER BY id;
+```
+
+这种方法称为`等值联结`
+
+- 2.通过`INNER JOIN ... ON ...`关键字来实现`内部联结`
+
+```sql
+SELECT id, name, prod_name 
+    FROM vendors INNER JOIN products 
+    ON id = vend_id 
+    ORDER BY id;
+```
+
+结果与上面相同
+
+- `自联结`，为同一个表使用不同的`别名`
+
+- `外联结`，与内部联结之检索出符合条件的结果不同，外联结可以检索出某个表中的全部行，通过`LEFT`和`RIGHT`关键字来指定
+
+```sql
+SELECT id, name, prod_name 
+    FROM vendors LEFT OUTER JOIN products 
+    ON id = vend_id 
+    order by id;
+```
+
+上面的sql语句会检索出vendors中的所有行（LEFT），如果products中没有匹配的值，将其填充为NULL
+
+## 组合查询
+
+使用`UNION`关键字可以将多个SELECT查询的结果合并为单个结果集返回
+
+```sql
+SELECT id, name FROM vendors 
+    WHERE id = 2 
+UNION 
+SELECT id, name FROM vendors 
+    WHERE id = 1; 
+```
+
+它等价于使用多条WHERE子句
+
+```sql
+SELECT id, name FROM vendors 
+    WHERE id = 2 AND id = 1;
+```
+
+UNION默认自动取消重复的行，如果想要保留重复行，可以使用`UNION ALL`关键字
+
+## 全文本搜索
+
+使用全文本搜索可以更高性能地查找匹配指定关键字的内容
+
+要想使用全文本搜索，需要在创建表的时候指定，或者创建表之后添加全文本属性
+
+- 创建时指定：
+
+```sql
+CREATE TABLE vendors
+(
+    id int(3),
+    name varchar(15),
+    PRIMARY KEY(id),
+    FULLTEXT(name),
+) ENGINE=MyISAM;
+```
+
+注意只有`MyISAM`引擎支持全文本搜索，InnoDB是不支持的
+
+- 创建后修改：
+
+```sql
+ALTER TABLE vendors ADD FULLTEXT INDEX fulltext_article(name);
+```
+
+### 进行全文本搜索
+
+通过`Match()...Against()`函数来执行
+
+```sql
+SELECT * FROM vendors WHERE Match(name) Against('Jack');
+```
+
+就会搜索出name列里面包含`Jack`这个词的所有行，而且会按照`匹配度`对结果进行`排序`
+
+### 查询扩展
+
+全文本搜索只能匹配包含指定关键字的行，而查询扩展能够找到与搜索内容相关，但不含指定关键字的其他行
+
+查询扩展的机制是进行`两次扫描`，第一次使用全文本搜索找到匹配行，然后根据匹配行中的内容选择出一些`有用词`，然后再次根据有用词进行全文本搜索
+
+查询扩展通过在Against函数中加上`WITH QUERY EXPANSION`关键词来实现
+
+```sql
+SELECT * FROM vendors WHERE Match(name) Against('Jack' WITH QUERY EXPANSION);
+```
+
+### 布尔模式
+
+使用布尔模式，除了可以指定需要出现的词，还可以指定不希望出现的词
+
+```sql
+SELECT * FROM vendors WHERE Match(name) Against('Jack -Mary' IN BOOLEAN MODE);
+```
+
+上面的语句查找包含Jack但不包含Mary的结果
+
+注意布尔模式可以用在`非全文本搜索`中，但是速度很慢
+
+
