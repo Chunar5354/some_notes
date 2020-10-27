@@ -82,6 +82,7 @@
 ## 数据库
 
 - [mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/mysql%E6%93%8D%E4%BD%9C.md)
+- [高性能mysql](https://github.com/Chunar5354/some_notes/blob/master/notes/%E9%AB%98%E6%80%A7%E8%83%BDmysql.md)
 - [redis数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/redis%E6%95%B0%E6%8D%AE%E5%BA%93.md)
 
 ## PHP7.0
