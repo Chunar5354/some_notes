@@ -321,3 +321,4 @@ LeetCode刷题记录
 - 388 [Longest Absolute File Path](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestAbsoluteFilePath.md)
 - 389 [Find The Difference](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindTheDifference.md)
 - 390 [Elimination Game](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EliminationGame.md)
+- 391 [Perfect Rectangle](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PerfectRectangle.md)  **!**
