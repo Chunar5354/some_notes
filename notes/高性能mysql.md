@@ -202,3 +202,88 @@ sysbench --version
 ```
 
 关于测试应用参考书上P55
+
+# 服务器性能剖析
+
+通过性能剖析可以找到开销最大的任务，从而针对性的进行优化
+
+将性能定义为完成某件任务所需要的时间度量，即`响应时间`，性能的优化就是在一定的负载下尽可能地降低响应时间
+
+## MySQL剖析
+
+对MySQL进行性能剖析很有用的工具是`慢查询日志`
+
+### 剖析单条查询
+
+- 1.使用SHOW PROFILE
+
+首先启用PROFILE
+
+```sql
+SET profiling = 1;
+```
+
+执行任意查询语句后，使用
+
+```sql
+SHOW PROFILES;
+```
+
+它会为查询语句编号，并给出执行时间
+
+也可以使用
+
+```sql
+SHOW PROFILE FOR QUERY 1;
+```
+
+它会给出执行该条查询语句时，执行的每一个步骤及其所需的时间
+
+其中编号1是SHOW PROFILES时给出的Query_ID
+
+- 2.使用SHOW STATUS
+
+`SHOW (GLOBAL) STATUS`命令可以给出数据库的统计信息（通过计数器实现），比如客户端连接数，读写频率等
+
+- 3.使用慢查询日志
+
+通常慢查询是默认关闭的，可以使用
+
+```sql
+SHOW VARIABLES LIKE "%slow_query_log%";
+```
+
+来查看
+
+然后使用
+
+```sql
+SET GLOBAL slow_query_log=1;
+SET GLOBAL slow_query_log_file="your/own/path";
+```
+
+来分别设置开启慢查询日志和日志文件存放位置（CentOS系统日志默认存放位置是`/var/lib/mysql/hostname-slow.log`）
+
+同时还需要设置慢查询时间`long_query_time`（默认是10s）
+
+```sql
+SET GLOBAL long_query_time=1;
+```
+
+注意这种方式只是临时设置，重启MySQL之后会丢失，想要永久设置需要编辑my.cnf文件，添加下面的内容后重启MySQL
+
+```
+[mysqld]
+slow_query_log='ON'
+low_query_log_file="your/own/path"
+long_query_time=1
+```
+
+执行一个延时语句来测试（只要超过设置的long_query_time就会被记录）
+
+```sql
+SELECT SLEEP(3);
+```
+
+然后就可以查看日志文件中记录的内容
+
