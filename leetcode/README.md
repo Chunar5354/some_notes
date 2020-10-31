@@ -325,3 +325,4 @@ LeetCode刷题记录
 - 392 [Is Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IsSubsequence.md)
 - 393 [UTF-8 Validation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UTF-8Validation.md)
 - 394 [Decode String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DecodeString.md)
+- 395 [Longest Substring with At Least K Repeating Characters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestSubstringWithAtLeastKRepeatingCharacters.md)
