@@ -326,3 +326,4 @@ LeetCode刷题记录
 - 393 [UTF-8 Validation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UTF-8Validation.md)
 - 394 [Decode String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DecodeString.md)
 - 395 [Longest Substring with At Least K Repeating Characters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestSubstringWithAtLeastKRepeatingCharacters.md)
+- 396 [Rotate Function](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateFunction.md)  **!Other's approach**
