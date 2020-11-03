@@ -328,3 +328,4 @@ LeetCode刷题记录
 - 395 [Longest Substring with At Least K Repeating Characters](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestSubstringWithAtLeastKRepeatingCharacters.md)
 - 396 [Rotate Function](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RotateFunction.md)  **!Other's approach**
 - 397 [Integer Replacement](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IntegerReplacement.md)
+- 398 [Random Pick Index](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RandomPickIndex.md)
