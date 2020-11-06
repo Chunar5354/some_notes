@@ -331,3 +331,4 @@ LeetCode刷题记录
 - 398 [Random Pick Index](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RandomPickIndex.md)
 - 399 [Evaluate Division](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/EvaluateDivision.md)  **!Graph and DFS**
 - 400 [Nth Digit](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NthDigit.md)
+- 401 [Binary Watch](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryWatch.md)
