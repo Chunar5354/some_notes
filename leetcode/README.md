@@ -334,3 +334,4 @@ LeetCode刷题记录
 - 401 [Binary Watch](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/BinaryWatch.md)
 - 402 [Remove K Digits](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RemoveKDigits.md)  **!Using stack**
 - 403 [Frog Jump](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FrogJump.md)  **!Dynamic programming**
+- 404 [Sum Of Left Leaves](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumOfLeftLeaves.md)
