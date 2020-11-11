@@ -336,3 +336,4 @@ LeetCode刷题记录
 - 403 [Frog Jump](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FrogJump.md)  **!Dynamic programming**
 - 404 [Sum Of Left Leaves](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SumOfLeftLeaves.md)
 - 405 [Convert a Number to Hexadecimal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConvertANumberToHexadecimal.md)
+- 406 [Queue Reconstruction By Height](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/QueueReconstructionByHeight.md)  **!Other's approach**
