@@ -1027,3 +1027,127 @@ MySQL不会使用解析后的SQL语句来进行缓存判断，而是直接使用
 配置内容一般要写在`/etc/my.cnf`里面的`[mysqld]`字段下，这样才能永久的更改配置
 
 如果在运行时动态地修改了全局变量，那么这个修改只会在当前会话之后的会话其效果，可以通过`SHOW GLOBAL VARIABLES`来查看变量的配置情况
+
+## MySQL最小配置文件
+
+尽量不要为MySQL设置太多的配置项以避免陷阱，下面是一个合适的示例配置文件
+
+```
+# /etc/my.cnf
+[mysqld]
+# GENERAL
+datadir                         = /var/lib/mysql   # 数据存储路径
+socket                          = /var/lib/mysql/mysql.sock
+pid_file                        = /var/lib/mysql/mysql.pid
+user                            = mysql
+port                            = 3306
+default_storage_engine          = InnoDB  # 默认存储引擎
+# INNODB
+innodb_buffer_pool_size         = <value>  # 缓冲池，根据情况设置成合适的大小
+innodb_log_file_size            = <value>  # 日志文件大小
+innodb_file_per_table           = 1
+innodb_flush_method             = 0_DIRECT
+# MyISAM
+key_buffer_size                 = <value>
+# LOGGING
+log_error                       = /var/lib/mysql/mysql-error.log
+slow_query_log                  = /var/lib/mysql/mysql-slow.log
+# OTHER
+tmp_table_size                  = 32M
+max_heap_table_size             = 32M
+query_cache_type                = 0
+query_cache_size                = 0
+max_connections                 = <value>
+thread_cache                    = <value>
+table_cache                     = <value>
+open_files_limit                = 65535
+[client]
+socket                          = /var/lib/mysql/mysql.sock
+port                            = 3306
+```
+
+## 配置内存使用
+
+MySQL的内存消耗可以分为可控制内存和不可控制内存
+
+不可控制内存包括MySQL服务器运行、解析查询以及内部管理所消耗的内存
+
+内存配置的步骤：
+
+- 1.确定可以使用的内存上限
+
+- 2.确定每个MySQL连接需要使用多少内存，如排序缓冲和临时表
+
+- 3.确定操作系统及其它程序需要多少内存
+
+- 4.剩余的内存`全部给MySQL的缓存`
+
+MySQL比较重要的缓存包括：
+
+- InnoDB缓冲池
+
+- InnoDB日志文件和MyISAM数据的操作系统缓存
+
+- MyISAM键缓存
+
+- 查询缓存
+
+- 二进制日志和表定义文件的操作系统缓存等无法手动配置的缓存
+
+### InnoDB缓冲池
+
+InnoDB缓冲池会缓存`索引`、`行的数据`、`自适应哈希索引`、`插入缓冲`、`锁`、以及其他`内部数据结构`
+
+InnoDB还使用缓冲池来帮助`延迟写入`，以合并多个写入操作，一起顺序写回
+
+### MyISAM键缓存
+
+MyISAM自身`只缓存索引`，不缓存数据（数据依赖操作系统缓存）
+
+MyISAM默认只有一个键缓存，可以手动创建，在配置文件里添加：
+
+```
+key_buffer_1.key_buffer_size = 1G
+key_buffer_2.key_buffer_size = 1G
+```
+
+就新建了两个名为key_buffer_1和key_buffer_2的键缓存，通过下面的语句来指定使用键缓存：
+
+```sql
+CACHE INDEX t1, t2 IN key_buffer_1;
+```
+
+指定了t1和t2表中的索引使用key_buffer_1来进行缓存，MySQL在表中的索引`读取块时`，会在指定的缓存区内缓存这些快
+
+
+MyISAM键缓存块不要太小，否则会出现`写时读取`的情况:
+
+假设操作系统的页大小是4KB，索引块是1KB，则操作步骤为：
+
+- 1.MyISAM请求从磁盘上读取1KB的块
+
+- 2.操作系统读取4KB的数据并缓存，发送需要的1KB数据给MyISAM
+
+- 3.操作系统丢弃缓存数据以腾出缓存空间
+
+- 4.MyISAM修改1KB的数据块，请求操作系统将其写回磁盘
+
+- 5.因为系统页的单位是4KB，所以操作系统需要先读出`原来的4KB数据`，写入操作系统缓存，再将`被MyISAM修改的1KB数据`修改，然后将整个4KB数据写回磁盘
+
+在第5步中，写回磁盘时发生了写时读取，如果索引块大于4KB则不会发生这种情况
+
+### 线程缓存
+
+线程缓存保存当前没有与连接关联但是准备为后面`新的连接`服务的线程
+
+当新连接创建时，如果缓存中有线程存在，MySQL将从缓存中`删除一个线程`，并分配给新的连接
+
+当连接关闭时，如果线程缓存有空间的话，MySQL会把线程`放进缓存`，否则销毁线程
+
+### 表缓存
+
+表缓存对于MyISAM表比较有用，MySQL会对表进行计数，当打开时计数器递增，关闭时递减，这样在打开一个表时，如果计数器不为0，说明表没有关闭完全，正在使用中，这样做的好处是不需要修改MyISAM的文件就能够加上`使用中标记`
+
+### InnoDB数据字典
+
+InnoDB有自己的表缓存，层为数据字典，每当InnoDB打开一个表，就增加一个对应的对象到数据字典，表关闭的时候也`不会`从数据字典中移除
