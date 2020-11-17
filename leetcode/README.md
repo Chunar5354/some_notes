@@ -342,3 +342,4 @@ LeetCode刷题记录
 - 410 [Split Array Largest Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SplitArrayLargestSum.md)  **!Divide array**
 - 412 [Fizz Buzz](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FizzBuzz.md)
 - 413 [Arthemetic Slices](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArthemeticSlices.md)
+- 414 [Third Maxinum Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ThirdMaxinumNumber.md)
