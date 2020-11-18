@@ -343,3 +343,4 @@ LeetCode刷题记录
 - 412 [Fizz Buzz](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FizzBuzz.md)
 - 413 [Arthemetic Slices](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArthemeticSlices.md)
 - 414 [Third Maximum Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ThirdMaximumNumber.md)
+- 415 [Add Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddStrings.md)
