@@ -344,3 +344,4 @@ LeetCode刷题记录
 - 413 [Arthemetic Slices](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArthemeticSlices.md)
 - 414 [Third Maximum Number](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ThirdMaximumNumber.md)
 - 415 [Add Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddStrings.md)
+- 416 [Partition Equal Subset Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PartitionEqualSubsetSum.md)  **!DP and Greet/DFS**
