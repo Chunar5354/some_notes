@@ -346,3 +346,4 @@ LeetCode刷题记录
 - 415 [Add Strings](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddStrings.md)
 - 416 [Partition Equal Subset Sum](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PartitionEqualSubsetSum.md)  **!DP and Greet/DFS**
 - 417 [Pacfic Atlantic Water Flow](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PacficAtlanticWaterFlow.md)
+- 418 [Strong Password Checker](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/StrongPasswordChecker.md)  **!Didn't finish**
