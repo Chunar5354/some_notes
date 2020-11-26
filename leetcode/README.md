@@ -350,3 +350,4 @@ LeetCode刷题记录
 - 421 [Maximum XOR of Two Numbers in an Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MaximumXOROFTwoNumbersInAnArray.md)  **Other's approach, attention**
 - 423 [Reconstruct Original Digits From English](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReconstructOriginalDigitsFromEnglish.md)
 - 424 [Longest Repeating Character Replacement](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestRepeatingCharacterReplacement.md)  **!Slide window**
+- 427 [Construct Quad Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructQuadTree.md)
