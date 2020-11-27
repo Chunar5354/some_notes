@@ -351,3 +351,4 @@ LeetCode刷题记录
 - 423 [Reconstruct Original Digits From English](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ReconstructOriginalDigitsFromEnglish.md)
 - 424 [Longest Repeating Character Replacement](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestRepeatingCharacterReplacement.md)  **!Slide window**
 - 427 [Construct Quad Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructQuadTree.md)
+- 429 [N-ary Tree Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/N-aryTreeLevelOrderTraversal.md)
