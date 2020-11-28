@@ -352,3 +352,4 @@ LeetCode刷题记录
 - 424 [Longest Repeating Character Replacement](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LongestRepeatingCharacterReplacement.md)  **!Slide window**
 - 427 [Construct Quad Tree](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ConstructQuadTree.md)
 - 429 [N-ary Tree Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/N-aryTreeLevelOrderTraversal.md)
+- 430 [Flatten A Multilevel Doubly Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenAMultilevelDoublyLinkedList.md)
