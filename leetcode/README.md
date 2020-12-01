@@ -354,3 +354,4 @@ LeetCode刷题记录
 - 429 [N-ary Tree Level Order Traversal](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/N-aryTreeLevelOrderTraversal.md)
 - 430 [Flatten A Multilevel Doubly Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenAMultilevelDoublyLinkedList.md)
 - 432 [All O'one Data Structure](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AllO'oneDataStructure.md)  **!Follow up**
+- 433 [Minimum Genetic Mutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumGeneticMutation.md)
