@@ -355,3 +355,4 @@ LeetCode刷题记录
 - 430 [Flatten A Multilevel Doubly Linked List](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FlattenAMultilevelDoublyLinkedList.md)
 - 432 [All O'one Data Structure](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AllO'oneDataStructure.md)  **!Follow up**
 - 433 [Minimum Genetic Mutation](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumGeneticMutation.md)
+- 434 [Number Of Segment In A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfSegmentInAString.md)
