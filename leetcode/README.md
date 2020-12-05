@@ -358,3 +358,4 @@ LeetCode刷题记录
 - 434 [Number Of Segment In A String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfSegmentInAString.md)
 - 435 [Non-overlapping Intervals](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/Non-overlappingIntervals.md)
 - 436 [Find Right Interval](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindRightInterval.md)
+- 437 [Path Sum 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum3.md)  **!Other's approach**
