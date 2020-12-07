@@ -360,3 +360,4 @@ LeetCode刷题记录
 - 436 [Find Right Interval](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindRightInterval.md)
 - 437 [Path Sum 3](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PathSum3.md)  **!Other's approach**
 - 438 [Find All Anagrams in a String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindAllAnagramsInAString.md)
+- 440 [K-th Smallest in Lexicographical Order](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/K-thSmallestInLexicographicalOrder.md)  **Other's approach**
