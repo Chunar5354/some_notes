@@ -23,6 +23,43 @@
 
 重启vscode，就可以安装插件了
 
+# 中文乱码问题
+
+Go语言只支持UTf-8编码，所以在处理GBK编码的中文字符时会出现乱码，可以使用`mahonia`包来处理解码
+
+安装：
+
+```
+# go get github.com/axgle/mahonia
+```
+
+用法示例：
+
+```go
+import (
+	"fmt"
+	"os"
+	"io/ioutil"
+	"github.com/axgle/mahonia"
+)
+
+func main() {
+	f, err := os.Open("test.txt")  // test.txt是GBK编码的文件
+	if err != nil{
+		fmt.Println("file open fail", err)
+	}
+	defer f.Close()
+
+	fd, _ := ioutil.ReadAll(f)
+	decoder := mahonia.NewDecoder("gb18030")  // 设置解码格式
+	if decoder == nil {
+        fmt.Println("deocde error")
+	}
+    str := decoder.ConvertString(string(fd))
+	fmt.Println(str)
+}
+```
+
 # 程序结构
 
 ## 命名
@@ -353,3 +390,122 @@ fmt.Println(titles) // "[{Casablanca} {Cool Hand Luke} {Bullitt}]"
 注意用法：先为要提取到的目标`指定类型`，然后Unmarshal函数就会根据这个类型将json中的`对应元素`提取出来
 
 注意Unmarshal的第一个元素（json对象）类型为`[]byte`，而不是字符串
+
+## 函数
+
+- 如果一个函数的所有返回值都有显式的变量名，在return语句中可以省略操作数，称为`bare return`
+
+下面两种方式是等价的：
+
+```go
+func sub1(x, y int) (z int) {
+	z = x - y
+	return
+}
+
+func sub2(x, y int) int {
+	z := x - y
+	return z
+}
+```
+
+### 匿名函数
+
+只有函数字面量而没给出函数名，称为匿名函数，如下面的例子
+
+```go
+// squares返回一个匿名函数。
+// 该匿名函数每次被调用时都会返回下一个数的平方。
+func squares() func() int {
+    var x int
+    return func() int {
+        x++
+        return x * x
+    }
+}
+func main() {
+    f := squares()
+    fmt.Println(f()) // "1"
+    fmt.Println(f()) // "4"
+    fmt.Println(f()) // "9"
+    fmt.Println(f()) // "16"
+}
+```
+
+在squears和其包含的匿名函数中，存在变量引用，Go用`闭包`来实现函数值
+
+可以将匿名函数理解为一个`指针`，而补货了自由变量的匿名函数就是闭包，闭包同时包含`指针和环境`
+
+#### 迭代变量与匿名函数
+
+看下面的代码，本意是要输出0~7，但结果却是输出8个数字8
+
+问题就在于循环变量的作用域，在循环中给函数传入循环变量时，函数值中记录的是循环变量的`内存地址`，而函数的真正执行是在迭代完成之后，此时i的值已经是8
+
+```go
+var fs []func()
+for i := 0; i < 8; i++ {
+	fs = append(fs, func() {
+		fmt.Println(i)
+	})
+}
+// 等迭代完成之后函数才执行，此时输出的都是8
+for _, f := range fs {
+	f()
+}
+```
+
+### defer函数
+
+通过`defer`语句可以推迟某函数的执行，在函数遇到`异常`，或`返回`的时候，会按照defer语句`后进先出`的顺序执行被defer的函数，如:
+
+```go
+func main() {
+	defer func() {
+		fmt.Println("defer 1")
+	}()
+
+	defer func() {
+		fmt.Println("defer 2")
+	}()
+
+	panic("panic")
+	fmt.Printf("after panic\n")
+}
+
+/* output:
+defer 2
+defer 1
+panic: panic
+
+goroutine 1 [running]:
+        /main.go:14 +0x6f
+exit status 2
+*/
+```
+
+defer通常用在关闭文件、连接以及加锁解锁等操作
+
+### panic+recover
+
+异常捕获，类似于Python中的try...except，recover通常和defer在一起用，在触发panic时，会运行defer的内容，而`recover定义在defer的函数中`，执行完recover后，程序不会终止，而是在panic处`继续向下执行`
+
+有一个很有趣的用法：通过给函数`指定返回值的名称`，结合panic+recover实现不通过return语句来返回非零值
+
+```go
+func main() {
+	c := f(3)
+	fmt.Printf("c: %v", c)
+}
+
+func f(x int) (res int) {
+    defer func() {
+		if p := recover(); p != nil {
+			res = x + 1
+		}
+	}()
+	panic("panic")
+}
+```
+
+显式地指定返回值名称可以在defer中对返回值进行修改
