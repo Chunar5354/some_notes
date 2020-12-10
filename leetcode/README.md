@@ -363,3 +363,4 @@ LeetCode刷题记录
 - 440 [K-th Smallest in Lexicographical Order](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/K-thSmallestInLexicographicalOrder.md)  **Other's approach**
 - 441 [Arranging Coins](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArrangingCoins.md)
 - 442 [Find All Duplicates In An Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindAllDuplicatesInAnArray.md)
+- 443 [String Compression](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/StringCompression.md)
