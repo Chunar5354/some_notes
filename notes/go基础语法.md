@@ -509,3 +509,163 @@ func f(x int) (res int) {
 ```
 
 显式地指定返回值名称可以在defer中对返回值进行修改
+
+
+## 方法
+
+方法是面向对象编程的一个概念，即为某个对象`专门编写的函数`
+
+在go中通过在函数名前放上一个变量来声明一个方法:
+
+```go
+type Point struct{ X, Y float64 }
+
+// traditional function
+func Distance(p, q Point) float64 {
+    return math.Hypot(q.X-p.X, q.Y-p.Y)
+}
+
+// same thing, but as a method of the Point type
+func (p Point) Distance(q Point) float64 {
+    return math.Hypot(q.X-p.X, q.Y-p.Y)
+}
+```
+
+其中第二个Distance就是Point类型的一个方法，指定的参数p(Python中的self，在go中接收器可以任意指定名称)称为方法的`接收器`，两个Distance都可以运行：
+
+```go
+p := Point{1, 2}
+q := Point{4, 6}
+fmt.Println(Distance(p, q)) // "5", function call
+fmt.Println(p.Distance(q))  // "5", method call
+```
+
+除了`指针`和`interface`的任意类型都可以自定义方法
+
+### 通过嵌入结构体来扩展类型
+
+在大的结构体中`包含小的匿名结构体`，然后可以直接通过大结构体名来调用小结构体的`属性和方法`，而不必显式给出小结构体名，就像这些属性和方法就是大结构体中的一样，如:
+
+```go
+type Point struct{ X, Y float64 }
+
+type ColoredPoint struct {
+    Point
+    Color color.RGBA
+}
+
+var cp ColoredPoint
+cp.X = 1  // 直接访问X属性
+fmt.Println(cp.Point.X) // "1"
+cp.Point.Y = 2  // 也可以通过小结构体来访问
+fmt.Println(cp.Y) // "2"
+```
+
+这就类似于`类的继承`，小结构体是`基类`，而大结构体在它的基础上扩展
+
+### 方法值
+
+可以将`选择方法`与`执行方法`两个步骤分开来执行，如:
+
+```go
+type Point struct{ X, Y float64 }
+
+func (p Point) Distance(q Point) float64 {
+    return math.Hypot(q.X-p.X, q.Y-p.Y)
+}
+
+func (p *Point) ScaleBy(factor float64) {
+    p.X *= factor
+    p.Y *= factor
+}
+
+p := Point{1, 2}
+q := Point{4, 6}
+
+distanceFromP := p.Distance        // method value
+fmt.Println(distanceFromP(q))      // "5"
+var origin Point                   // {0, 0}
+fmt.Println(distanceFromP(origin)) // "2.23606797749979", sqrt(5)
+
+scaleP := p.ScaleBy // method value
+scaleP(2)           // p becomes (2, 4)
+scaleP(3)           //      then (6, 12)
+scaleP(10)          //      then (60, 120)
+```
+
+上面的代码中，p.Distance是一个`选择器`，它返回`方法值`（一个将方法`绑定到特定接收器变量`的函数）
+
+也可以先不为方法指定具体的变量，而是使用类型来声明方法表达式，此时这个返回的`函数值`将比原来的方法多接收一个参数（`第一个参数`）用作接收器，如：
+
+```go
+p := Point{1, 2}
+q := Point{4, 6}
+
+distance := Point.Distance   // method expression
+fmt.Println(distance(p, q))  // "5"，这里调用的时候第一个参数是接收器
+fmt.Printf("%T\n", distance) // "func(Point, Point) float64"
+
+scale := (*Point).ScaleBy
+scale(&p, 2)
+fmt.Println(p)            // "{2 4}"
+fmt.Printf("%T\n", scale) // "func(*Point, float64)"
+```
+
+## 接口
+
+接口类型是一种抽象的类型，它不会暴露它`所代表的对象`具有的内部值和方法，而只会表现出它`自己的方法`
+
+对于一个接口类型来说，调用者不知道它是什么，只知道它可以做什么
+
+一个类型可以自由地被另一个满足相同接口的类型`替换`
+
+接口类型用于描述一系列`方法的集合`，实现了这些方法的具体类型是这个接口类型的`实例`
+
+接口类型的实例需要实现接口中的`所有方法`
+
+### 接口的使用方式
+
+- 1.在接口类型中包含`某些方法`
+
+- 2.声明一个接口变量
+
+- 3.将实现了接口中方法的类型`赋值给接口变量`
+
+- 4.通过接口变量直接`调用`对应类型的方法
+
+示例:
+
+```go
+type baseNum struct {
+	value int
+}
+
+// 在接口中包含方法
+type Num interface {
+	PlusOne()
+	AsString() string
+}
+
+func (b *baseNum) PlusOne() {
+	b.value++
+}
+
+func (b *baseNum) AsString() string {
+	return fmt.Sprintf("%v******\n", b.value)
+}
+
+func main() {
+    var n Num
+    // 因为baseNum类型实现了Num接口的方法，所以可以将它赋值给n
+    n = &baseNum{2}
+    // 通过接口调用方法
+	n.PlusOne()
+	fmt.Printf(n.AsString())
+}
+```
+
+### 接口值
+
+接口值由两部分组成：一个`具体的类型(type)`和`那个类型的值(value)`，比如上面的代码中，n的type是*baseNum（指针），而n的value是指向具体结构体{2}的指针
+
+在编译期间并不知道接口将被赋予哪个类型，所以接口值是`动态的`
