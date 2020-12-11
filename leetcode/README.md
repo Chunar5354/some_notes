@@ -364,3 +364,4 @@ LeetCode刷题记录
 - 441 [Arranging Coins](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArrangingCoins.md)
 - 442 [Find All Duplicates In An Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindAllDuplicatesInAnArray.md)
 - 443 [String Compression](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/StringCompression.md)
+- 445 [Add Two Numbers 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AddTwoNumbers2.md)
