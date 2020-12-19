@@ -368,3 +368,4 @@ LeetCode刷题记录
 - 446 [Arithmetic Slices II - Subsequence](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/ArithmeticSlice2-Subsequence.md)  **Dynamic programming**
 - 447 [Number Of Boomrangs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfBoomrangs.md)
 - 448 [Find All Numbers Disappeared in an Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindAllNumbersDisappearedInAnArray.md)
+- 449 [Serialize And Deserialize BST](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SerializeAndDeserializeBST.md)
