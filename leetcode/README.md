@@ -369,3 +369,4 @@ LeetCode刷题记录
 - 447 [Number Of Boomrangs](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/NumberOfBoomrangs.md)
 - 448 [Find All Numbers Disappeared in an Array](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/FindAllNumbersDisappearedInAnArray.md)
 - 449 [Serialize And Deserialize BST](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SerializeAndDeserializeBST.md)
+- 450 [Delete Node in a BST](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/DeleteNodeInABST.md)
