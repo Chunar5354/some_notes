@@ -669,3 +669,162 @@ func main() {
 接口值由两部分组成：一个`具体的类型(type)`和`那个类型的值(value)`，比如上面的代码中，n的type是*baseNum（指针），而n的value是指向具体结构体{2}的指针
 
 在编译期间并不知道接口将被赋予哪个类型，所以接口值是`动态的`
+
+### 类型断言
+
+类型断言是一个使用在接口值上的操作，用于检查它操作对象的动态类型是否和断言的类型匹配
+
+通过类型断言可以判断某个类型是否实现了指定的接口，从而使用接口中的方法
+
+断言的使用方法：`x.(T)`，x是要判断的对象，T是目标类型
+
+注意这里的x必须是一个接口值，可以通过空接口来包装某些类型来实现断言
+
+```go
+type inter interface{}
+var x inter
+x = 1
+a, ok := x.(string)
+fmt.Println(a, ok)
+```
+
+## Goroutine与Channel
+
+### Goroutine
+
+程序的主函数在一个单独的goroutine中运行，称为main goroutine，可以通过go语句来创建新的goroutine：
+
+```go
+f()    // call f(); wait for it to return
+go f() // create a new goroutine that calls f(); don't wait
+```
+
+当主函数返回时，所有的goroutine都会终止
+
+### Channel
+
+Channel是goroutine之间的通信机制
+
+goroutine可以通过channel给其它的goroutine发送`值信息`，channel也有类型，表示它可以发送的信息类型
+
+可以通过make函数创建channel
+
+```go
+ch := make(chan int)
+```
+
+还可以在创建时指定缓存
+
+```go
+ch := make(chan int 3)  // 第三个参数是缓存大小
+```
+
+make创建的是一个对底层数据结构的引用，复制的时候只是复制了引用（类似map）
+
+channel有发送和接收两个主要操做，通过`<-`运算符来实现
+
+```go
+ch <- x  // x向ch发送数据
+x = <- ch  // x接收ch的数据
+<- ch // ch发送出数据，但不接收它
+```
+
+使用close()函数可以关闭channel，被关闭的channel不可以再接收数据，但`已经存在`于channel中的数据可以被读取，channel中没有数据的话，读取时将读到`零值`
+
+#### 不带缓存的channel
+
+基于无缓存的channel的发送操作将导致`发送方goroutine阻塞`，直到另一个goroutine在相同的channel中执行`接收`操作
+
+当发送的值通过channel成功传输之后，两个goroutione可以继续向下执行
+
+反之，如果接收操作先发生，则接收者goroutine将`阻塞`，直到另一个goroutine在相同的channel上执行发送操作
+
+基于无缓存的channel也成为`同步Channels`，因为它将导致两个goroutine执行一次同步操作
+
+#### 串联的channel
+
+channel可以将多个goroutine串联在一起，前面的goroutine输入作为后面goroutine的输出，称为pipeline
+
+可以通过在接收时额外设定一个参数来判断是否接收成功
+
+```go
+go func() {
+    for {
+        x, ok := <-naturals
+        if !ok {
+            break // channel was closed and drained
+        }
+        squares <- x * x
+    }
+    close(squares)
+}()
+```
+
+在依次读取channel时，可以使用range进行遍历，下面的函数与上面有相同的效果
+
+```go
+go func() {
+    for x := range naturals {
+        squares <- x * x
+    }
+    close(squares)
+}()
+```
+
+#### 单向的channel
+
+有时候在某个函数中一个channel只用于写入或只用于发送，此时可以将其定义为单向channel来防止滥用，`chan<-`表示只能写入，`<-chan`表示只能读取
+
+```go
+func counter(out chan<- int) {
+    for x := 0; x < 100; x++ {
+        out <- x
+    }
+    close(out)
+}
+
+func squarer(out chan<- int, in <-chan int) {
+    for v := range in {
+        out <- v * v
+    }
+    close(out)
+}
+
+func printer(in <-chan int) {
+    for v := range in {
+        fmt.Println(v)
+    }
+}
+
+func main() {
+    naturals := make(chan int)
+    squares := make(chan int)
+    go counter(naturals)  // 调用时会隐式将naturals转换为单向channel
+    go squarer(squares, naturals)
+    printer(squares)
+}
+```
+
+在上面的例子中，调用counter函数时会在函数内自动将其转换为单向channel，注意`只是在counter()函数内是单向的`，在main()函数中naturals依然是双向的
+
+#### channel的通常用法
+
+如果要用channel来控制主函数的运行，比如设置定时或者等待某些事件，一般的做法为：在主函数中操作channel的一端，并在主函数之外用一个goroutine来操作channel的`另一端`，比如下面的例子
+
+```go
+go func() {
+	for {
+		select {  // 通过select，当没有输入时，将等待十秒，然后就关闭这个连接
+		case <-time.After(10 * time.Second):
+			c.Close()
+		case mes := <-message:  // 在一个不同于主goroutine的新goroutine中来读取message
+			go echo(c, mes, 1*time.Second)
+		}
+	}
+}()
+
+for input.Scan() {
+	text := input.Text()
+	message <- text  // 在主函数中将输入发送到message channel中
+}
+```
