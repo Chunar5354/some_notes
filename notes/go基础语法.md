@@ -741,6 +741,18 @@ x = <- ch  // x接收ch的数据
 
 基于无缓存的channel也成为`同步Channels`，因为它将导致两个goroutine执行一次同步操作
 
+#### 带缓存到channel
+
+可以通过在make函数中额外指定一个参数来创建带缓存的channel
+
+```go
+ch := make(chan int, 3)  // 一个缓存长度为3的channel
+```
+
+对于带缓存的channel，`写入未满`的channel和`读取非空`的channel都不会引起阻塞
+
+与slice类似，可以使用`len()`函数来计算channel当前的长度，并使用`cap()`函数来计算channel的缓存容量
+
 #### 串联的channel
 
 channel可以将多个goroutine串联在一起，前面的goroutine输入作为后面goroutine的输出，称为pipeline
