@@ -373,3 +373,4 @@ LeetCode刷题记录
 - 451 [Sort Characters By Frequency](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/SortCharactersByFrequency.md)
 - 452 [Minimum Number of Arrows to Burst Balloons](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumNumberOfArrowsToBurstBalloons.md)
 - 453 [Minimum Moves to Equal Array Elements](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/MinimumMovesToEqualArrayElements.md)
+- 454 [4 Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/4Sum2.md)
