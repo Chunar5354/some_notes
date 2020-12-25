@@ -840,3 +840,146 @@ for input.Scan() {
 	message <- text  // 在主函数中将输入发送到message channel中
 }
 ```
+
+#### 同时向多个goroutine传递消息
+
+可以通过`关闭一个channel`来同时向多个goroutine来传递信息
+
+```go
+var done = make(chan struct{})
+
+func cancelled() bool {
+	select {
+	case <-done:
+		return true
+	default:
+		return false
+	}
+}
+
+go func() {
+	os.Stdin.Read(make([]byte, 1))
+	close(done)
+}()
+
+func walkDir(...) {
+	if cancelled() {
+		return
+    ...
+}
+```
+
+上面的代码中，通过一个goroutine来监听标准输入，当有输入（键盘按下）时，关闭done channel
+
+其它的goroutine监听cancelled()函数，当done关闭时，cancelled()返回true，从而通知其它的goroutine程序运行结束
+
+## 基于共享变量的并发
+
+### 竞争条件
+
+数据竞争会在`两个以上`的goroutine并发访问`相同的变量`并且至少其中的一个为`写操作`时发生
+
+所以避免竞争有三种方式：不去写变量、将变量放在单独的goroutine中，通过channel来传递它（`不要使用共享数据通信，而是使用通信来共享数据`）、以及保证同一时刻只有一个goroutine在访问变量（`互斥`）
+
+### 互斥锁 sync.Mutex
+
+在go中，可以使用缓存为1的channel来模拟互斥锁
+
+```go
+var (
+    sema    = make(chan struct{}, 1) // a binary semaphore guarding balance
+    balance int
+)
+
+func Deposit(amount int) {
+    sema <- struct{}{} // acquire token
+    balance = balance + amount
+    <-sema // release token
+}
+
+func Balance() int {
+    sema <- struct{}{} // acquire token
+    b := balance
+    <-sema // release token
+    return b
+}
+```
+
+它等价于使用下面的sync.Mutex互斥锁
+
+```go
+import "sync"
+
+var (
+    mu      sync.Mutex // guards balance
+    balance int
+)
+
+func Deposit(amount int) {
+    mu.Lock()
+    balance = balance + amount
+    mu.Unlock()
+}
+
+func Balance() int {
+    mu.Lock()
+    b := balance
+    mu.Unlock()
+    return b
+}
+```
+
+通常被mutex保护的变量要`紧接着mutex声明`
+
+尽量使用`defer`语句来进行解锁，这样可以保证在复杂的程序分支中仍然能够有效的释放互斥锁
+
+```go
+func Balance() int {
+    mu.Lock()
+    defer mu.Unlock()
+    return balance
+}
+```
+
+go语言中`没有重入锁`，不可重入是为了保证共享变量在程序执行中的关键节点的不变性，不变性包含两层含义：
+
+- 1.渐层含义：没有goroutine访问共享变量
+
+- 2。深层含义：当一个goroutine获取了互斥锁时，能够`断定`被互斥锁保护的变量正处于`不变状态`
+
+### 读写锁 sync.RWMutex
+
+多个goroutine只读共享变量是安全的，只需要保证没有写操作同时运行即可
+
+在这样的场景中可以使用`多读单写`锁(mutiple readers, single writer locl)，go语言提供了读写锁——sync.RWMutex
+
+使用RWMutex锁可以使读操作的性能大幅提升
+
+### 竞争条件检测
+
+在运行程序（go build, go run 或go test时）加上`-race`，会产生一个附带了能够记录所有运行期间对共享变量访问工具的test，它将记录所有对共享变量读写的goroutine的信息
+
+### goroutine与线程的区别
+
+- 1.线程使用`固定`大小的内存块（通常2MB）来做栈，goroutine使用2KB~1GB大小的`动态块`作为栈
+
+- 2.线程是被`内核`调度的，而goroutine是通过go语言`自身的调度器`来调度的，不需要进入内核的上下文，所以开销要低得多
+
+- 3.go调度器通过`GOMAXPROCS`参数来决定同一时刻有多少`操作系统的线程`同时执行go代码，默认是CPU核心数
+
+- 4.goroutine没有ID号
+
+## go中的包
+
+main包用于给go build构建命令一个信息：这个包在编译之后必须调用连接器生成一个`可执行程序`
+
+以`_test.go`为后缀的包由go test命令独立编译
+
+可以在导入包时指定别名以避免冲突，如：
+
+```go
+import (
+    "crypto/rand"
+    mrand "math/rand" // alternative name mrand avoids conflict
+)
+```
