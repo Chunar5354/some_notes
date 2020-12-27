@@ -27,9 +27,11 @@ if err != nil {
 fmt.Printf("%T, %v\n", content, content)
 ```
 
-## json解码
+## json解析
 
-go中的json包编码解码操作都是基于`结构体`来进行的，要想将json字符串解码，首先要创建一个对应格式的结构体
+go中的json包编码解码操作可以基于`结构体`或`map`来进行
+
+### 解析到结构体
 
 比如有下面的json字符串
 
@@ -64,7 +66,7 @@ if json.Unmarshal([]byte(str), &person) == nil {
 }
 ```
 
-### 使用结构体tag
+#### 使用结构体tag
 
 在上面的例子中，因为结构体成员名与json字符串中的键名相同（除了首字母大写），所以在解析时能够直接将对应的值解析到结构体成员中
 
@@ -85,3 +87,31 @@ type Person struct {
 比如上面的PersonName成员，它的tag中值的第一部分用于`指定json对象的名字`，在解码时会将json字符串的"name"字段解析到PersonName成员中，第二部分omitempty表示当结构体成员为空或零值时`不生成`该对象（编码时用到）
 
 此时尽管Person结构体中没有名为Name的成员，依然能够将上面的json字符串成功解析
+
+### 解析到map
+
+因为在go中，结构体不能被遍历（可以通过反射来遍历，但是比较麻烦），所以在有些需要对json进行遍历的情况，解析到map是更好的选择
+
+解析到map比较简单，只需要创建一个键类型为`string`，值类型为可以洁柔任何类型的`interface{}`，同样使用json.Unmarshal()函数来解码：
+
+```go
+str := `{"name":"Jack", "age":26, "friends":["Jerry", "Tom"]}`
+m := make(map[string]interface{}) // 用于接收json对象
+if json.Unmarshal([]byte(str), &m) == nil {
+	fmt.Println("json.Unmarshal result: ", m)
+}
+for k, v := range m {
+	fmt.Printf("%T, %T\n", k, v)
+}
+```
+
+上面代码的输出为：
+
+```
+json.Unmarshal result:  map[age:26 friends:[Jerry Tom] name:Jack]
+string, string
+string, float64
+string, []interface {}
+```
+
+可以看到由于m值的类型式interface{}，所以`无法保证`接收到的json对象在map中的类型，在需要时需要强制类型转换
