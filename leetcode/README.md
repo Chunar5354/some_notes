@@ -376,3 +376,4 @@ LeetCode刷题记录
 - 454 [4 Sum 2](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/4Sum2.md)
 - 455 [Assign Cookies](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/AssignCookies.md)
 - 456 [132 Patterns](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/132Patterns.md)  **!Official solution)
+- 457 [Circular Array Loop](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CircularArrayLoop.md)
