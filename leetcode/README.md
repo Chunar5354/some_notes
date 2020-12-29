@@ -378,3 +378,4 @@ LeetCode刷题记录
 - 456 [132 Patterns](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/132Patterns.md)  **!Official solution**
 - 457 [Circular Array Loop](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CircularArrayLoop.md)
 - 458 [Poor Pig](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PoorPig.md)  **!Other's approach**
+- 459 [Repeated Substring Pattern](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RepeatedSubstringPattern.md)
