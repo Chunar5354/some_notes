@@ -379,3 +379,4 @@ LeetCode刷题记录
 - 457 [Circular Array Loop](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CircularArrayLoop.md)
 - 458 [Poor Pig](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/PoorPig.md)  **!Other's approach**
 - 459 [Repeated Substring Pattern](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/RepeatedSubstringPattern.md)
+- 460 [LFU Cache](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/LFUCache.md)  **Other's approach, to be continued**
