@@ -385,3 +385,4 @@ LeetCode刷题记录
 - 463 [Island Perimeter](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/IslandPerimeter.md)
 - 464 [Can I Win](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CanIWin.md)  **!Other's approach**
 - 466 [Count The Repetitions](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/CountTheRepetitions.md)  **!Other's approach**
+- 467 [Unique Substrings in Wraparound String](https://github.com/Chunar5354/some_notes/blob/master/leetcode/problems/UniqueSubstringsInWraparoundString.md)  **!Other's approach**
