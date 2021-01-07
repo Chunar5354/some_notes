@@ -116,6 +116,3 @@
 
 - [微信小程序开发记录](https://github.com/Chunar5354/some_notes/blob/master/notes/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.md)
 
-## 面试准备
-
-- [面试知识点汇总](https://github.com/Chunar5354/some_notes/tree/master/interview)
