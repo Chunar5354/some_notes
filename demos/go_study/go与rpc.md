@@ -200,6 +200,68 @@ $ protoc --go_out=. hello.proto
 
 生成相应的go代码
 
+## Protobuf的优势
+
+与json类似，protobuf也是一个数据序列化框架，但json是以键值对形式来标识内容的，而protobuf则是以二进制标识number来标记的，所以占用的字节数更少
+
+比如有这样一个seq.proto文件
+
+```protobuf
+syntax = "proto3";
+
+message String {
+    string value = 1;
+}
+```
+
+将其转换为go代码之后，分别用protobuf和json来进行编码：
+
+```go
+func main() {
+	str := &seq.String{Value: "test"}
+	strP, _ := proto.Marshal(str)
+	strJ, _ := json.Marshal(str)
+	fmt.Printf("protobuf:\n%v\t%v\n", len(strP), strP)
+	fmt.Printf("json:\n%v\t%v\n", len(strJ), strJ)
+}
+```
+
+得到结果如下：
+
+```
+protobuf:
+6       [10 4 116 101 115 116]
+json:
+16      [123 34 118 97 108 117 101 34 58 34 116 101 115 116 34 125]
+```
+
+可以看到在protobuf的编码结果中，除了真正的值("test"对应的字节码为(116 101 115 116))，只有两个额外的字节用来进行标识，而在json的编码中则需要12个额外的字节（将json的结果转换为字符串就是{"value":"test"})，所以protobuf能够节省大量的空间，所以性能更好
+
+除了节省空间之外，protobuf编码的速度也更快，分别对上面的String类型进行protobuf和json编码，各执行100000次，查看运行时间：
+
+```go
+func main() {
+	str := &seq.String{Value: "test"}
+	start := time.Now()
+	for i := 0; i < 100000; i++ {
+		proto.Marshal(str)
+	}
+	fmt.Println("protobuf:", time.Since(start))
+	start = time.Now()
+	for i := 0; i < 100000; i++ {
+		json.Marshal(str)
+	}
+	fmt.Println("json:", time.Since(start))
+}
+```
+
+结果为（每次运行可能时间会有变化，但protobuf一定比json快）:
+
+```
+protobuf: 24.9853ms
+json: 43.9747ms
+```
+
 # gRPC
 
 gRPC是Google基于Protobuf开发的跨语言开源ROC框架，基于`HTTP2`协议设计
