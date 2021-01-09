@@ -111,6 +111,7 @@
 
 - [leetcode刷题记录](https://github.com/Chunar5354/some_notes/tree/master/leetcode)
 - [算法题目总结](https://github.com/Chunar5354/some_notes/blob/master/notes/%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%93.md)
+- [二叉搜索树](https://github.com/Chunar5354/some_notes/blob/master/notes/algorithm/BinarySearchTree.md)
 
 ## 微信小程序开发
 
