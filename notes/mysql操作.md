@@ -165,6 +165,14 @@ grant privileges on databasename.tablename to 'username'@'host'
 - `tablename`表示权限针对哪一个表格，如果对于所有表格都赋予该权限，将`tablename`替换成`*`
 - 注意二者之间的`.`不要落下
 - `username`和`host`意义与上面一样
+
+比如：
+
+```
+grant all privileges on DBname.* to 'test_user'@'%' identified by 'pswd123' with grant option;
+```
+
+上面的语句为test_user用户在所有ip地址下经密码pswd123给DBname这个数据库的所有表授权了所有（all）权限
   
 #### 3.撤销权限
 ```
@@ -205,6 +213,8 @@ skip-grant-tables
 ```
 
 然后在命令行输入`mysql`进入mysql
+
+可能会遇到`The MariaDB server is running with the --skip-grant-tables option so it cannot execute this statement`这个问题，其实这里可以不用跳过权限验证，如果有其他用户的话用其他用户进行登录也是可以修改root的密码的
 
 首先刷新权限
 ```
