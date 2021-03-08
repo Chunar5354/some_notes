@@ -136,7 +136,7 @@ $ sudo mysql_secure_installation
 
 ## golang
 
-[官网]()下载安装包
+[官网](https://golang.org/dl/)下载安装包
 
 安装
 
