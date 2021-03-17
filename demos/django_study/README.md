@@ -497,3 +497,60 @@ def write_to_cache(self,username)
 - tips
 
 django-redis的功能不是很全，查询和写入时只能够使用简单的get和set方法，不能使用诸如hash等功能
+
+## Django支持markdown
+
+首先安装Python的markdown模块
+
+```
+$ pip install markdown
+```
+
+在views.py中添加
+
+```python
+import markdown
+
+def some_page(request):
+    ...
+
+    # markdown渲染
+    article.body = markdown.markdown(article.body,
+        extensions=[
+        # 包含 缩写、表格等常用扩展
+        'markdown.extensions.extra',
+        # 语法高亮扩展
+        'markdown.extensions.codehilite',
+        ])
+    
+    ...
+    
+    return render(request, 'some_page.html')
+```
+
+## 前端小知识
+
+在页面中为代码块插入语法高亮
+
+可以到[highlight](https://highlightjs.org/)中去选择样式，然后通过cdn远程部署
+
+将
+
+```xml
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
+```
+
+放到前面head里面
+
+将
+
+```xml
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+<!-- 自动识别代码块-->
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+```
+
+放到页面最后
