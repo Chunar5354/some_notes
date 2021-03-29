@@ -554,3 +554,31 @@ def some_page(request):
 ```
 
 放到页面最后
+
+## 导出依赖文件
+
+- 通过pip
+
+```
+$ pip freeze > requirements.txt
+```
+
+该命令会导出当前环境中的所有Python包，会包含大量的冗余
+
+另一种方法是通过pipreqs导出只在当先路径下Python文件中import的包
+
+- 通过pipreqs
+
+首先安装pipreqs
+
+```
+$ pip install pipreqs
+```
+
+导出依赖：
+
+```
+$ pipreqs ./ --encoding=utf-8 --force
+```
+
+会自动在当前路径下生成`requirements.txt`文件
