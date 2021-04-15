@@ -79,6 +79,7 @@
 - [Go程序接收命令行参数](https://github.com/Chunar5354/some_notes/blob/master/demos/go_study/Go%E7%A8%8B%E5%BA%8F%E6%8E%A5%E6%94%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0.md)
 - [Go读取json文件并解析](https://github.com/Chunar5354/some_notes/blob/master/demos/go_study/Go%E8%AF%BB%E5%8F%96json%E6%96%87%E4%BB%B6%E5%B9%B6%E8%A7%A3%E6%9E%90.md)
 - [Go与RPC](https://github.com/Chunar5354/some_notes/blob/master/demos/go_study/go%E4%B8%8Erpc.md)
+- [Go写入日志到文件](https://github.com/Chunar5354/some_notes/blob/master/notes/go_logger.md)
 
 ## Java学习
 
