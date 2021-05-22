@@ -133,3 +133,5 @@
 
 - [Elasticsearch](https://github.com/Chunar5354/some_notes/blob/master/notes/elasticsearch.md)
 
+- [etcd](https://github.com/Chunar5354/some_notes/blob/master/notes/etcd.md)
+
