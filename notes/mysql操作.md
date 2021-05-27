@@ -1,47 +1,63 @@
-* [安装](#%E5%AE%89%E8%A3%85)
-  * [树莓派上](#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A)
-  * [centos7](#centos7)
-* [配置](#%E9%85%8D%E7%BD%AE)
-* [远程登陆设置](#%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E8%AE%BE%E7%BD%AE)
-  * [创建新用户并授权](#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83)
-    * [1\.创建用户](#1%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7)
-    * [2\.授权](#2%E6%8E%88%E6%9D%83)
-    * [3\.撤销权限](#3%E6%92%A4%E9%94%80%E6%9D%83%E9%99%90)
-    * [4\.删除用户](#4%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7)
-  * [修改远程连接配置文件](#%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-* [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
-  * [1\.为数据库添加数据](#1%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE)
-  * [2\.修改数据库中的数据](#2%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE)
-  * [3\.从数据库中提取数据](#3%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE)
-  * [4\.删除行](#4%E5%88%A0%E9%99%A4%E8%A1%8C)
-  * [5\.为数据分组](#5%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%88%86%E7%BB%84)
-  * [6\.LIKE查找](#6like%E6%9F%A5%E6%89%BE)
-  * [7\.JOIN方法将两个表关联起来](#7join%E6%96%B9%E6%B3%95%E5%B0%86%E4%B8%A4%E4%B8%AA%E8%A1%A8%E5%85%B3%E8%81%94%E8%B5%B7%E6%9D%A5)
-  * [8\.AS方法](#8as%E6%96%B9%E6%B3%95)
-  * [9\.日期计算](#9%E6%97%A5%E6%9C%9F%E8%AE%A1%E7%AE%97)
-  * [10\.修改表中列的名称、类型](#10%E4%BF%AE%E6%94%B9%E8%A1%A8%E4%B8%AD%E5%88%97%E7%9A%84%E5%90%8D%E7%A7%B0%E7%B1%BB%E5%9E%8B)
-  * [11\.插入新列](#11%E6%8F%92%E5%85%A5%E6%96%B0%E5%88%97)
-    * [插入自增列](#%E6%8F%92%E5%85%A5%E8%87%AA%E5%A2%9E%E5%88%97)
-  * [12\.查询前几行或后几行](#12%E6%9F%A5%E8%AF%A2%E5%89%8D%E5%87%A0%E8%A1%8C%E6%88%96%E5%90%8E%E5%87%A0%E8%A1%8C)
-  * [查看当前运行的命令](#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4)
-* [常见问题](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
-  * [1\.中文字符](#1%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6)
-* [MYSQL中的索引](#mysql%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95)
-  * [1\.创建INDEX索引](#1%E5%88%9B%E5%BB%BAindex%E7%B4%A2%E5%BC%95)
-  * [2\.主键](#2%E4%B8%BB%E9%94%AE)
-  * [3\.在创建表时创建索引](#3%E5%9C%A8%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95)
-* [EXPLAIN方法](#explain%E6%96%B9%E6%B3%95)
-* [从文件中调用SQL命令](#%E4%BB%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E8%B0%83%E7%94%A8sql%E5%91%BD%E4%BB%A4)
-  * [在命令行中使用：](#%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8)
-  * [在mysql中使用：](#%E5%9C%A8mysql%E4%B8%AD%E4%BD%BF%E7%94%A8)
-* [规范化](#%E8%A7%84%E8%8C%83%E5%8C%96)
-  * [第一范式](#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F)
-  * [第二范式](#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F)
-  * [第三范式](#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F)
-* [事务](#%E4%BA%8B%E5%8A%A1)
-* [备份及恢复](#%E5%A4%87%E4%BB%BD%E5%8F%8A%E6%81%A2%E5%A4%8D)
-
-
+ * [安装](#%E5%AE%89%E8%A3%85)
+    * [树莓派上](#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A)
+    * [centos7](#centos7)
+  * [配置](#%E9%85%8D%E7%BD%AE)
+  * [远程登陆设置](#%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E8%AE%BE%E7%BD%AE)
+    * [创建新用户并授权](#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83)
+      * [1\.创建用户](#1%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7)
+      * [2\.授权](#2%E6%8E%88%E6%9D%83)
+      * [3\.撤销权限](#3%E6%92%A4%E9%94%80%E6%9D%83%E9%99%90)
+      * [4\.删除用户](#4%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7)
+    * [修改远程连接配置文件](#%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  * [常用命令](#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
+    * [1\.新建](#1%E6%96%B0%E5%BB%BA)
+    * [2\.为数据库添加数据](#2%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE)
+    * [3\.修改数据库中的数据](#3%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE)
+    * [4\.从数据库中提取数据](#4%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE)
+    * [5\.删除行](#5%E5%88%A0%E9%99%A4%E8%A1%8C)
+    * [6\.为数据分组](#6%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%88%86%E7%BB%84)
+    * [7\.LIKE查找](#7like%E6%9F%A5%E6%89%BE)
+    * [8\.JOIN方法将两个表关联起来](#8join%E6%96%B9%E6%B3%95%E5%B0%86%E4%B8%A4%E4%B8%AA%E8%A1%A8%E5%85%B3%E8%81%94%E8%B5%B7%E6%9D%A5)
+    * [9\.AS方法](#9as%E6%96%B9%E6%B3%95)
+    * [10\.日期计算](#10%E6%97%A5%E6%9C%9F%E8%AE%A1%E7%AE%97)
+    * [11\.修改表中列的名称、类型](#11%E4%BF%AE%E6%94%B9%E8%A1%A8%E4%B8%AD%E5%88%97%E7%9A%84%E5%90%8D%E7%A7%B0%E7%B1%BB%E5%9E%8B)
+    * [12\.插入新列](#12%E6%8F%92%E5%85%A5%E6%96%B0%E5%88%97)
+      * [插入自增列](#%E6%8F%92%E5%85%A5%E8%87%AA%E5%A2%9E%E5%88%97)
+    * [13\.查询前几行或后几行](#13%E6%9F%A5%E8%AF%A2%E5%89%8D%E5%87%A0%E8%A1%8C%E6%88%96%E5%90%8E%E5%87%A0%E8%A1%8C)
+    * [14\.查看当前运行的命令](#14%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4)
+  * [常见问题](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+    * [1\.中文字符](#1%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6)
+    * [2\.忘记密码](#2%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81)
+    * [3\.身份验证错误](#3%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF)
+  * [MYSQL中的索引](#mysql%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95)
+    * [1\.创建INDEX索引](#1%E5%88%9B%E5%BB%BAindex%E7%B4%A2%E5%BC%95)
+    * [2\.主键](#2%E4%B8%BB%E9%94%AE)
+    * [3\.在创建表时创建索引](#3%E5%9C%A8%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95)
+  * [EXPLAIN方法](#explain%E6%96%B9%E6%B3%95)
+  * [从文件中调用SQL命令](#%E4%BB%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E8%B0%83%E7%94%A8sql%E5%91%BD%E4%BB%A4)
+    * [在命令行中使用：](#%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8)
+    * [在mysql中使用：](#%E5%9C%A8mysql%E4%B8%AD%E4%BD%BF%E7%94%A8)
+  * [规范化](#%E8%A7%84%E8%8C%83%E5%8C%96)
+    * [第一范式](#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F)
+    * [第二范式](#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F)
+    * [第三范式](#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F)
+  * [事务](#%E4%BA%8B%E5%8A%A1)
+  * [备份及恢复](#%E5%A4%87%E4%BB%BD%E5%8F%8A%E6%81%A2%E5%A4%8D)
+* [MySQL必知必会](#mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A)
+  * [MySQL简介](#mysql%E7%AE%80%E4%BB%8B)
+  * [查询SELECT](#%E6%9F%A5%E8%AF%A2select)
+  * [通配符](#%E9%80%9A%E9%85%8D%E7%AC%A6)
+  * [正则表达式](#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+  * [计算字段](#%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5)
+    * [拼接](#%E6%8B%BC%E6%8E%A5)
+    * [去掉空格](#%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC)
+  * [分组](#%E5%88%86%E7%BB%84)
+  * [联结表](#%E8%81%94%E7%BB%93%E8%A1%A8)
+  * [组合查询](#%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2)
+  * [全文本搜索](#%E5%85%A8%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2)
+    * [进行全文本搜索](#%E8%BF%9B%E8%A1%8C%E5%85%A8%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2)
+    * [查询扩展](#%E6%9F%A5%E8%AF%A2%E6%89%A9%E5%B1%95)
+    * [布尔模式](#%E5%B8%83%E5%B0%94%E6%A8%A1%E5%BC%8F)
 
 ## 安装
 
@@ -195,45 +211,6 @@ drop user 'username'@'host'
 注释掉其中的`bind-address  = 127.0.0.1`这一行  
 然后保存，重启
 
-### 忘记密码
-
-这里针对MariaDB在Centos7系统上的情况，如果忘记root密码，可以首先修改配置文件`vim /etc/my.cnf`
-
-在其中添加
-
-```
-[mysqld]
-skip-grant-tables
-```
-
-这样就能在登录的时候跳过权限认证，然后重启MariaDB
-
-```
-# sudo systemctl restart mariadb
-```
-
-然后在命令行输入`mysql`进入mysql
-
-可能会遇到`The MariaDB server is running with the --skip-grant-tables option so it cannot execute this statement`这个问题，其实这里可以不用跳过权限验证，如果有其他用户的话用其他用户进行登录也是可以修改root的密码的
-
-首先刷新权限
-```
-MaiaDB [(none)]> FLUSH PRIVILEGES;
-```
-
-设置新密码
-
-```
-MaiaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
-```
-
-然后再刷新权限
-
-```
-MaiaDB [(none)]> FLUSH PRIVILEGES;
-```
-
-这样新的root密码就修改好了
 
 ## 常用命令
 
@@ -431,7 +408,60 @@ create database db_name default charset=utf8;
 ```
 alter table table_name convert to character set utf8;
 ```
-  
+
+### 2.忘记密码
+
+这里针对MariaDB在Centos7系统上的情况，如果忘记root密码，可以首先修改配置文件`vim /etc/my.cnf`
+
+在其中添加
+
+```
+[mysqld]
+skip-grant-tables
+```
+
+这样就能在登录的时候跳过权限认证，然后重启MariaDB
+
+```
+# sudo systemctl restart mariadb
+```
+
+然后在命令行输入`mysql`进入mysql
+
+可能会遇到`The MariaDB server is running with the --skip-grant-tables option so it cannot execute this statement`这个问题，其实这里可以不用跳过权限验证，如果有其他用户的话用其他用户进行登录也是可以修改root的密码的
+
+首先刷新权限
+```
+MaiaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+设置新密码
+
+```
+MaiaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+```
+
+然后再刷新权限
+
+```
+MaiaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+这样新的root密码就修改好了
+
+### 3.身份验证错误
+
+在Django中使用MySQL时可能会出现`plugin caching_sha2_password could not be loaded`错误
+
+是因为新版本的MySQL默认使用caching_sha2_password作为身份验证插件，旧版本是mysql_native_password，此时需要换回旧版插件
+
+进入MySQL客户端：
+
+```
+ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'your_password';
+FLUSH PRIVILEGES;
+```
+
 ## MYSQL中的索引
 
 使用索引可以在大型数据库中减少数据搜索的时间

@@ -1,5 +1,3 @@
-学习一下django框架，看看能不能用它结合mysql搭建一个python的服务器
-
 * [安装](#%E5%AE%89%E8%A3%85)
   * [树莓派上(Debian)](#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8Adebian)
   * [centos7](#centos7)
@@ -12,6 +10,17 @@
   * [2\.为数据库添加自定义数据（models）](#2%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AEmodels)
 * [创建用户](#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7)
 * [添加已有的数据库](#%E6%B7%BB%E5%8A%A0%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93)
+  * [实现管理已有数据库](#%E5%AE%9E%E7%8E%B0%E7%AE%A1%E7%90%86%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93)
+* [使用channels模块实现websocket](#%E4%BD%BF%E7%94%A8channels%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0websocket)
+* [设置时区以及中文显示](#%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA%E4%BB%A5%E5%8F%8A%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA)
+* [Django中使用redis作为缓存](#django%E4%B8%AD%E4%BD%BF%E7%94%A8redis%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98)
+  * [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+* [Django支持markdown](#django%E6%94%AF%E6%8C%81markdown)
+* [前端小知识](#%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86)
+* [导出依赖文件](#%E5%AF%BC%E5%87%BA%E4%BE%9D%E8%B5%96%E6%96%87%E4%BB%B6)
+* [修改默认的用户表](#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%9A%84%E7%94%A8%E6%88%B7%E8%A1%A8)
+* [修改用户验证方式](#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F)
+
 
 
 ## 安装
@@ -582,3 +591,132 @@ $ pipreqs ./ --encoding=utf-8 --force
 ```
 
 会自动在当前路径下生成`requirements.txt`文件
+
+
+## 修改默认的用户表
+
+在实际应用中常常需要保存用户的电话号码信息，而Django默认的auth_user表中并没有这个字段，就需要修改默认的用户模型
+
+分为几个步骤
+
+- 1.修改models.py
+
+在某个APP下的models.py中输入下面的内容：
+
+```python
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+ 
+ 
+class UserProfile(AbstractUser):
+	mobile = models.CharField(max_length=11, primary_key=True, verbose_name="手机号", default="", error_messages={'unique': '手机号已存在'})
+	username = models.CharField(max_length=30, verbose_name="用户名", default="")
+ 
+	class Meta:
+		verbose_name = "用户信息"
+		verbose_name_plural = verbose_name
+ 
+	def __str__(self):
+		return self.username
+```
+
+自定义的用户类要继承`AbstractUser`类
+
+这里做了两个比较重大的修改：
+
+一是将mobile设置成了`主键`，它会取代原来默认的自增id主键，新建的表中将没有自增id字段
+
+二是username原本是默认唯一（unique），在UserProfile中将它重写后将不再具有unique属性
+
+- 2.修改settings.py
+
+在settings.py中添加：
+
+```python
+AUTH_USER_MODEL = 'userprofile.UserProfile'
+```
+
+userprofile是我的app名称mUserProfile是类名
+
+- 3.migrate
+
+```
+$ python manage.py makemigrations
+$ python manage.py migrate
+```
+
+注意因为不仅是向原auth_user表添加新字段，还修改了原本的字段（主要是因为取消了原来的自增id主键），所以migrate操作一定要在建库的开始执行，否则可能会报错
+
+如果不是在建库的开始执行，报错的话可以尝试删掉`app/migrations/`下的所有`000x_xxx.py`文件，重新执行makemigrations和migrate
+
+或者可以备份数据后删库重建
+
+执行成功后会在指定的库中创建`userprofile_userprofile`表(app_小写的class)
+
+```
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| password     | varchar(128) | NO   |     | NULL    |       |
+| last_login   | datetime(6)  | YES  |     | NULL    |       |
+| is_superuser | tinyint(1)   | NO   |     | NULL    |       |
+| username     | varchar(30)  | NO   |     | NULL    |       |
+| first_name   | varchar(30)  | NO   |     | NULL    |       |
+| last_name    | varchar(150) | NO   |     | NULL    |       |
+| email        | varchar(254) | NO   |     | NULL    |       |
+| is_staff     | tinyint(1)   | NO   |     | NULL    |       |
+| is_active    | tinyint(1)   | NO   |     | NULL    |       |
+| date_joined  | datetime(6)  | NO   |     | NULL    |       |
+| mobile       | varchar(11)  | NO   | PRI | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+```
+
+注意原来的自增id没有了，而且username也不是unique了
+
+## 修改用户验证方式
+
+大多数的web应用都支持用户名、手机号和邮箱等多种登陆方式，但Django默认只支持用户名，需要对其进行扩展
+
+在某APP的views.py中（可以在任何地方，views.py比较方便）：
+
+```python
+from django.contrib.auth.backends import ModelBackend
+from django.db.models import Q
+
+class CustomBackend(ModelBackend):
+	def authenticate(self, request, username=None, password=None, **kwargs):
+		try:
+            # 传进的username参数等于表中的username，email，mobile中任何一个字段都可以
+			user = UserProfile.objects.get(Q(username=username) | Q(email=username) | Q(mobile=username))
+			if user.check_password(password):
+				return user
+		except Exception as e:
+			return None
+```
+
+然后修改settings.py，添加：
+
+```python
+AUTHENTICATION_BACKENDS = [
+    'userprofile.views.CustomBackend',
+]
+```
+
+userprofile是我的app名，实际改成自己的
+
+然后就可以在登录的时候使用：
+
+```python
+from django.contrib.auth import login
+from django.http import HttpResponse
+
+def user_login(request):
+	...
+	customer_auth = CustomBackend()
+	user = customer_auth.authenticate(request, username=your_usernmae, password=your_password)
+	if user:
+		login(request, user)
+		return HttpResponse('登录成功')
+	else:
+		return HttpResponse('账号或密码有误，请重新输入')
+```
