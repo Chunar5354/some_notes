@@ -425,7 +425,7 @@ $ etcdctl put --lease=694d79f5bb6c6e2e test_lease '123'
 查看当前的所有租约
 
 ```
-$ $ etcdctl lease list
+$ etcdctl lease list
 found 1 leases
 694d79f5bb6c6e2e
 ```
