@@ -208,4 +208,238 @@ sudo docker run -d --name ${node2} \
 
 ## etcdctl操作
 
-etcdctl是etcd自带的命令行客户端，提供了一些简洁的API
+etcdctl是etcd自带的命令行客户端，提供了一些简洁的API，在此记录一些常用的操作
+
+### 增删改查
+
+- 添加键值对`put`
+
+```
+$ etcdctl put greeting 'hello world'
+OK
+```
+
+- 通过键获取值`get`
+
+```
+$ etcdctl get greeting
+greeting
+hello world
+```
+
+- 只读取值`--print-value-only`
+
+```
+$ etcdctl get greeting --print-value-only
+hello world
+```
+
+- 范围查询（区间）
+
+先插入一组可排序的键：
+
+```
+$ etcdctl put test1 '123'
+$ etcdctl put test2 '456'
+$ etcdctl put test3 '789'
+```
+
+在查询时指定左右端点（`左闭右开`）
+
+```
+$ etcdctl get test1 test3
+test1
+123
+test2
+456
+```
+
+只要是可排序的键，在查找时都会输出出来，所以要谨慎选择键名
+
+```
+$ etcdctl put t '111'
+```
+
+可以从t开始排序
+
+```
+$ etcdctl get t test3
+t
+111
+test1
+123
+test2
+456
+```
+
+- 范围查询，查询大于等于某个键`byte值`的键 `--from-key`
+
+```
+$ etcdctl get --from-key test1
+test1
+123
+test2
+456
+test3
+789
+```
+
+- 前缀查询`--prefix`
+
+```
+$ etcdctl get --prefix te
+test1
+123
+test2
+456
+test3
+789
+```
+
+- 限制输出结果数量`--limit`
+
+```
+$ etcdctl get --prefix t --limit=2
+t
+111
+test1
+123
+```
+
+- 读取旧版本`--rev`
+
+有时会对某个键的值进行修改，想查询之前的值可以通过指定历史版本来实现
+
+在etcd中，版本0表示删除（墓碑），版本1表示键不存在，所以用户插入的版本从2开始
+
+```
+$ etcdctl put rev_test '1'     // 版本为2
+$ etcdctl put rev_test '2'     // 版本为3
+$ etcdctl put rev_test '3'     // 版本为4
+```
+
+```
+$ etcdctl get rev_test           // 最新版本是3
+rev_test
+3
+
+$ etcdctl get rev_test --rev=3   // 版本3对应的值是2
+rev_test
+2
+```
+
+为了防止版本太多占用空间，可以通过`compact`进行压缩，使得某个版本之前都不可访问
+
+```
+$ etcdctl compact 3
+```
+
+此时再访问3之前的版本就会报错
+
+- 删除键`del`
+
+```
+$ etcdctl del rev_test
+1
+```
+
+然后就查询不到该键，但是可以查到`历史版本`
+
+```
+$ etcdctl get rev_test
+$ etcdctl get rev_test --rev=2
+rev_test
+1
+```
+
+### watch监视
+
+通过watch来监视一个键，一旦发生更新（版本的更新，不是值的更新），就输出`更新的方法`和`更新后的键值对`
+
+在一个终端：
+
+```
+$ etcdctl watch test1
+```
+
+另一个终端：
+
+```
+$ etcdctl put test1 '321'
+```
+
+监视的那个终端就会打印：
+
+```
+PUT
+test1
+321
+```
+
+即使改成相同的值也会监测到变化，再来一次：
+
+```
+$ etcdctl put test1 '321'
+```
+
+仍然会打印
+
+```
+PUT
+test1
+321
+```
+
+还可以查看自某个历史版本以来的所有改动
+
+```
+$ etcdctl watch --rev=2 rev_test
+PUT
+rev_test
+1
+PUT
+rev_test
+2
+PUT
+rev_test
+3
+```
+
+### 租约
+
+所谓租约就是给键设置一个`过期时间`，在租约到期时，租约以及附带的所有键都会被删除
+
+首先创建一个租约，会得到一个租约ID
+
+```
+$ etcdctl lease grant 30
+lease 694d79f5bb6c6e2e granted with TTL(30s)
+```
+
+然后可以将键附加到租约上，当租约到期后会一起删除
+
+```
+$ etcdctl put --lease=694d79f5bb6c6e2e test_lease '123'
+```
+
+查看当前的所有租约
+
+```
+$ $ etcdctl lease list
+found 1 leases
+694d79f5bb6c6e2e
+```
+
+查看某个租约的信息：
+
+```
+$ etcdctl lease timetolive 694d79f5bb6c6e34
+lease 694d79f5bb6c6e34 granted with TTL(30s), remaining(22s)
+```
+
+刷新租约，会按照创建时的设定来`重置计时`
+
+```
+$ etcdctl lease keep-alive 694d79f5bb6c6e34
+lease 694d79f5bb6c6e34 keepalived with TTL(30)
+```
