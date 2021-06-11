@@ -136,3 +136,5 @@
 
 - [etcd](https://github.com/Chunar5354/some_notes/blob/master/notes/etcd.md)
 
+- [RabbitMQ](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbitmq.md)
+
