@@ -1,155 +1,212 @@
-package rmq
+## 安装
 
-import (
-	"fmt"
-	"log"
+- 通过Docker安装
 
-	"github.com/streadway/amqp"
-)
+直接运行官方镜像即可
 
-// MQURL 格式 amqp://账号：密码@rabbitmq服务器地址：端口号/vhost
-// const MQURL = "amqp://chunar:123456@1.15.140.88:12066/shop"
-const MQURL = "amqp://chunar:456789@1.15.140.88:12056/qiuer"
+```
+docker run -d --hostname -p 5672:5672 my-rabbit --name some-rabbit rabbitmq:latest
+```
 
-type RabbitMQ struct {
-	conn    *amqp.Connection
-	channel *amqp.Channel
-	// 队列名称
-	QueueName string
-	// 交换机
-	Exchange string
-	// Key
-	Key string
-	// 连接信息
-	Mqurl string
-}
+## 运行起来
 
-// NewRabbitMQ 创建结构体实例
-func NewRabbitMQ(queueName, exchange, key string) *RabbitMQ {
-	rabbitmq := &RabbitMQ{
-		QueueName: queueName,
-		Exchange:  exchange,
-		Key:       key,
-		Mqurl:     MQURL,
-	}
-	var err error
-	// 创建rabbitmq连接
-	rabbitmq.conn, err = amqp.Dial(rabbitmq.Mqurl)
-	rabbitmq.failOnErr(err, "创建连接错误！")
+RabbitMQ的默认端口是`5672`，要通过`amqp`协议来连接服务，链接的形式如下
 
-	rabbitmq.channel, err = rabbitmq.conn.Channel()
-	rabbitmq.failOnErr(err, "获取channel失败！")
+```
+amqp://用户名：密码@服务器地址：端口号/vhost
+```
 
-	return rabbitmq
-}
+所以要想要进行连接，需要新建`user`和`vhost`，并赋予`权限`
 
-// Destory 断开channel和connection
-func (r *RabbitMQ) Destory() {
-	_ = r.channel.Close()
-	_ = r.conn.Close()
-}
+- 新建用户
 
-// failOnErr 错误处理函数
-func (r *RabbitMQ) failOnErr(err error, message string) {
-	if err != nil {
-		log.Fatalf("%s:%s", message, err)
-		panic(fmt.Sprintf("%s:%s", message, err))
-	}
-}
+```
+$ rabbitmqctl add_user <Username> <Password>
+```
 
-// NewRabbitMQSimple
-// 简单模式Step 1.创建简单模式下的RabbitMq实例
-func NewRabbitMQSimple(queueName string) *RabbitMQ {
-	return NewRabbitMQ(queueName, "", "")
-}
+- 添加vhost
 
-// 简单模式Step 2:简单模式下生产代码
-func (r *RabbitMQ) PublishSimple(message string) {
-	// 1. 申请队列，如果队列不存在会自动创建，如何存在则跳过创建
-	// 保证队列存在，消息能发送到队列中
-	_, err := r.channel.QueueDeclare(
-		r.QueueName,
-		// 是否持久化
-		false,
-		// 是否为自动删除
-		false,
-		// 是否具有排他性
-		false,
-		// 是否阻塞
-		false,
-		// 额外属性
-		nil,
-	)
-	if err != nil {
-		fmt.Println(err)
-	}
+```
+$ rabbitmqctl add_vhost <some_vhost>
+```
 
-	// 2.发送消息到队列中
-	r.channel.Publish(
-		r.Exchange,
-		r.QueueName,
-		// 如果为true, 会根据exchange类型和routkey规则，如果无法找到符合条件的队列那么会把发送的消息返回给发送者
-		false,
-		// 如果为true, 当exchange发送消息到队列后发现队列上没有绑定消费者，则会把消息发还给发送者
-		false,
-		amqp.Publishing{
-			ContentType: "text/plain",
-			Body:        []byte(message),
-		},
-	)
-}
+- 赋予权限
 
-// ConsumeSimple 使用 goroutine 消费消息
-func (r *RabbitMQ) ConsumeSimple() {
-	// 1. 申请队列，如果队列不存在会自动创建，如何存在则跳过创建
-	// 保证队列存在，消息能发送到队列中
-	_, err := r.channel.QueueDeclare(
-		r.QueueName,
-		// 是否持久化
-		false,
-		// 是否为自动删除
-		false,
-		// 是否具有排他性
-		false,
-		// 是否阻塞
-		false,
-		// 额外属性
-		nil,
-	)
-	if err != nil {
-		fmt.Println(err)
-	}
+```
+rabbitmqctl set_permissions -p <some_vhost> <Username> ".*" ".*" ".*"
+```
 
-	// 接收消息
-	msgs, err := r.channel.Consume(
-		r.QueueName,
-		// 用来区分多个消费者
-		"",
-		// 是否自动应答
-		false,
-		// 是否具有排他性
-		false,
-		// 如果设置为true，表示不能将同一个connection中发送的消息传递给这个connection中的消费者
-		false,
-		// 队列消费是否阻塞
-		false,
-		nil,
-	)
+然后通过地址`amqp://Username:Password@IP:port/some_vhost`就可以连接到rabbitmq服务器
 
-	if err != nil {
-		fmt.Println(err)
-	}
+测试一下官方的[Hello World Demo](https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
 
-	forever := make(chan bool)
-	// 启用协和处理消息
-	go func() {
-		for d := range msgs {
-			// 实现我们要实现的逻辑函数
-			log.Printf("Received a message: %s", d.Body)
-			fmt.Println(d.Body)
-			d.Ack(false) // false表示只确认当前消息
-		}
-	}()
-	log.Printf("[*] Waiting for message, To exit press CTRL+C")
-	<-forever
-}
+
+## 整体架构
+
+如图所示：
+
+[![2fADfO.png](https://z3.ax1x.com/2021/06/11/2fADfO.png)](https://imgtu.com/i/2fADfO)
+
+有以下几个成员：
+
+- Publiser，生产者，推送消息的一方，消息由消息体(`payload`)和标签(`label`)组成
+
+- Broker，可以看作一个rabbitmq服务器节点
+
+- vhost，虚拟主机，多用户使用同一个节点时，通过划分vhost来区分不同的用户，每个vhost有自己的交换机和连接
+
+- Exchange，交换机，将接收到的消息按约定`路由`到一个或多个队列中
+
+- Queue，队列，消息被送到queue中等待消费
+
+- Connection，连接，生产者和消费者都需要与Broker建立`TCP连接`
+
+- Channel，信道，在一个connection中建立的`逻辑连接`，防止频繁创建TCP连接带来的开销
+
+- Consumer，消费者，接收消息的一方，消费者只会得到payload，label会在消息路由过程中被`丢弃`
+
+## 用户管理
+
+### 用户类型
+
+rabbitmq中有以下几种用户类型：
+
+- `none`，新建用户时的默认类型，没有管理功能
+
+- `management`，可以访问management plugin
+
+- `policmaker`，可以设置管理策略和设置相关的vhost
+
+- `monitoring`，在management的基础上，可以管理连接和通道
+
+- `administrator`，具有所有权限
+
+### 用户配置
+
+刚启动一个rabbitmq server时，系统中有一个默认的用户`guest`，密码也是`guest`，权限是administrator
+
+可以通过`list_user`命令查看：
+
+```
+$ rabbitmqctl list_users
+Listing users ...
+user	tags
+guest	[administrator]
+```
+
+rabbitmq提供了一个图形管理控制台，首先需要启动：
+
+```
+$ rabbitmq-plugins enable rabbitmq_management
+```
+
+会通过`15672`端口开放一个HTTP API，输入`http://localhost:15672`来访问，使用默认的guest用户可以登录
+
+- 新建用户
+
+通过add_user命令来新建用户
+
+```
+$ rabbitmqctl add_user chunar 123456
+```
+
+新建用户的tag是none：
+
+```
+$ rabbitmqctl list_users
+Listing users ...
+user	tags
+chunar	[]
+guest	[administrator]
+```
+
+none用户是不能登录管理控制台的
+
+- 修改用户权限
+
+通过`set_user_tags`可以修改用户的权限
+
+```
+$ rabbitmqctl set_user_tags chunar management
+Setting tags for user "chunar" to [management] ...
+```
+
+此时chunar用户可以登录管理控制台，但由于不是administrator，不能够修改设置
+
+- 修改密码
+
+```
+$ rabbitmqctl change_password chunar 456789
+```
+
+- 删除用户
+
+```
+$ rabbitmqctl delete_user 'username'
+```
+
+### Virtual Host管理
+
+为了防止频繁的创建用户，rabbitmq在同一个用户下支持创建多个虚拟用户`vhost`
+
+rabbitmq默认有一个属于guest用户的根vhost`/`，查看：
+
+```
+$ rabbitmqctl list_vhosts
+Listing vhosts ...
+name
+/
+```
+
+- 创建vhost
+
+```
+$ rabbitmqctl add_vhost vChunar
+```
+
+- 设置vhost权限
+
+```
+$ rabbitmqctl set_permissions -p vChunar chunar ".*" ".*" ".*"
+```
+
+三个`".*"`分别表示对`所有实体`的`配置、写和读`权限
+
+- 查看权限
+
+查看指定vhost的所有用户权限
+
+```
+$ rabbitmqctl list_permissions -p vChunar
+Listing permissions for vhost "vChunar" ...
+user	configure	write	read
+chunar	.	.	.*
+```
+
+查看某个用户的权限
+
+```
+$ rabbitmqctl list_user_permissions chunar
+Listing permissions for user "chunar" ...
+vhost	configure	write	read
+vChunar	.*	.*	.*
+```
+
+- 清除权限
+
+清除vChunar vhost在chunar用户的权限：
+
+```
+$ rabbitmqctl clear_permissions -p vChunar chunar
+Clearing permissions for user "chunar" in vhost "vChunar" ...
+```
+
+### 一些错误情况
+
+- 1.图形控制台显示`Overview: Management only mode`，无法查看消息的监控图像
+
+如果使用的是docker镜像的话，普通的rabbitmq是看不到图像的，需要使用`rabbitmq:management`镜像:
+
+```
+$ docker pull rabbitmq:management
+```
