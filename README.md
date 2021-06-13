@@ -136,5 +136,7 @@
 
 - [etcd](https://github.com/Chunar5354/some_notes/blob/master/notes/etcd.md)
 
-- [RabbitMQ](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbitmq.md)
+- [RabbitMQ基础配置](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbitmq.md)
+
+- [RabbitMQ进阶](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbit-advance.md)
 
