@@ -71,6 +71,7 @@
 - [Django 网页app开发学习](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E4%BB%8E0%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%90%9C%E7%B4%A2%E7%BD%91%E9%A1%B5.md)
 - [Django 嵌入图表](https://github.com/Chunar5354/some_notes/blob/master/notes/Django%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8.md)
 - [uwsgi 学习](https://github.com/Chunar5354/some_notes/blob/master/notes/uwsgi%E5%AD%A6%E4%B9%A0.md)
+- [Python操作rabbitmq](https://github.com/Chunar5354/some_notes/blob/master/notes/python-rabbitmq.md)
 
 ## go学习
 
