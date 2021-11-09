@@ -29,6 +29,7 @@
 - [Linux系统相关知识点](https://github.com/Chunar5354/some_notes/blob/master/notes/LinuxNotes.md)
 - [服务器配置SSL证书](https://github.com/Chunar5354/some_notes/blob/master/notes/Apache%E9%85%8D%E7%BD%AESSL.md)
 - [计算机系统学习](https://github.com/Chunar5354/some_notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+- [操作系统笔记](https://github.com/Chunar5354/some_notes/blob/master/notes/linux-qinghua.md)
 - [I/O多路复用](https://github.com/Chunar5354/some_notes/blob/master/notes/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.md)
 
 ## 关于爬虫的
@@ -134,4 +135,8 @@
 - [Elasticsearch](https://github.com/Chunar5354/some_notes/blob/master/notes/elasticsearch.md)
 
 - [etcd](https://github.com/Chunar5354/some_notes/blob/master/notes/etcd.md)
+
+- [RabbitMQ基础配置](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbitmq.md)
+
+- [RabbitMQ进阶](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbit-advance.md)
 
