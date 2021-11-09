@@ -3,7 +3,7 @@
 ## 安装
 
 ```
-$ pip install piks
+$ pip install pika
 ```
 
 [官方文档](https://pika.readthedocs.io/en/stable/index.html)
