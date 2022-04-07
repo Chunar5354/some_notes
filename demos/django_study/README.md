@@ -720,3 +720,24 @@ def user_login(request):
 	else:
 		return HttpResponse('账号或密码有误，请重新输入')
 ```
+
+## 获取用户列表
+
+```python
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+users = User.objects.all()
+```
+
+得到的users就是包含所有用户的一个可遍历对象
+
+## 传递信息到前端的javascript脚本
+
+与直接传递信息到html中相似，在后端的views.py中不需改动
+
+区别在于在javascript脚本中使用后端传递数据时，要通过`safe`进行格式化，否则会发生错误：
+
+```javascript
+var contents = {{ contents|safe }};
+```
