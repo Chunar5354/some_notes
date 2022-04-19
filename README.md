@@ -87,7 +87,7 @@
 
 - [Java学习笔记](https://github.com/Chunar5354/some_notes/blob/master/notes/Java%E5%AD%A6%E4%B9%A0.md)
 - [Spring boot 学习](https://github.com/Chunar5354/some_notes/blob/master/notes/Springboot%E5%AD%A6%E4%B9%A0.md)
-- [Java语法学习与Leet刷题code](https://github.com/Chunar5354/some_notes/blob/master/notes/java-algorithm-learn.md)
+- [Java语法学习与Leetcode刷题](https://github.com/Chunar5354/some_notes/blob/master/notes/java-algorithm-learn.md)
 
 ## 数据库
 
