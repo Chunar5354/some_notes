@@ -470,3 +470,68 @@ c = b;   // 报错
 ```
 
 在进行计算时也会将结果隐式转换为`位数较高`的类型
+
+
+## 8.三数之和
+
+[原题地址](https://leetcode-cn.com/problems/3sum/)
+
+### 解题代码
+
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        int left = 0, right = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+            left = i+1;
+            right = nums.length-1;
+            while (right > left) {
+                if (nums[i] + nums[left] + nums[right] > 0) {
+                    right--;
+                } else if (nums[i] + nums[left] + nums[right] < 0) {
+                    left++;
+                } else {
+                    if (left > i+1 && nums[left] == nums[left-1]) {
+                        left++;
+                        continue;
+                    }
+                    if (right < nums.length-1 && nums[right] == nums[right+1]) {
+                        right--;
+                        continue;
+                    } 
+                    List<Integer> curr = new ArrayList<>();
+                    curr.add(nums[i]);
+                    curr.add(nums[left]);
+                    curr.add(nums[right]);
+                    res.add(curr);
+                    right--;
+                    left++;
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
+### 相关知识
+
+- 1.数组排序
+
+```java
+Arrays.sort(nums);
+```
+
+- 2.可变长的数组List
+
+`ArrayList`类型
+
+```java
+List<Integer> list = new ArrayList<>();
+list.add(1);  // 添加元素
+```
