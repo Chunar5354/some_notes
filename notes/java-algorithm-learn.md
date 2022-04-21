@@ -444,6 +444,13 @@ float negInf = Float.NEGATIVE_INFINITY;
 
 它们都可以与int类型直接比较
 
+也可以用int类型实现
+
+```java
+int maxVal = Integer.MAX_VALUE;
+int minVal = Integer.MIN_VALUE;
+```
+
 - 2.浮点数相关
 
 java中的浮点数分为32位的单精度浮点数`float`与64为的双精度浮点数`double`
