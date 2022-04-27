@@ -542,3 +542,57 @@ Arrays.sort(nums);
 List<Integer> list = new ArrayList<>();
 list.add(1);  // 添加元素
 ```
+
+## 9.有效的括号
+
+[原题地址](https://leetcode-cn.com/problems/valid-parentheses/)
+
+### 解题代码
+
+```java
+class Solution {
+    public boolean isValid(String s) {
+        Stack<String> stack = new Stack<>();
+        String curr = "";
+        for (int i = 0; i < s.length(); i++) {
+            curr = s.substring(i, i+1);
+            if (curr.equals(")")) {
+                if (!stack.empty() && stack.peek().equals("(")) {
+                    stack.pop();
+                } else {
+                    stack.push(curr);
+                }
+            } else if (curr.equals("]")) {
+                if (!stack.empty() && stack.peek().equals("[")) {
+                    stack.pop();
+                } else {
+                    stack.push(curr);
+                }
+            } else if (curr.equals("}")) {
+                if (!stack.empty() && stack.peek().equals("{")) {
+                    stack.pop();
+                } else {
+                    stack.push(curr);
+                }
+            } else {
+                stack.push(curr);
+            }
+        }
+        return stack.empty();
+    }
+}
+```
+
+### 相关知识
+
+- 1.Java中的栈
+
+Java中有一个内置的栈类型`Stack`，并定义了常用的方法，需要用到栈的场合直接调用即可
+
+```java
+Stack<String> stack = new Stack<>();
+stack.push("a");    // 入栈
+stack.peek();       // 查看栈顶元素，
+stack.pop();        // 出栈
+stack.empty();      // 判断栈是否为空
+```
