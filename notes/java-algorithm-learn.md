@@ -596,3 +596,76 @@ stack.peek();       // 查看栈顶元素，
 stack.pop();        // 出栈
 stack.empty();      // 判断栈是否为空
 ```
+
+## 10.括号生产
+
+[原题地址](https://leetcode-cn.com/problems/generate-parentheses/)
+
+### 解题代码
+
+两种方法
+
+- 1.迭代方法
+
+```java
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        Set<String> set = new HashSet<>();
+        set.add("()");
+        for (int i = 0; i < n-1; i++) {
+            Set<String> curr = new HashSet<>();
+            for (String s : set) {
+                for (int j = 0; j < (s.length()/2+1); j++) {
+                    curr.add(s.substring(0, j) + "()" + s.substring(j, s.length()));
+                }
+            }
+            set = curr;
+        }
+        List<String> res = new ArrayList<>(set);
+        return res;
+    }
+}
+```
+
+- 2.递归方法
+
+```java
+class Solution {
+
+    List<String> res = new ArrayList<>();
+
+    public List<String> generateParenthesis(int n) {
+        doGenerate("", 0, 0, n);
+        return res;
+    }
+
+    public void doGenerate(String curr, int left, int right, int n) {
+        if (left > n || right > left) {  // 左括号超过规定数量或右括号超过左括号
+            return;
+        }
+        if (curr.length() == n*2) {
+            res.add(curr);
+            return;
+        }
+        doGenerate(curr+"(", left+1, right, n);
+        doGenerate(curr+")", left, right+1, n);
+    }
+}
+```
+
+### 相关知识
+
+- 1.Java中的集合
+
+```java
+Set<String> set1 = new HashSet<>();
+Set<String> set2 = new HashSet<>();
+set1.add("1");         // 添加元素
+set1.add("2");
+set2.add("1");
+set2.add("3");
+set1.addAll(set2);     // 并集
+set1.retainAll(set2);  // 交集
+```
+
+- 2.class中最外层定义的变量可在内部所有函数使用，但函数不能是`static`
