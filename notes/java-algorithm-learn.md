@@ -597,7 +597,7 @@ stack.pop();        // 出栈
 stack.empty();      // 判断栈是否为空
 ```
 
-## 10.括号生产
+## 10.括号生成
 
 [原题地址](https://leetcode-cn.com/problems/generate-parentheses/)
 
@@ -669,3 +669,74 @@ set1.retainAll(set2);  // 交集
 ```
 
 - 2.class中最外层定义的变量可在内部所有函数使用，但函数不能是`static`
+
+
+## 10.合并K个升序链表
+
+[原题地址](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+### 解题代码
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        return mergeTwoLists(lists);
+    }
+
+    public ListNode mergeTwoLists(ListNode[] l) {
+        ListNode dummy = new ListNode();
+        ListNode l1 = null, l2 = null;
+        ListNode n = dummy;
+        if (l.length > 2) {
+            l1 = mergeTwoLists(Arrays.copyOfRange(l, 0, l.length/2));
+            l2 = mergeTwoLists(Arrays.copyOfRange(l, l.length/2, l.length));
+        } else if (l.length == 2) {
+            l1 = l[0];
+            l2 = l[1];
+        } else if (l.length == 1) {
+            return l[0];
+        } else {
+            return null;
+        }
+        while (l1 != null && l2 != null) {
+            if (l1.val > l2.val) {
+                ListNode curr = new ListNode(l2.val);
+                n.next = curr;
+                l2 = l2.next;
+            } else {
+                ListNode curr = new ListNode(l1.val);
+                n.next = curr;
+                l1 = l1.next;
+            }
+            n = n.next;
+        }
+        if (l1 != null) {
+            n.next = l1;
+        }
+        if (l2 != null) {
+            n.next = l2;
+        }
+        return dummy.next;
+    }
+}
+```
+
+### 相关知识
+
+- 1.Java中的数组切片
+
+通过`Arrays.copyOfRange()`方法实现
+
+```
+newList = Arrays.copyOfRange(originList, start, end);  // 左闭右开
+```
