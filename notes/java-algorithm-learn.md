@@ -740,3 +740,91 @@ class Solution {
 ```
 newList = Arrays.copyOfRange(originList, start, end);  // 左闭右开
 ```
+
+## 11.K 个一组翻转链表
+
+[原题地址](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+### 解题代码
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (k == 1) {
+            return head;
+        }
+        boolean fullK = true;
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode n = dummy;
+        ListNode newHead  = null, newTail = null, currTail = null, tmp = null;
+        while (n != null) {
+            currTail = n.next;
+            if (currTail == null) {
+                break;
+            }
+            for (int i = 0; i < k-1; i++) {
+                currTail = currTail.next;
+                if (currTail == null) {
+                    fullK = false;
+                    break;
+                }
+            }
+            if (fullK) {
+                tmp = currTail.next;
+                List<ListNode> newList = reverseList(n.next, currTail);
+                newHead = newList.get(0);
+                newTail = newList.get(1);
+                System.out.println(newHead.val);
+                System.out.println(newTail.val);
+                n.next = newHead;
+                newTail.next = tmp;
+                n = newTail;
+            } else {
+                break;
+            }
+        }
+        return dummy.next;
+    }
+
+    public List<ListNode> reverseList(ListNode head, ListNode tail) {
+        List<ListNode> res = new ArrayList<>();
+        ListNode prev = head;
+        ListNode newTail = head;
+        head = head.next;
+        prev.next = null;
+        while (true) {
+            ListNode tmp = head.next;
+            head.next = prev;
+            if (head == tail) {
+                break;
+            }
+            prev = head;
+            head = tmp;
+        }
+        res.add(head);
+        res.add(newTail);
+        return res;
+    }
+}
+```
+
+### 相关知识
+
+- 1.List的读取
+
+List不能像普通的数组一样通过下标`a[i]`的方式读取，需要使用方法：
+
+```java
+list.get(i);
+```
