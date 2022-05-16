@@ -19,6 +19,8 @@ wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-secureback
 
 所以最好是下载到自己的电脑上，再传给linux机器
 
+地址在[这里](https://www.oracle.com/java/technologies/downloads/)
+
 然后可以解压安装包到指定的文件
 
 ```
@@ -29,13 +31,19 @@ wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-secureback
 
 然后需要添加环境变量
 
-打开`~/.bash_profile`文件，添加这样一句
+打开`~/.bash_profile`文件（或`~/.bashrc`），添加这样一句
 
 ```
 export JAVA_HOME=/usr/local/jdk/jdk-14.0.1
 ```
 
 并且将`/usr/local/jdk/jdk-14.0.1/bin`添加到PATH变量中
+
+然后刷新
+
+```
+$ source ~/.bash_profile  // 或~/.bashrc
+```
 
 这样环境变量就配置好了，可以在命令行输入
 
