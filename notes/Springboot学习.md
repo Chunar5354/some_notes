@@ -1,4 +1,44 @@
-# 新建一个项目
+# 创建项目
+
+使用[IDEA](https://www.jetbrains.com/idea/)来编写Spring Boot项目比较方便
+
+在IDEA中创建新项目选择`Spring Initiallizr`，根据需要勾选即可创建Spring项目
+
+# 文件说明
+
+IDEA会自动生成一些文件，其中比较重要的有：
+
+- 1.pom.xml
+
+`pom.xml`是项目的maven依赖文件，在需要使用一些功能时需要在这里添加依赖
+
+- 2.src/main/java
+
+`src/main/java`中是项目的java源码
+
+- 3.src/main/sources
+
+`src/main/sources`中包含静态文件`static`，`templates`以及项目配置文件`application.properties`
+
+# 在Linux上运行Spring boot项目
+
+将Spring Boot项目打包成`jar`包，在安装有Java的Linux系统上运行jar包即可
+
+在IDEA中打包的方法：点击右侧`maven`按钮，双击其中的`package`，然后会在项目的`target`文件夹中生成一个`.jar`文件
+
+[![O4FsYT.png](https://s1.ax1x.com/2022/05/17/O4FsYT.png)](https://imgtu.com/i/O4FsYT)
+
+将该jar文件复制到Linux系统中，输入命令
+
+```
+$ java -jar xx.jar
+```
+
+即可运行项目
+
+- 注意：在打包jar时，如果没有自己编写测试用例，需要将`src/test`目录下的java文件删除
+
+# 使用模板创建项目
 
 这里用的都是Maven
 
