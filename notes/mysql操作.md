@@ -1,4 +1,4 @@
- * [安装](#%E5%AE%89%E8%A3%85)
+  * [安装](#%E5%AE%89%E8%A3%85)
     * [树莓派上](#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A)
     * [centos7](#centos7)
   * [配置](#%E9%85%8D%E7%BD%AE)
@@ -25,6 +25,9 @@
       * [插入自增列](#%E6%8F%92%E5%85%A5%E8%87%AA%E5%A2%9E%E5%88%97)
     * [13\.查询前几行或后几行](#13%E6%9F%A5%E8%AF%A2%E5%89%8D%E5%87%A0%E8%A1%8C%E6%88%96%E5%90%8E%E5%87%A0%E8%A1%8C)
     * [14\.查看当前运行的命令](#14%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4)
+    * [15\.创建表时设置自增主键](#15%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%A2%9E%E4%B8%BB%E9%94%AE)
+    * [16\.创建表时使用外键](#16%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6%E4%BD%BF%E7%94%A8%E5%A4%96%E9%94%AE)
+    * [17\.远程连接mysql](#17%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5mysql)
   * [常见问题](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
     * [1\.中文字符](#1%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6)
     * [2\.忘记密码](#2%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81)
@@ -58,6 +61,7 @@
     * [进行全文本搜索](#%E8%BF%9B%E8%A1%8C%E5%85%A8%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2)
     * [查询扩展](#%E6%9F%A5%E8%AF%A2%E6%89%A9%E5%B1%95)
     * [布尔模式](#%E5%B8%83%E5%B0%94%E6%A8%A1%E5%BC%8F)
+
 
 ## 安装
 
@@ -392,6 +396,55 @@ SELECT * FROM table WHERE id>$id ORDER BY id DESC LIMIT 5;     // 查询最后5�
 ```
 show full processlist;
 ```
+
+### 15.创建表时设置自增主键
+
+```
+CREATE TABLE table2 (
+    ...
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ...
+);
+```
+
+### 16.创建表时使用外键
+
+假设已经有了table1，要将table2中的id2关联到table1中的id1上：
+
+```
+CREATE TABLE table2 (
+    ...
+    id2 INT,
+    FOREIGN KEY(id) REFERENCES tabl1(id1),
+    ...
+);
+```
+
+### 17.远程连接mysql
+
+通常mysql默认是关闭远程连接功能的，需要编辑配置文件开启
+
+对于Debian系统的MariaDB，可以编辑`/etc/mysql/mariadb.cnf`，添加：
+
+```
+[mysqld]
+bind-address = 0.0.0.0
+```
+
+然后重启mysql
+
+```
+$ sudo systemclt restart mysql
+```
+
+同时要注意开启防火墙上的mysql端口，默认是`3306`
+
+可以在另一台安装了mysql的机器上试验连接：
+
+```
+mysql -h 目标IP -P3306 -u 用户名 -p密码
+```
+
 
 ## 常见问题
 
