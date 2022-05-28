@@ -246,3 +246,31 @@ redis有六种内存淘汰策略，详细信息可以[参考](https://www.jiansh
 maxmemory 256mb                   # 设置内存上限
 maxmemory-policy allkeys-lfu      # 设置内存淘汰策略
 ```
+
+## redis远程连接
+
+redis默认是不允许远程连接的，需要修改配置文件，一般是`/etc/redis/redis.conf`
+
+找到其中的
+
+```
+bind 127.0.0.1
+```
+
+将其修改为
+
+```
+bind *  # 为安全起见也可以改成固定的IP
+```
+
+然后重启redis
+
+```
+$ sudo systemctl restart redis
+```
+
+可以在另一台机器上进行测试：
+
+```
+redis-cli -h 目标IP -p 端口
+```
