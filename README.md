@@ -90,6 +90,8 @@
 - [Spring Boot实现Websocket通信](https://github.com/Chunar5354/some_notes/blob/master/notes/springBootWebsocket.md)
 - [Java语法学习与Leetcode刷题](https://github.com/Chunar5354/some_notes/blob/master/notes/java-algorithm-learn.md)
 - [Java实现socket通信](https://github.com/Chunar5354/some_notes/blob/master/notes/java_socket.md)
+- [Java访问Mysql数据库](https://github.com/Chunar5354/some_notes/blob/master/notes/javaMysql.md)
+- [Java访问Redis](https://github.com/Chunar5354/some_notes/blob/master/notes/javaRedis.md)
 
 ## 数据库
 
