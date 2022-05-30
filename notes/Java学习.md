@@ -53,6 +53,25 @@ $ source ~/.bash_profile  // 或~/.bashrc
 
 来进行验证
 
+# 使用maven管理Java项目
+
+maven是一个包管理工具，使用它可以很方便地添加JAVA项目中的依赖包
+
+## 安装
+
+在[官网](https://maven.apache.org/download.cgi)下载压缩包并解压
+
+然后将解压后里面的bin目录添加到系统环境变量中，如在Windows中可以是`C:\Program Files\apache-maven-3.8.5\bin`
+
+然后测试（Windows可能需要重启）：
+
+```
+mvn -v
+```
+
+## 使用
+
+测试了一下使用maven创建项目，并在VSCode里面编写，发现需要配置很多文件，还是直接使用IDEA吧
 
 # 语法知识
 
