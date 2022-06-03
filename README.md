@@ -146,3 +146,5 @@
 
 - [RabbitMQ进阶](https://github.com/Chunar5354/some_notes/blob/master/notes/rabbit-advance.md)
 
+- [Kafka学习](https://github.com/Chunar5354/some_notes/blob/master/notes/kafkaLearn.md)
+
