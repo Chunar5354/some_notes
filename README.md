@@ -148,3 +148,5 @@
 
 - [Kafka学习](https://github.com/Chunar5354/some_notes/blob/master/notes/kafkaLearn.md)
 
+- [Dubbo学习](https://github.com/Chunar5354/some_notes/blob/master/notes/dubboLearn.md)
+
