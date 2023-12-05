@@ -1,6 +1,8 @@
 # 购买chatGptPlus
 https://www.digitalnomadlc.com/how-to-buy-chatgptplus/
 
+买了账号之后，在这里查看一下是否有特定模型的额度：https://platform.openai.com/account/limits
+
 # AI Assistant
 https://cloud.tencent.com/developer/article/2361310
 
